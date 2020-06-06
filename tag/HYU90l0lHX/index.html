@@ -1,0 +1,2797 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea静态个人博客">
+<meta name="description" content="为了活着而活着">
+<meta name="theme-color" content="#000">
+<title>Seul</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1591457686189">
+<link rel="stylesheet" href="/media/css/pisces.css">
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link
+  href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+  rel="stylesheet" type="text/css">
+
+<link href="/media/hljs/styles/androidstudio.css"
+  rel="stylesheet">
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+  integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+  integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?50e6161f2fd4a0004687be0b53c709e9";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+</head>
+
+<body>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+<div class="pisces">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>Seul</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">For me</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/" target="_self">
+                  <i class="fa fa-home"></i> 首页
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/archives/" target="_self">
+                  <i class="fa fa-archive"></i> 归档
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/tags/" target="_self">
+                  <i class="fa fa-tags"></i> 标签
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/post/about/" target="_self">
+                  <i class="fa fa-user"></i> 关于
+                </a>
+              
+            </li>
+          
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友情链接
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+ 
+  let showNav = true;
+
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+  </div>
+  <div class="main-continer">
+    
+    <div
+      class="section-layout  pisces">
+      <div class="section-layout-wrapper">
+        <div id="sidebarMeta" class="sidebar">
+    
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">seul</p>
+    
+    <div class="site-description right-motion">
+      
+        <p id="binft">无知\n无情\n无你</p>
+      
+    </div>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">7</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="">
+        <span class="site-item-stat-count">9</span>
+        <span class="site-item-stat-name language" data-lan="category">分类</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">9</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://seulg.github.io//atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+
+
+
+  <div style="width: 100%; position: relative;">
+    <canvas id="canvasDiyBlock" style="width:100%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+    <script src="/media/js/magic/clock.js"></script>
+  </div>
+
+</div>
+</div>
+<script>
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'pisces';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
+      }
+    });
+  }
+  </script>
+        <div class="section-box tag-line box-shadow-wrapper">
+          <section class="section tags-section posts-expand bg-color">
+            <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          迷宫
+          <small class="language" data-lan="tag">标签</small>
+        </h2>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="https://seulg.github.io/post/递归-迷宫问题/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              11-25
+              <small>递归 -迷宫问题</small>
+            </h1>
+          </div>
+        </div>
+      </a>
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <div class="copyright">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | © 2019-2020 Theme By <a
+        href="https://github.com/hsxyhao/gridea-theme-next" target="_blank">HsxyHao</a>
+    </div>
+    <div class="poweredby">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </footer>
+  
+  
+  <div class="pisces back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+    <span class="scrollpercent">
+      <span id="back_to_top_text">0</span>%
+    </span>
+    
+  </div>
+  
+  
+  
+</div>
+<script>
+
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+    back2TopText = document.querySelector('#back_to_top_text'),
+    drawerBox = document.querySelector('#drawer_box'),
+    rightSideBar = document.querySelector('.sidebar'),
+    viewport = document.querySelector('body');
+
+  function scrollAnimation(currentY, targetY) {
+
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
+
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  window.addEventListener('scroll', function (e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+
+
+  let hasCacu = false;
+  window.onresize = function () {
+    calcuHeight();
+  }
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (!hasCacu && back2Top.classList.contains('pisces') || back2Top.classList.contains('gemini')) {
+      let sideBar = document.querySelector('.sidebar');
+      let navUl = document.querySelector('#site_nav');
+      sideBar.style = 'margin-top:' + (navUl.offsetHeight + navUl.offsetTop + 15) + 'px;';
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+
+  let open = false, MOTION_TIME = 300, RIGHT_MOVE_DIS = '320px';
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll('.right-motion');
+    let right = drawerBox.classList.contains('right');
+
+    let transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS
+      };
+      closeProp = {
+        paddingRight: '0px'
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS
+      };
+      closeProp = {
+        paddingLeft: '0px'
+      };
+    }
+
+    drawerBox.onclick = function () {
+      open = !open;
+      window.Velocity(rightSideBar, 'stop');
+      window.Velocity(viewport, 'stop');
+      window.Velocity(rightMotions, 'stop');
+      if (open) {
+        window.Velocity(rightSideBar, {
+          width: RIGHT_MOVE_DIS
+        }, {
+          duration: MOTION_TIME,
+          begin: function () {
+            window.Velocity(rightMotions, transitionDir, {});
+          }
+        })
+        window.Velocity(viewport, openProp, {
+          duration: MOTION_TIME
+        });
+      } else {
+        window.Velocity(rightSideBar, {
+          width: '0px'
+        }, {
+          duration: MOTION_TIME,
+          begin: function () {
+            window.Velocity(rightMotions, {
+              opacity: 0
+            });
+          }
+        })
+        window.Velocity(viewport, closeProp, {
+          duration: MOTION_TIME
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle('muse-line');
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    }
+  }
+
+  // 链接跳转
+  let newWindow = 'false'
+  if (newWindow === 'true') {
+    let links = document.querySelectorAll('.post-body a')
+    links.forEach(item => {
+      if (!item.classList.contains('btn')) {
+        item.setAttribute("target", "_blank");
+      }
+    })
+  }
+
+  let faSearch = document.querySelector('#fa_search');
+  faSearch.addEventListener('click', function () {
+    document.querySelector('#search_mask').style = ''
+  })
+
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
+  
+  // 离开当前页title变化
+  var leaveTitle = '期待您的下次光临喵~';
+  if (leaveTitle) {
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState == 'hidden') {
+        normal_title = document.title;
+        document.title = leaveTitle;
+      } else {
+        document.title = normal_title;
+      }
+    });
+  }
+
+</script>
+  </div>
+</body>
+
+  <div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/win10-bu-shu-spark-kai-fa-huan-jing/"" data-c="
+          &lt;p&gt;通过本文，你将了解到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;win上安装包管理神器&lt;code&gt;scoop&lt;/code&gt;（附带科学上网）&lt;/li&gt;
+&lt;li&gt;安装&lt;code&gt;scala&lt;/code&gt; &lt;code&gt;maven&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启用wsl2，安装Arch子系统&lt;/li&gt;
+&lt;li&gt;解决wsl2虚拟机ip问题&lt;/li&gt;
+&lt;li&gt;美化Terminal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+&lt;h3 id=&#34;scoop&#34;&gt;Scoop&lt;/h3&gt;
+&lt;h4 id=&#34;简介&#34;&gt;简介：&lt;/h4&gt;
+&lt;p&gt;​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等），而在包管理器往往是linux上的工具，用来管理软件，而scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。主要是他能帮我们安装软件的时候自动设置环境变量。详情见&lt;a href=&#34;https://scoop.sh/&#34;&gt;官网&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;安装前准备&#34;&gt;&lt;a href=&#34;https://www.jianshu.com/p/50993df76b1c&#34;&gt;安装前准备&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;用户名不含中文字符&lt;/li&gt;
+&lt;li&gt;Windows 7 SP1+ / Windows Server 2008+&lt;/li&gt;
+&lt;li&gt;计算机能够科学上网&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://links.jianshu.com/go?to=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fdownload%2Fdetails.aspx%3Fid%3D34595&#34;&gt;PowerShell 3+&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://links.jianshu.com/go?to=https%3A%2F%2Fwww.microsoft.com%2Fnet%2Fdownload&#34;&gt;.NET Framework 4.5+&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;若Powershell或.NET Franmework版本过旧，更新后重启即可。&lt;br&gt;
+若不清楚版本号，可&lt;code&gt;Win+R&lt;/code&gt;运行powershell，输入以下命令获取版本号。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;$PSVersionTable.PSVersion.Major   #查看Powershell版本
+$PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;科学上网v2ray请自备vemss链接&#34;&gt;科学上网（v2ray,请自备vemss链接）&lt;/h4&gt;
+&lt;h5 id=&#34;下载图形化界面qv2ray&#34;&gt;下载图形化界面&lt;a href=&#34;https://github.com/Qv2ray/Qv2ray/releases&#34;&gt;qv2ray&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;点击链接，下载最新版本（对应自己系统的位数x64或着x32），安装到本地磁盘&lt;/p&gt;
+&lt;h5 id=&#34;下载v2ray核心&#34;&gt;下载&lt;a href=&#34;https://github.com/v2ray/v2ray-core/releases&#34;&gt;v2ray核心&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;同样选择对应版本，在&lt;code&gt;C:/Users/xstar/AppData/Local/qv2ray&lt;/code&gt;目录下新建vcore文件夹，将下载的v2ray压缩包的内容解压到该文件夹下&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;xstar为你的用户名&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;目录结构如下&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://img04.sogoucdn.com/app/a/100520146/5928e6d2d3ad7394ee3c2e67961d4593&#34; alt=&#34;GA_Y97ZE800(L$CMNK8@_3E.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h5 id=&#34;入站设置&#34;&gt;入站设置&lt;/h5&gt;
+&lt;p&gt;依次打开首选项-&amp;gt;入站设置，监听地址不用动（默认127.0.0.1）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;建议scoket为1080端口&lt;/li&gt;
+&lt;li&gt;http为2333端口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;导入你的vmess链接&#34;&gt;导入你的vmess链接&lt;/h5&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://img02.sogoucdn.com/app/a/100520146/2e7ca0733319b08fc8d29d90eada7f5f&#34; alt=&#34;0SVASI%ODFPVMFA6Q~91.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h5 id=&#34;启动系统代理&#34;&gt;启动系统代理&lt;/h5&gt;
+&lt;p&gt;开启代理，便可以进行科学上网，有关如何配合浏览器插件做到浏览器热切换代理，请在本站找Manjaro的有关内容&lt;/p&gt;
+&lt;h4 id=&#34;安装scoop&#34;&gt;安装scoop&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;tips:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;scoop软件都是从git仓库clone下来的，因此需要科学上网&lt;/li&gt;
+&lt;li&gt;scoop安装的软件默认在&lt;code&gt;C:\Users\xstar\scoop\apps&lt;/code&gt;下xstar为你的用户名&lt;/li&gt;
+&lt;li&gt;scoop 可以用-g参数为全局安装&lt;code&gt;C:\ProgramData\scoop\apps\&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;scoop只会保留最新版的软件，因此对于scala2.11.12不能用scoop安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;打开powershell分别执行以下两条命令&#34;&gt;打开&lt;code&gt;powershell&lt;/code&gt;分别执行以下两条命令&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+iwr -useb get.scoop.sh | iex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;scoop-帮助文档&#34;&gt;scoop 帮助文档&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;Usage: scoop &amp;lt;command&amp;gt; [&amp;lt;args&amp;gt;]
+
+Some useful commands are:
+
+alias       Manage scoop aliases
+bucket      Manage Scoop buckets
+cache       Show or clear the download cache
+checkup     Check for potential problems
+cleanup     Cleanup apps by removing old versions
+config      Get or set configuration values
+create      Create a custom app manifest
+depends     List dependencies for an app
+export      Exports (an importable) list of installed apps
+help        Show help for a command
+home        Opens the app homepage
+info        Display information about an app
+install     Install apps
+list        List installed apps
+prefix      Returns the path to the specified app
+reset       Reset an app to resolve conflicts
+search      Search available apps
+status      Show status and check for new app versions
+uninstall   Uninstall an app
+update      Update apps, or Scoop itself
+virustotal  Look for app&#39;s hash on virustotal.com
+which       Locate a shim/executable (similar to &#39;which&#39; on Linux)
+
+Type &#39;scoop help &amp;lt;command&amp;gt;&#39; to get help for a specific command.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;用scoop安装git-busybox-sudo&#34;&gt;用scoop安装git busybox sudo&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;scoop config proxy 127.0.0.1:1080	#为scoop设置代理
+scoop install git		#众所周知，强大的版本控制工具
+scoop install busybox	#让你在win上使用linux的部分命令
+scoop install sudo		#类似linux的提权，以管理员身份运行命令
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;为scoop添加extras仓库&#34;&gt;为scoop添加extras仓库&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;scoop bucket add extras
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;安装maven-scala&#34;&gt;安装maven scala&lt;/h3&gt;
+&lt;p&gt;​	什么？有了scoop你还在为安装maven发愁么？一条命令轻松搞定&lt;code&gt;scoop install maven&lt;/code&gt;,下面讲一下maven换源，以及IDEA整合maven。&lt;/p&gt;
+&lt;h5 id=&#34;maven设置&#34;&gt;maven设置&lt;/h5&gt;
+&lt;p&gt;用你的编辑器（记事本）打开&lt;code&gt;C:\Users\xstar\scoop\apps\maven\3.6.3\conf\settings&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;设置本地仓库位置，这里建议保存到C盘之外，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接添加&lt;localRepository&gt;E:\Java\MavenRepository&lt;/localRepository&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;换阿里云的源&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;找到mirrors标签，将以下内容复制进该标签内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;     &amp;lt;mirror&amp;gt;
+        &amp;lt;id&amp;gt;aliyunmaven&amp;lt;/id&amp;gt;
+        &amp;lt;name&amp;gt;aliyun maven&amp;lt;/name&amp;gt;
+        &amp;lt;url&amp;gt;https://maven.aliyun.com/repository/public &amp;lt;/url&amp;gt;
+        &amp;lt;mirrorOf&amp;gt;central&amp;lt;/mirrorOf&amp;gt;
+    &amp;lt;/mirror&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;idea整合maven&#34;&gt;IDEA整合maven&lt;/h5&gt;
+&lt;p&gt;打开idea，一次打开以下选项卡&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;File-&amp;gt;New Projects Settings-&amp;gt;Setting for New Projects-&amp;gt;Maven&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Maven home directory&lt;/code&gt;路径改为&lt;code&gt;C:/Users/xstar/scoop/apps/maven/3.6.3&lt;/code&gt;(xstar为你的用户名)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;USer setting file&lt;/code&gt;路径改为&lt;code&gt;C:\Users\xstar\scoop\apps\maven\3.6.3\conf\settings.xml&lt;/code&gt;，并勾选&lt;code&gt;override&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;此时,Local repository应该已经为你设置的本地仓库路径，勾选&lt;code&gt;override&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;至此，你新建maven项目，便会默认使用你本机安装的maven，而不是idea自带的maven环境&lt;/p&gt;
+&lt;h5 id=&#34;安装scala&#34;&gt;安装scala&lt;/h5&gt;
+&lt;p&gt;此处比较简单，直接下载scala对应版本的msi安装文件，无脑安装即可&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;scala 2.11.12&lt;/code&gt;版本的&lt;a href=&#34;https://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.msi&#34;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
+&lt;h5 id=&#34;idea整合scala&#34;&gt;IDEA整合scala&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;在IDEA安装插件scala&lt;/li&gt;
+&lt;li&gt;在你新建的maven项目的pom.xml中添加以下内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;build&amp;gt;
+        &amp;lt;finalName&amp;gt;WordCount&amp;lt;/finalName&amp;gt;
+        &amp;lt;plugins&amp;gt;
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;net.alchim31.maven&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;scala-maven-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;3.3.2&amp;lt;/version&amp;gt;
+                &amp;lt;executions&amp;gt;
+                    &amp;lt;execution&amp;gt;
+                        &amp;lt;goals&amp;gt;
+                            &amp;lt;goal&amp;gt;compile&amp;lt;/goal&amp;gt;
+                            &amp;lt;goal&amp;gt;testCompile&amp;lt;/goal&amp;gt;
+                        &amp;lt;/goals&amp;gt;
+                    &amp;lt;/execution&amp;gt;
+                &amp;lt;/executions&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+        &amp;lt;/plugins&amp;gt;
+    &amp;lt;/build&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;如果你要编写spark的内容，请完成下一步内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;配置winutils&#34;&gt;配置winutils&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;tips:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;winutils，是支持在win上跑hadoop的一些静态库，并不是完整的hadoop环境,spark也需要此环境&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;你可以选择用scoop安装此环境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;scoop install hadoop-winutils	#版本较低2.8.1,也就是说如果你要在win上安装hadoop，也只能安装2.8.1版本的hadoop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;你可以选择较高版本的winutils手动安装
+&lt;ul&gt;
+&lt;li&gt;下载[&lt;a href=&#34;https://github.com/s911415/apache-hadoop-3.1.0-winutils&#34;&gt;apache-hadoop-3.1.0-winutils&lt;/a&gt;],将此压缩包解压到本地磁盘&lt;/li&gt;
+&lt;li&gt;添加环境变量直接在，请百度如何添加环境变量，基操不讲&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;关于要安装hadoop的说明，如果你要在win上安装完整的hadoop环境，在你解压缩玩hadoop后，请用对应版本的winutils覆盖hadoop安装路径下的bin目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;未完待续&lt;/strong&gt;&lt;/p&gt;
+">Win10部署spark开发环境</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/about/"" data-c="
+          &lt;h3 id=&#34;20200525这是命运给我开的玩笑吧&#34;&gt;2020.05.25这是命运给我开的玩笑吧？&lt;/h3&gt;
+&lt;p&gt;​	如果没有疫情该多好，可能我一如既往的固执。一个梦毁了一个人，可笑。当一个迫切想要逃离的人看到哪怕一点机会，都会抓住不放。那时以为这是所命中注定，那时他开心的像个孩子。&lt;/p&gt;
+&lt;p&gt;​	现在，从一个深渊走向另一个深渊。辜负了一个人，也被另一个人辜负。我能说什么，可笑。我能做什么？Nothing。可能这是个骗局？从一开始就是？为什么是我？&lt;/p&gt;
+&lt;p&gt;​	歇斯底里，为什么我头顶绿得发亮。哭了。&lt;/p&gt;
+&lt;p&gt;​	为什么非要让我知道全部？&lt;/p&gt;
+&lt;p&gt;​	后悔了...........&lt;/p&gt;
+&lt;p&gt;​	可能不会痛了吧？&lt;/p&gt;
+">关于</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/spring-you-ya-de-bian-xie-dai-ma-zhi-ji-yu-zhu-jie-de-ioc/"" data-c="
+          &lt;h2 id=&#34;spring-ioc的常用注解&#34;&gt;spring IOC的常用注解&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用于创建对象的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;他们的作用就和在XML中编写一个bean标签实现的功能是一致的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;@Component&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作用:把当前类对象存入spring容器中&lt;/li&gt;
+&lt;li&gt;属性:
+&lt;ul&gt;
+&lt;li&gt;value : 用于指定bean的id,当我们不写时,它的默认值是当前类名首字母小写&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;@Controller&lt;/code&gt; 一般用于表现层&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;@Service&lt;/code&gt; 一般用于业务层&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;@Repository&lt;/code&gt; 一般用于持久层&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code&gt;上述三个注解的作用和属性与`Component`是一模一样的,是spring框架为我们提供明确的三层使用注解,是我们的三层对象更清晰(优雅)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用于注入数据的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;和XML配置文件中bean写&lt;code&gt;property&lt;/code&gt;标签是一致的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@Autowired&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用:自动按照类型注入.只要容器中有唯一一个bean对象类型和要注入的变量类型匹配,就可以注入成功,&lt;strong&gt;如果IOC容器中有多个匹配时,会根据变量名去匹配IOC容器(map结构)中的key(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;出现位置:
+&lt;ul&gt;
+&lt;li&gt;可以是变量上,也可以是方法上(常用)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;细节: 使用注解时,set方法就不是必须的了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@Qualifier&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用: 在按照变量类型中注入的基础上再按照变量名注入.&lt;/li&gt;
+&lt;li&gt;细节: 再给类成员注入时不能单独使用,但是在给方法参数注入时可以单独使用&lt;/li&gt;
+&lt;li&gt;属性
+&lt;ul&gt;
+&lt;li&gt;value: 用于指定注入bean的id&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@Resource&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用: 直接按照id注入&lt;/li&gt;
+&lt;li&gt;属性:
+&lt;ul&gt;
+&lt;li&gt;name: 要注入值的id&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;以上三种注解只能注入其他bean类型数据,而基本类型和String类型无法用上述注解实现,另外集合类型的注入只能通过XML实现&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@Value&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用: 用于注入指定数据的值.可以使用spring的SpEL(spring表达式)
+&lt;ul&gt;
+&lt;li&gt;SpEL写法 ${表达式}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用于改变作用范围的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;和bean标签中使用&lt;code&gt;scope&lt;/code&gt;属性的功能一致&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@Scope&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用:用于指定bean作用范围&lt;/li&gt;
+&lt;li&gt;属性:
+&lt;ul&gt;
+&lt;li&gt;value
+&lt;ul&gt;
+&lt;li&gt;singleton 单例(默认值)&lt;/li&gt;
+&lt;li&gt;prototype 多例&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;出现位置: 类上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;和生命周期相关的(了解即可)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;和bean标签中&lt;code&gt;init-method&lt;/code&gt;和&lt;code&gt;destory-method&lt;/code&gt;的功能一致&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@PreDestory&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用: 用于指定销毁方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@PostConstruct&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;作用: 用于指定初始化方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;出现位置: 方法上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;案例使用xml方式实现表单的crud操作&#34;&gt;案例使用XML方式实现表单的CRUD操作&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;采用dbutils，c3p0连接池,junit单元测试&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bean.xml配置如下&lt;/li&gt;
+&lt;li&gt;采用xml方式需要在Service和dao添加set方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+       xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+       xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;!--配置Service--&amp;gt;
+    &amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;&amp;gt;
+        &amp;lt;property name=&amp;quot;accountDao&amp;quot; ref=&amp;quot;accountDao&amp;quot; /&amp;gt;
+    &amp;lt;/bean&amp;gt;
+    &amp;lt;!--配置Dao对象--&amp;gt;
+    &amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.IAccountDaoImpl&amp;quot;&amp;gt;
+        &amp;lt;!--注入QuereyRunner--&amp;gt;
+        &amp;lt;property name=&amp;quot;runner&amp;quot; ref=&amp;quot;runner&amp;quot;/&amp;gt;
+    &amp;lt;/bean&amp;gt;
+    &amp;lt;bean id=&amp;quot;runner&amp;quot; class=&amp;quot;org.apache.commons.dbutils.QueryRunner&amp;quot; scope=&amp;quot;prototype&amp;quot;&amp;gt;
+        &amp;lt;!--注入数据源--&amp;gt;
+        &amp;lt;constructor-arg name=&amp;quot;ds&amp;quot; ref=&amp;quot;dataSource&amp;quot;/&amp;gt;
+    &amp;lt;/bean&amp;gt;
+    &amp;lt;!--配置数据源--&amp;gt;
+    &amp;lt;bean id=&amp;quot;dataSource&amp;quot; class=&amp;quot;com.mchange.v2.c3p0.ComboPooledDataSource&amp;quot;&amp;gt;
+        &amp;lt;!--连接数据库的信息--&amp;gt;
+        &amp;lt;property name=&amp;quot;driverClass&amp;quot; value=&amp;quot;com.mysql.jdbc.Driver&amp;quot;/&amp;gt;
+        &amp;lt;property name=&amp;quot;jdbcUrl&amp;quot; value=&amp;quot;jdbc:mysql://localhost:3306/springioc&amp;quot;/&amp;gt;
+        &amp;lt;property name=&amp;quot;user&amp;quot; value=&amp;quot;root&amp;quot;/&amp;gt;
+        &amp;lt;property name=&amp;quot;password&amp;quot; value=&amp;quot;gyg06103234&amp;quot;/&amp;gt;
+    &amp;lt;/bean&amp;gt;
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;QueryRunner&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;核心类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QueryRunner(DataSource ds);  传入参数为连接池&lt;/li&gt;
+&lt;li&gt;pdate(String sql, Object… params) ;  执行insert update delete操作&lt;/li&gt;
+&lt;li&gt;query(String sql, ResultSetHandler rsh, Object… params) ;  执行 select操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;ResultSetHandler&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;结果集处理类&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/03/16/8JVel4.png&#34; alt=&#34;8JVel4.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;改造上述案例使用纯注解方式实现&#34;&gt;改造上述案例,使用纯注解方式实现&lt;/h2&gt;
+&lt;p&gt;修改bean.xml约束：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt;
+    &amp;lt;context:annotation-config/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;去掉Service和dao的注解&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;删除Service中dao的set方法以及dao中QueryRunner的set方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在类名上分别添加&lt;code&gt;@Service(accountService)&lt;/code&gt;注解和&lt;code&gt;@Repository(&amp;quot;accountDao&amp;quot;)注解&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分别在两个成员变量上加入&lt;code&gt;@AutoWrite&lt;/code&gt;注解即可，因为ioc容器中只存在唯一的对应对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;去掉所有注解&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Configuration&lt;/code&gt; 指定当前类是一个配置类
+&lt;ul&gt;
+&lt;li&gt;当该类作为&lt;code&gt;AnnotationConfigApplicationContext&lt;/code&gt;的参数时可以不加此注解&lt;/li&gt;
+&lt;li&gt;作为参数就不用指定扫描范围,不作为参数就要指定扫描范围&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ComponentScan&lt;/code&gt;指定扫描包的范围
+&lt;ul&gt;
+&lt;li&gt;默认属性&lt;code&gt;value&lt;/code&gt;和&lt;code&gt;basePackage&lt;/code&gt;任选一&lt;/li&gt;
+&lt;li&gt;数组类型的注解,如果只有一个值,可以去掉大括号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Bean&lt;/code&gt; 把当前方法的返回值作为bean对象存入ioc容器中
+&lt;ul&gt;
+&lt;li&gt;name:用于指定bean的id
+&lt;ul&gt;
+&lt;li&gt;默认值为当前方法的名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;当使用&lt;code&gt;@Bean&lt;/code&gt;注解配置方法时,如果有参数时,spring会按照&lt;code&gt;Autowired&lt;/code&gt;的方式查找ioc容器中是否有唯一的对应变量的bean对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;import&lt;/code&gt;用于导入其他的配置类
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;value&lt;/code&gt;其他配置类字节码文件数组&lt;/li&gt;
+&lt;li&gt;把其他的配置类都加入到主配置类
+&lt;ul&gt;
+&lt;li&gt;只用加载主配置类,就可以加载所有配置类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PropertySource&lt;/code&gt;导入配置文件
+&lt;ul&gt;
+&lt;li&gt;value:指定文件的名称和路径&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;classpath:&lt;/code&gt;指定类路径下&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;spring-和-junit整合&#34;&gt;spring 和 Junit整合&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;导入&lt;code&gt;spring-test&lt;/code&gt;依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt;
+	&amp;lt;version&amp;gt;5.0.2.RELEASE&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;使用Junit提供的注解把原有的main方法替换成spring提供的main方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@RunWith(SpringJUnit4ClassRunner.class)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;告知spring的运行器,spring和ioc的创建是基于注解还是xml,并且说明位置
+&lt;ul&gt;
+&lt;li&gt;locations:指定xml文件位置,加上&lt;code&gt;classpath&lt;/code&gt;关键字,表示在类路径下&lt;/li&gt;
+&lt;li&gt;classes:指定注解类所在的位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@ContextConfiguration(classes = SpringConfiguration.class)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;当使用spring5.x版本的时候,要求Junit的版本必须是4.12及以上&lt;/li&gt;
+&lt;/ul&gt;
+">Spring优雅的编写代码之基于注解的IOC</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/chu-shi-spring-zhi-iocdi/"" data-c="
+          &lt;h2 id=&#34;ioc控制反转&#34;&gt;IOC(控制反转)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;IOC是Spring框架的核心容器,任何Spring框架的模块都依赖于此容器,因此,在学习Spring时,一定要注意理解IOC容器的含义.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;ioc主要解决了什么问题&#34;&gt;IOC主要解决了什么问题?&lt;/h3&gt;
+&lt;h3 id=&#34;耦合&#34;&gt;耦合&lt;/h3&gt;
+&lt;p&gt;​    先不着急给出答案,我们先来看一下,web持久层中的数据库链接是如何建立对象的&lt;br&gt;
+准备工作,创建数据库&lt;code&gt;demo&lt;/code&gt;,然后创建表account,&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;create table account(
+	id int primary key auto_increment,
+    name varhchar(40),
+    money float
+) character set utf8 collate utf8_general_ci;
+插入数据
+insert into account(name,money) values(&#39;gyg&#39;,1000);
+insert into account(name,money) values(&#39;gyk&#39;,1200);
+insert into account(name,money) values(&#39;gyl&#39;,1500);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;添加mysql依赖坐标&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;5.1.6&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;JDBCDemo如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JDBCDemo {
+    public static void main(String[] args) throws Exception{
+        //1.注册驱动
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //2.获取连接
+        Connection conn = DriverManager.getConnection(&amp;quot;jdbc:mysql://localhost:3306/demo&amp;quot;,&amp;quot;root&amp;quot;,&amp;quot;gyg06103234&amp;quot;);
+        //3.获取操作数据库预处理对象
+        PreparedStatement pstm = conn.prepareStatement(&amp;quot;select * from account&amp;quot;);
+        //4.通过sql语句,查询数据库得到结果集
+        ResultSet rs = pstm.executeQuery();
+        //5.遍历结果集
+        while (rs.next()) {
+            System.out.println(rs.getString(&amp;quot;name&amp;quot;)+&amp;quot; &amp;quot;+ rs.getString(&amp;quot;money&amp;quot;));
+        }
+        //6.释放资源
+        rs.close();
+        pstm.close();
+        conn.close();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时如果在pom.xml中把mysql驱动注释掉,就会出现编译时异常,如果你用的是高级的IDE(例如IDEA),会直接提示错误Cannot resolve symbol &#39;mysql&#39;,因为在编译的时候找不到驱动,肯定会报错,这就是&lt;code&gt;程序的耦合&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类之间的耦合&lt;/li&gt;
+&lt;li&gt;方法之间的耦合&lt;/li&gt;
+&lt;li&gt;需要注意耦合无法完全消除,只能降低耦合(这个过程就是解耦)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实际开发中应做到,编译器不依赖,运行期依赖&lt;/p&gt;
+&lt;p&gt;上述例子中解耦的方式想家都知道,例如注册驱动的解耦&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//1.注册驱动
+//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+Class.forName(&amp;quot;com.mysql.jdbc.Driver&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时,在编译期并不会报错,但是程序并不能运行,因为没有依赖,这就做到了把&lt;code&gt;编译期依赖转换成运行时依赖&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;总结一下上述做法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建对象时,使用反射创建,避免使用&lt;code&gt;new&lt;/code&gt;关键字(上述例子中可以看出,一个是依赖类,另一个是依赖字符串,但是上述做法有一个问题 驱动类是写死的,更换数据库仍然需要修改)&lt;/li&gt;
+&lt;li&gt;通过读取配置文件的形式,获取要创建对象的全限定类名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们依旧可以举一个保存账户的例子&lt;/p&gt;
+&lt;p&gt;目录结构如下:&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://s2.ax1x.com/2020/02/03/1aFkfe.png&#34; alt=&#34;1aFkfe.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;可以看出在ui.Client里面类的耦合程度很高,那么该如何解决这个问题呢?&lt;/p&gt;
+&lt;p&gt;根据上一个例子,我们依然可以采用反射的方式,将类名存在一个配置文件,然后建立一个工厂类,读取配置文件,创建对象,这样在ui.Client就不用依赖具体的类,而只依赖类的全限定类名(字符串),这就实现了解耦&lt;/p&gt;
+&lt;p&gt;具体做法如下:&lt;/p&gt;
+&lt;p&gt;创建factory.BeanFactory类内容如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class BeanFactory {
+    private static Properties props;
+    static {
+        try {
+            //1.实例化对象
+            props = new Properties();
+            //2.获取propertoes流对象
+            InputStream in = BeanFactory.class.getClassLoader().getResourceAsStream(&amp;quot;be
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(&amp;quot;初始化properties文件失败&amp;quot;);
+        }
+    }
+     public static Object getBean(String beanName) {
+        Object bean = null;
+        try {
+            String beanPath = props.getProperty(beanName);
+            bean = Class.forName(beanPath).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return beans.get(beanName);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就可以通过工厂模式创建对象&lt;/p&gt;
+&lt;p&gt;此时可以将ui.Client和service.AccountServiceImpl修改为:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Client {
+    public static void main(String[] args) {
+        //IAccountService as = new AccountServiceImpl();
+        IAccountService as = (IAccountService)BeanFactory.getBean(&amp;quot;accountService&amp;quot;);
+        as.saveAccount();
+    }
+}
+
+
+public class AccountServiceImpl implements IAccountService {
+    private IAccountDao accountDao = (IAccountDao) BeanFactory.getBean(&amp;quot;accountDao&amp;quot;);
+    public void saveAccount() {
+        accountDao.saveAccount();
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就降低了类之间的耦合,实现方式如上述例子中的相似,都是通过反射的方式解耦&lt;/p&gt;
+&lt;h3 id=&#34;多例化对象问题&#34;&gt;多例化对象问题&lt;/h3&gt;
+&lt;p&gt;但是此时,我们会发现每次通过&lt;code&gt;IAccountService as = (IAccountService)BeanFactory.getBean(&amp;quot;accountService&amp;quot;);&lt;/code&gt;获取对象,都是一个新的对象,不是从始至终都是一个对象.这就是多例化对象&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;多例化对象会创建多次,效率低&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;但是,多例化对象更加适用于多线程,因为每个对象都是独立的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当然,如果对象中存在成员变量,则可能多线程兼容不太好&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;所以应该尽可能的把成员变量加入到成员方法中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在web中一般并没有多少成员变量,因此一般使用单例化创建对象&lt;/p&gt;
+&lt;p&gt;那么该如何解决呢?&lt;/p&gt;
+&lt;p&gt;我们可以在读取完配置文件后就创建所有对象,存入一个HashMap容器(这已经类似于IOC容器了)中,如果不保存,可能会因为java的垃圾处理机制导致对象被回收,然后修改getBean,返回Map中对应的value&lt;/p&gt;
+&lt;p&gt;修改factory.BeanFactory如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class BeanFactory {
+    private static Properties props;
+    private static Map&amp;lt;String,Object&amp;gt; beans;
+    static {
+        try {
+            //1.实例化对象
+            props = new Properties();
+            //2.获取propertoes流对象
+            InputStream in = BeanFactory.class.getClassLoader().getResourceAsStream(&amp;quot;bean.properties&amp;quot;);
+            props.load(in);
+            //3.实例化容器
+            beans = new HashMap&amp;lt;String, Object&amp;gt;();
+            //4.取出配置文件中的所有key
+            Enumeration keys = props.keys();
+            //5.遍历枚举,取出key
+            while (keys.hasMoreElements()) {
+                String key = keys.nextElement().toString();
+                //6.根据key获取value 反射创建对象
+                String beanPath = props.getProperty(key);
+                Object value = Class.forName(beanPath).newInstance();
+                //7.存入Map
+                beans.put(key,value);
+            }
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(&amp;quot;初始化properties文件失败&amp;quot;);
+        }
+    }
+    public static Object getBean(String beanName) {
+       return beans.get(beanName);
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这就解决了多例化对象的问题&lt;/p&gt;
+&lt;p&gt;至此,我们就已经模拟了&lt;code&gt;spring ioc&lt;/code&gt;的设计模式,即通过配置文件方式,用工厂模式创建对象&lt;/p&gt;
+&lt;h3 id=&#34;ioc的理解&#34;&gt;IOC的理解&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//IAccountService as = new AccountServiceImpl();
+IAccountService as = (IAccountService)BeanFactory.getBean(&amp;quot;accountService&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这两句话就体现了IOC为何称之为控制反转&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一种方式(被注释掉的),是程序员自主的创建一个对象,拥有这个对象的所有控制权&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二种方式,则将创建对象的权利交给了工厂,这就是控制反转&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;工厂得到的对象由配置文件控制&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当然程序员有权选啧这两种创建方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;IOC含义:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;控制反转&lt;/strong&gt;（Inversion of Control，缩写为&lt;strong&gt;IoC&lt;/strong&gt;），是&lt;a href=&#34;https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B&#34;&gt;面向对象编程&lt;/a&gt;中的一种设计原则，可以用来减低计算机代码之间的&lt;a href=&#34;https://baike.baidu.com/item/%E8%80%A6%E5%90%88%E5%BA%A6&#34;&gt;耦合度&lt;/a&gt;。其中最常见的方式叫做&lt;strong&gt;依赖注入&lt;/strong&gt;（Dependency Injection，简称&lt;strong&gt;DI&lt;/strong&gt;），还有一种方式叫“依赖查找”（Dependency Lookup）。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象中。(来自百度百科)&lt;/p&gt;
+&lt;h3 id=&#34;ioc解决了什么问题&#34;&gt;IOC解决了什么问题&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+	App --&amp;gt; 资源1
+	App --&amp;gt; 资源2
+	App --&amp;gt; 资源3
+	
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;原始的创建对象的方式，App和资源之间依赖关系很强,而IOC模式为&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+	App --获取资源--&amp;gt; 工厂
+	工厂 --控制--&amp;gt; 资源1
+	工厂 --控制--&amp;gt; 资源2
+	工厂 --控制--&amp;gt; 资源3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IOC解决了app和资源之间依赖关系,使得App和资源的独立更方便&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;ioc降低了类之间耦合程度&#34;&gt;IOC降低了类之间耦合程度&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;spring-ioc&#34;&gt;Spring IOC&lt;/h2&gt;
+&lt;p&gt;​	通过Spring获取Ioc容器可分为两种:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过xml配置文件&lt;/li&gt;
+&lt;li&gt;通过注解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;可以通过applicationcontext接口获取核心容器该接口有三个常用实现类&#34;&gt;可以通过ApplicationContext接口获取核心容器,该接口有三个常用实现类&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ClassPathApplicationContext 顾名思义就是 读取类路径下的配置文件&lt;/li&gt;
+&lt;li&gt;SystemXmlApplicationContext 同上,系统内的xml文件(需要有读取权限)&lt;/li&gt;
+&lt;li&gt;AnnotationConfigApplicationContext 通过注解的方式取得核心容器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们先来了解前两种通过xml配置文件的方式&lt;/p&gt;
+&lt;p&gt;maven工程在resource文件夹下创建bean.xml,这个文件名可以任意(非中文),但是有一个约定俗成的文件名&lt;code&gt;applicationContext.xml&lt;/code&gt;暂时先使用bean.xml&lt;/p&gt;
+&lt;p&gt;添加一下约束条件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+       xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+       xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&amp;quot;&amp;gt;
+    &amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;/&amp;gt;
+    &amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.AccountDaoImpl&amp;quot;/&amp;gt;
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;联想前面的bean.properties文件内容,不难发现属性id必须是唯一的,class属性就是该类的全限定类名,&lt;code&gt;此配置文件到后面还会细说,此处可以先用&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;ApplicationContext context = new ClassPathApplicationContext(&amp;quot;bean.xml&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个context便类似于上面模拟的BeanFactory,即为spring的核心容器,接下来就可以使用此容器,根据配置的id获取对象了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以直接传入id获取Object对象然后强转&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;IAccountService ac = (IAccountService)context.getBean(&amp;quot;accountService&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;亦可以传入class,直接获得对应对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;IAccountService ac = context.getBean(&amp;quot;accountService&amp;quot;,IAccountServiceImpl.class);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;applicationcontext创建容器的细节&#34;&gt;ApplicationContext创建容器的细节:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一旦读取完配置文件,立马创建配置文件内配置的对象&lt;/li&gt;
+&lt;li&gt;适用于单例对象的创建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然还有另一种方式就是采用顶层接口BeanFactory&lt;/p&gt;
+&lt;p&gt;先展示一下接口间的依赖关系&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://s2.ax1x.com/2020/02/14/1XY658.png&#34; alt=&#34;1XY658.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;可以看出BeanFactory是一个顶层接口(也就意味着功能不是特别强大)&lt;/p&gt;
+&lt;p&gt;我们用BeanFactory(已经过时了的)的方式获取:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Resource resource = new ClassPathResource(&amp;quot;bean.xml&amp;quot;);
+BeanFactory factory = new XmlBeanFactory(resource);
+IAccountService as = (IAccountService)factory.getBean(&amp;quot;accountService&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;BeanFactory区别于ApplicationContext采用的立即加载策略&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;采用的是延迟加载的策略,即要真正获取对象时才会创建对象&lt;/li&gt;
+&lt;li&gt;适用于多例对象的创建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;如何验证&#34;&gt;如何验证?&lt;/h3&gt;
+&lt;p&gt;我们可以在IAccountService中加入一个默认构造器,输出一句话(service对象已经创建)&lt;/p&gt;
+&lt;p&gt;然后分别在两种方式读取配置文件时打断点&lt;/p&gt;
+&lt;p&gt;ApplicationContext:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.ax1x.com/2020/02/14/1XY28g.png&#34; alt=&#34;1XY28g.png&#34; loading=&#34;lazy&#34;&gt;BeanFactory:&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://s2.ax1x.com/2020/02/14/1XY75T.png&#34; alt=&#34;1XY75T.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;红色是断点位置,绿色是下一步要执行的即,此步执行的是绿色上面的语句,很容易就能看出两种方式区别&lt;/p&gt;
+&lt;h3 id=&#34;spring对bean对象的管理细节&#34;&gt;spring对bean对象的管理细节&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;创建对象的三种方式&lt;/li&gt;
+&lt;li&gt;bean对象的作用范围&lt;/li&gt;
+&lt;li&gt;bean对象的生命周期&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;创建对象的三种方式&#34;&gt;创建对象的三种方式&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用默认构造函数创建&lt;/p&gt;
+&lt;p&gt;在spring的配置文件中用bean标签配置id和class属性后,没有其他的标签和属性,就采用默认构造函数创建bean对象,此时如果类中无默认构造函数,则无法创建&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;/&amp;gt;
+&amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.AccountDaoImpl&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;使用类中成员方法创建对象,存入spring容器(非静态方法返回值)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//创建一个简单工厂类进行模拟
+factory.InstanceFactory
+    
+public class InstanceFactory {
+    public IAccountService getAccountService() {
+        return new AccountServiceImpl();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;instanceFactory&amp;quot; class=&amp;quot;com.henu.factory.InstanceFactory&amp;quot;/&amp;gt;
+&amp;lt;bean id=&amp;quot;accountService&amp;quot; factory-bean=&amp;quot;instanceFactory&amp;quot; factory-method=&amp;quot;getAccountService&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以通过此方式创建accountService对象&lt;/p&gt;
+&lt;p&gt;factory-bean属性值为 类的id&lt;code&gt;必须提前编写此类的bean标签&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;factory-method属性值为 类中用于生成对象的方法名&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用类中静态方法返回值创建对象(静态方法返回值)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将上述工厂类中的方法加上&lt;code&gt;static&lt;/code&gt;修饰符,可以通过以下配置文件创建&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.factory.InstanceFactory&amp;quot; factory-method=&amp;quot;getAccountService&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;其中后两种方法适用于jar文件中的类&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;bean对象的作用范围&#34;&gt;bean对象的作用范围&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;bean标签scope属性&lt;/p&gt;
+&lt;p&gt;作用:指定bean的作用范围&lt;/p&gt;
+&lt;p&gt;取值:&lt;/p&gt;
+&lt;p&gt;​	&lt;code&gt;singleton&lt;/code&gt; :单例的,默认值&lt;/p&gt;
+&lt;p&gt;​	&lt;code&gt;prototype&lt;/code&gt;:多例的&lt;/p&gt;
+&lt;p&gt;​	&lt;code&gt;request&lt;/code&gt;:作用于web应用请求范围&lt;/p&gt;
+&lt;p&gt;​	&lt;code&gt;session&lt;/code&gt;:作用web应用会话范围&lt;/p&gt;
+&lt;p&gt;​	&lt;code&gt;global-session&lt;/code&gt;:作用于集群环境的会话范围(雾)&lt;/p&gt;
+&lt;p&gt;只验证前两个值&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;&amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.AccountDaoImpl&amp;quot; scope=&amp;quot;singleton&amp;quot;/&amp;gt;
+    
+IAccountDao dao1 = ac.getBean(&amp;quot;accountDao&amp;quot;,IAccountDao.class);
+IAccountDao dao2 = ac.getBean(&amp;quot;accountDao&amp;quot;,IAccountDao.class);
+System.out.println(dao1==dao2); //true,证明只创建了一次对象,即是单例对象
+
+&amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.AccountDaoImpl&amp;quot; scope=&amp;quot;prototype&amp;quot;/&amp;gt;
+IAccountDao dao1 = ac.getBean(&amp;quot;accountDao&amp;quot;,IAccountDao.class);
+IAccountDao dao2 = ac.getBean(&amp;quot;accountDao&amp;quot;,IAccountDao.class);
+System.out.println(dao1==dao2); //false,证明只创建了两次次对象,即是多例对象    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;bean对象的生命周期&lt;/p&gt;
+&lt;p&gt;单例对象:&lt;/p&gt;
+&lt;p&gt;​	出生:容器创建时,对象就被创建&lt;/p&gt;
+&lt;p&gt;​	活着:容器存在时.对象就存在&lt;/p&gt;
+&lt;p&gt;​	死亡:容器销毁,对象狗带&lt;/p&gt;
+&lt;p&gt;​	总结单例对象生命周期与容器一致&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;//bean 标签指定初始化方法和销毁方法,在AccountDaoimpl类中添加相应方法
+&amp;lt;bean id=&amp;quot;accountDao&amp;quot; class=&amp;quot;com.henu.dao.impl.AccountDaoImpl&amp;quot; scope=&amp;quot;singleton&amp;quot; init-method=&amp;quot;init&amp;quot; destroy-method=&amp;quot;destory&amp;quot;/&amp;gt;
+ 
+public void init() {
+    System.out.println(&amp;quot;对象被创建了&amp;quot;);
+}
+public void destory() {
+    System.out.println(&amp;quot;对象销毁了&amp;quot;);
+}
+/* 结果正确的输出了&amp;quot;对象被创建了&amp;quot;,没有输出对象被销毁了
+ * why? 在main方法执行完毕后,就会把当前应用中线程栈中的内存就会被全部释放,但是还并没有调用销毁方法
+ * 需要手动释放方法才能调用销毁方法
+ * 在main方法中作出如下修改
+ **/
+
+//ApplicationContext ac = new ClassPathXmlApplicationContext(&amp;quot;bean.xml&amp;quot;);java多态的体现
+ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(&amp;quot;bean.xml&amp;quot;);
+//添加
+ac.close();
+//此时,销毁方法便会正常执行
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;多例对象&lt;/p&gt;
+&lt;p&gt;​	出生:当要使用对象时,spring才会创建,验证方法与上文类似,打断点即可&lt;/p&gt;
+&lt;p&gt;​	活着 : 对象在使用过程中,就会一直活着&lt;/p&gt;
+&lt;p&gt;​	死亡: 当对象长时间不使用,且没有别的对象引用时,由Java的垃圾回收器销毁&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;依赖注入dependency-injection&#34;&gt;依赖注入Dependency Injection&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IOC作用:&lt;/p&gt;
+&lt;p&gt;​	降低程序间的耦合(依赖关系)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依赖关系&lt;/p&gt;
+&lt;p&gt;​	在当前类需要用到其他类的对象,由spring提供,只需在配置文件说明&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依赖关系的管理&lt;/p&gt;
+&lt;p&gt;​	交给spring管理和维护&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依赖注入&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;能注入的数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基本类型和String&lt;/li&gt;
+&lt;li&gt;其他bean类型(在配置文件中或者注释配置过的)&lt;/li&gt;
+&lt;li&gt;复杂类型/集合类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注入方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用构造函数提供&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用set方法提供&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用注解提供(雾)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如, 我们将AccountService修改为:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class AccountServiceImpl implements IAccountService {
+    private String name;
+    private Integer age;
+    private Date birthday;
+
+    public AccountServiceImpl(String name,Integer age, Date birthday) {
+        this.name = name;
+        this.age = age;
+        this.birthday = birthday;
+    }
+    public void saveAccount() {
+        System.out.println(name + &amp;quot; &amp;quot; + age + &amp;quot; &amp;quot; + &amp;quot; &amp;quot; + birthday);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;构造函数注入&#34;&gt;构造函数注入&lt;/h3&gt;
+&lt;p&gt;使用 &lt;code&gt;constructor-arg&lt;/code&gt;标签&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;type :用于指定要注入数据的类型,该类型必须是构造函数中某个或默写参数的类型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;index:用于指定要注入数据给构造函数中指定索引位置的参数赋值,起始值为&lt;strong&gt;0&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: 用于给构造函数中指定名称的参数赋值(常用)&lt;/p&gt;
+&lt;p&gt;--------------用于指定给构造函数中哪个参数赋值--------------&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;value: 用于提供基本类型和String类型的数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ref: 用于指定在spring核心容器ioc中出现过的bean对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此可以用以下配置文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+       xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+       xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&amp;quot;&amp;gt;
+    &amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;&amp;gt;
+        &amp;lt;constructor-arg name=&amp;quot;name&amp;quot; value=&amp;quot;test&amp;quot;/&amp;gt;
+        &amp;lt;constructor-arg name=&amp;quot;age&amp;quot; value=&amp;quot;18&amp;quot;/&amp;gt;
+        &amp;lt;constructor-arg name=&amp;quot;birthday&amp;quot; value=&amp;quot;1999-11-23&amp;quot;/&amp;gt;
+    &amp;lt;/bean&amp;gt;
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置文件里面所有的value都是字符串&lt;/li&gt;
+&lt;li&gt;Integer 可以 直接用字符串类型的18赋值(spring可以强转)&lt;/li&gt;
+&lt;li&gt;Date类型不能直接用字符串&amp;quot;1999-11-23&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此上述配置文件是错误的,需要作出如下修改&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;&amp;gt;
+    &amp;lt;constructor-arg name=&amp;quot;name&amp;quot; value=&amp;quot;test&amp;quot;/&amp;gt;
+    &amp;lt;constructor-arg name=&amp;quot;age&amp;quot; value=&amp;quot;18&amp;quot;/&amp;gt;
+    &amp;lt;constructor-arg name=&amp;quot;birthday&amp;quot; ref=&amp;quot;now&amp;quot;/&amp;gt;
+&amp;lt;/bean&amp;gt;
+&amp;lt;bean id=&amp;quot;now&amp;quot; class=&amp;quot;java.util.Date&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;优势:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	在获取bean对象时,诸如数据是必须操作,否则无法创建对象(没有默认构造参数)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;弊端:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	改变了bean对象的实例化方式,使我们在创建对象时,如果用不到这些数据,也必须提供&lt;/p&gt;
+&lt;h3 id=&#34;set方法注入更常用&#34;&gt;set方法注入(更常用)&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;property&lt;/code&gt;标签&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;name: 用于指定注入时调用的set方法名称(与成员变量名无关,只与set方法名称有关,去掉set,首字母变小写)&lt;/li&gt;
+&lt;li&gt;value: 用于提供基本类型和String类型的数据&lt;/li&gt;
+&lt;li&gt;ref: 用于指定在spring核心容器ioc中出现过的bean对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在AccountService中生成setter方法,并且注释掉带参构造函数&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public void setUserName(String name) {
+    this.name = name;
+}
+public void setAge(Integer age) {
+     this.age = age;
+}
+public void setBirthday(Date birthday) {
+    this.birthday = birthday;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;则配置文件可以这么写&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;now&amp;quot; class=&amp;quot;java.util.Date&amp;quot;/&amp;gt;
+&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;userName&amp;quot; value=&amp;quot;qaq&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;age&amp;quot; value=&amp;quot;18&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;birthday&amp;quot; ref=&amp;quot;now&amp;quot;/&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;优势:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	创建对象时没有限制,可以使用默认构造函数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;弊端:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	如果某个成员必须有值,则获取对象时,set方法没有执行&lt;/p&gt;
+&lt;h3 id=&#34;复杂类型集合类型注入&#34;&gt;复杂类型/集合类型注入&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用于给List结构注入的标签有&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;list&lt;/code&gt; &lt;code&gt;array&lt;/code&gt; &lt;code&gt;set&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用于给Map结构注入的标签有&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;map&lt;/code&gt; &lt;code&gt;props&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;结构相同,标签可以互换&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;修改AccountService&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;private String[] myStrings;
+private List&amp;lt;String&amp;gt; myList;
+private Set&amp;lt;String&amp;gt; mySet;
+private Map&amp;lt;String,String&amp;gt; myMap;
+private Properties myProps;
+public void saveAccount() {
+    System.out.println(Arrays.toString(myStrings));
+    System.out.println(myList);
+    System.out.println(mySet);
+    System.out.println(myMap);
+    System.out.println(myProps);
+}
+
+public void setMySet(Set&amp;lt;String&amp;gt; mySet) {
+    this.mySet = mySet;
+}
+
+public void setMyProps(Properties myPops) {
+    this.myProps = myPops;
+}
+
+public void setMyStrings(String[] myStrings) {
+    this.myStrings = myStrings;
+}
+
+public void setMyList(List&amp;lt;String&amp;gt; myList) {
+    this.myList = myList;
+}
+
+public void setMyMap(Map&amp;lt;String, String&amp;gt; myMap) {
+    this.myMap = myMap;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;依旧可以使用set方式注入&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;
+&amp;lt;bean id=&amp;quot;accountService&amp;quot; class=&amp;quot;com.henu.service.impl.AccountServiceImpl&amp;quot; &amp;gt;
+    &amp;lt;property name=&amp;quot;myStrings&amp;quot;&amp;gt;
+        &amp;lt;set&amp;gt;
+            &amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;CCC&amp;lt;/value&amp;gt;
+        &amp;lt;/set&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;myList&amp;quot;&amp;gt;
+        &amp;lt;array&amp;gt;
+            &amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;CCC&amp;lt;/value&amp;gt;
+        &amp;lt;/array&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;mySet&amp;quot;&amp;gt;
+        &amp;lt;list&amp;gt;
+            &amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;
+            &amp;lt;value&amp;gt;CCC&amp;lt;/value&amp;gt;
+        &amp;lt;/list&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;myMap&amp;quot;&amp;gt;
+        &amp;lt;map&amp;gt;
+            &amp;lt;entry key=&amp;quot;A&amp;quot; value=&amp;quot;a&amp;quot; /&amp;gt;
+            &amp;lt;entry key=&amp;quot;B&amp;quot;&amp;gt;
+                &amp;lt;value&amp;gt;b&amp;lt;/value&amp;gt;
+            &amp;lt;/entry&amp;gt;
+        &amp;lt;/map&amp;gt;
+    &amp;lt;/property&amp;gt;
+    &amp;lt;property name=&amp;quot;myProps&amp;quot;&amp;gt;
+        &amp;lt;props&amp;gt;
+            &amp;lt;prop key=&amp;quot;AA&amp;quot;&amp;gt;aa&amp;lt;/prop&amp;gt;
+        &amp;lt;/props&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;基于xml的spring ioc di到此结束&lt;/strong&gt;,明天继续注解ioc(雾)&lt;/p&gt;
+">初识Spring之IOC,DI</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/git-版本控制工具/"" data-c="
+          &lt;h2 id=&#34;git-分布式版本控制系统&#34;&gt;Git 分布式版本控制系统&lt;/h2&gt;
+&lt;h3 id=&#34;底层命令&#34;&gt;底层命令&lt;/h3&gt;
+&lt;h4 id=&#34;git对象&#34;&gt;git对象&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;git对象&lt;/li&gt;
+&lt;li&gt;树对象&lt;/li&gt;
+&lt;li&gt;提交对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;git对象-2&#34;&gt;git对象&lt;/h5&gt;
+&lt;h6 id=&#34;命令介绍&#34;&gt;命令介绍&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git init&lt;/code&gt;在工作区下,初始化仓库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;echo “test” | git hash-object -w --stdin&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;-stdin (standard input)从标准输入流读取数据 ,也可以是文件路径(对文件进行版本控制)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-w 存入版本库(.git/object),若不加则不会存,仅输出哈希值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gir cat-file -p 哈希值&lt;/code&gt;查看文件内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+&lt;h6 id=&#34;测试&#34;&gt;测试&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;echo “test” | git hash-object -w --stdin  
+bd721793c916757eb17ffc248799ad00f0b35735 (输出的哈希值就是&amp;quot;test&amp;quot;的唯一标示,只与内容有关,内容改变,哈希值也改变)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/11/28/numF5cWHDtjdSye.png&#34; alt=&#34;git对象.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;如图: 命名方式为 哈希值前位为文件夹,后面的为文件名&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;# 查看文件内容
+git cat-file -p bd721793c916757eb17ffc248799ad00f0b35735
+“test”
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果直接用cat 命令,则会乱码,证明内容被压缩过&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;cat .git//objects/bd/721793c916757eb17ffc248799ad00f0b35735
+xK��OR04dx�0�$���Q�\.IR�% 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;说明了一个问题,git将用户的文件或者内容,生成唯一hash值,并压缩数据&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;echo “test v1” &amp;gt; test.txt
+git hash-object -w ./test.txt
+89f9ceab790a0662e30ff1f2f3e8bac0bf7fd895 (输出,若文件内的内容仍然是test,则哈希值不变,证明,保存的仍然是文件内容)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;若修改文件内容,git并不会自动记录修改内容,必须再显式提交一次&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;vim test.txt 
+输入一些内容
+git hash-object -w ./test.txt
+会输出一个新的hash值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;object目录下会多出来一个文件,也就是说git不是增量修改&lt;/p&gt;
+&lt;h6 id=&#34;git对象的问题&#34;&gt;git对象的问题:&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;记住文件的每一个版本对应的hash值并不现实&lt;/li&gt;
+&lt;li&gt;在git中,文件名没有被保存,仅保存了文件内容&lt;/li&gt;
+&lt;li&gt;这些操作都是在本地数据库(git实质上就是一个简单数据库)操作,不涉及暂存区&lt;/li&gt;
+&lt;li&gt;git对象并不能表示项目的快照,仅代表每个文件内容的快照&lt;/li&gt;
+&lt;li&gt;只能通过哈希值读取文件内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;树对象tree-object&#34;&gt;树对象(tree object)&lt;/h5&gt;
+&lt;p&gt;能解决文件名的保存,并且允许我们将多个文件组织在一起&lt;/p&gt;
+&lt;h6 id=&#34;命令介绍-2&#34;&gt;命令介绍&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git ls-files -s&lt;/code&gt;查看树对象的样子,(这个命令其实是查看暂存区的,树对象存在暂存区,git对象不涉及暂存区操作)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git update-index --add --cacheinfo 100644 bd721793c916 757eb17ffc248799ad00f0b35735 test.txt&lt;/code&gt; 创建树对象,不在版本库存储东西
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;–add:因为目前文件不在暂存区,首次创建树对象才需要&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;-cacheinfo:要把需要添加的文件存入数据库,而不是挡墙目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文件模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;100644,普通文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;100755,可执行文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;120000,符号链接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git cat-file - p&lt;/code&gt;查看树对象内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git read-tree -prefix=那么 第一棵树的哈希值&lt;/code&gt; name表示新树的名字,将第二颗树加入第一棵树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;测试如下&#34;&gt;测试如下&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;git update-index --add --cacheinfo 100644 bd721793c916757eb17ffc248799ad00f0b35735 test.txt
+git ls-files -s 	#查看暂存区
+100644 bd721793c916757eb17ffc248799ad00f0b35735 0       test.txt	#输出
+
+find .git/objects -type f     #查看版本库        
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735	#输出
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895	#输出
+#版本库中并没有树对象
+git write-tree       #将暂存区的内容写入版本库               
+91db0f4cfb1a0eff06a0dd80db40069cebe97332 #树对象的哈希值
+git cat-file -t 91db0f4cfb1a0eff06a0dd80db40069cebe97332
+tree 	#文件类型,树对象
+
+#此时版本库就有了树对象
+find .git/objects -type f
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735 #&amp;quot;text&amp;quot;的哈希
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895 #&amp;quot;test.txt内容的哈希&amp;quot;
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 #树对象的哈希值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;**说明:**git write-tree可以等树对象修改多次后,或者添加删除多次后在执行,这也就是说,树对象能代表项目的一个快照&lt;/p&gt;
+&lt;p&gt;**总结:**git对象代表每个文件的版本,树对象可以代表项目版本&lt;/p&gt;
+&lt;h6 id=&#34;树对象的构建&#34;&gt;树对象的构建&lt;/h6&gt;
+&lt;p&gt;新建一个gyg.txt 修改 test.txt 将这两个文件塞入暂存区,并生成树对象&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;#新建gyg.txt
+echo &amp;quot;new file v1&amp;quot; &amp;gt; gyg.txt
+git hash-object -w gyg.txt  #添加新文件的git对象
+b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c #gyg.txt的哈希
+
+#修改test.txt的内容
+vim test.txt #加入test v2
+git hash-object -w ./test.txt  #创建test.txt第二个版本的git对象
+6623ae759d09947564e5b45ce93e2633f943cca2
+
+#将test.txt第二个版本塞入暂存区
+git update-index --add --cacheinfo 100644 6623ae759d09947564e5b45ce93e2633f943cca2 test.txt  
+
+#查看暂存区
+git ls-files -s                    
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#可以看出将test.txt的第一个版本的记录覆盖掉了(对比上面的记录)
+
+#将gyg.txt塞入暂存区
+git update-index --add --cacheinfo 100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c gyg.txt
+
+#查看暂存区
+git ls-files -s                
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#证明,暂存区的覆盖是根据文件名覆盖的
+#生成项目第二个版本的树对象
+git write-tree                     
+fe52097435752e39aded6f64dbb74746a96e5d4c
+
+#查看版本库
+find .git/objects -type f          
+.git/objects/66/23ae759d09947564e5b45ce93e2633f943cca2
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895
+.git/objects/fe/52097435752e39aded6f64dbb74746a96e5d4c  #workspace第二个树对象
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 	#workspace第一个树对象
+.git/objects/b2/b44573b56f7ea44cbe6e34a69b4f1b19311c5c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;树对象目前的状态:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+	tree1(第一个树对象)--&amp;gt;git1[test.txt v1]
+	tree2(第二个树对象)--&amp;gt;git2[test.txt v2]
+	tree2(第二个树对象)--&amp;gt;git3[gyg.txt v1]
+subgraph git
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将第一棵树加入第二颗树&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;#先查看暂存区
+git ls-files -s                       
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#执行加入操作
+git read-tree --prefix=bak 91db0f4cfb1a0eff06a0dd80db40069cebe97332 
+#查看暂存区变化,可以看出多出了一个新的记录
+git ls-files -s                     
+100644 bd721793c916757eb17ffc248799ad00f0b35735 0       bak/test.txt
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#生成新的树对象
+git write-tree                    
+403127d92cb74fa3f505adc2d90e1c16932151ab
+#查看版本库
+find .git/objects -type f           
+.git/objects/66/23ae759d09947564e5b45ce93e2633f943cca2
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895
+.git/objects/40/3127d92cb74fa3f505adc2d90e1c16932151ab #第三棵树对象
+.git/objects/fe/52097435752e39aded6f64dbb74746a96e5d4c #第二个
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 #第一个
+.git/objects/b2/b44573b56f7ea44cbe6e34a69b4f1b19311c5c
+#查看第三课树的内容,如下:
+git cat-file -p 403127d92cb74fa3f505adc2d90e1c16932151ab
+040000 tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332    bak
+100644 blob b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c    gyg.txt
+100644 blob 6623ae759d09947564e5b45ce93e2633f943cca2    test.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时树对象的状态:&lt;/p&gt;
+&lt;p&gt;​	tree3右边的其实就是第二棵树,本质上就是第二颗树通过bak指针,连接上了第一棵树&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TB
+	git4[第三颗树对象]--bak--&amp;gt;tree1
+	git4[第三颗树对象]--gyg.txt--&amp;gt;git3
+	git4[第三颗树对象]--test.txt v2--&amp;gt;git2
+subgraph tree对象
+	tree1(第一个树对象)--&amp;gt;git1[test.txt v1]
+	tree2(第二个树对象)--&amp;gt;git2[test.txt v2]
+	tree2(第二个树对象)--&amp;gt;git3[gyg.txt v1]
+subgraph git对象
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+	end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;树对象的问题&#34;&gt;树对象的问题&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;没有对每个版本所做的事,做出解释&lt;/li&gt;
+&lt;li&gt;但是若要重用,必须记住哈希值&lt;/li&gt;
+&lt;li&gt;解决方式:提交对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;提交对象&#34;&gt;提交对象&lt;/h4&gt;
+&lt;h5 id=&#34;代码说明&#34;&gt;代码说明&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;commit-tree 树对象哈希值&lt;/code&gt; 创建提交对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;测试-2&#34;&gt;测试&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;#前面的表示对这次提交的注释
+echo &amp;quot;first commit&amp;quot; | git commit-tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332
+7a2b96724dc580540d292862a013a72376a43624
+#查看提交对象
+git cat-file -p 7a2b96724dc580540d292862a013a72376a43624
+tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332	#树对象
+author seulG &amp;lt;gengyagexstar1@gmail.com&amp;gt; 1574947028 +0800	#配置好的用户名和邮箱
+committer seulG &amp;lt;gengyagexstar1@gmail.com&amp;gt; 1574947028 +0800
+first commit	# 注释
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;也就是提交对象对树对象做了一次包裹,对树对象作出解释,每个提交对象都需要一个父对象(第一次除外)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;# 生成第二个提交对象,指定父提交
+ echo &amp;quot;second commit&amp;quot; | git commit-tree fe52097435752e39aded6f64dbb74746a96e5d4c -p 7a2b96724dc580540d292862a013a72376a43624
+ #这是输出
+c9712137be81be7d4cd61640911a5b00ef2f91e3
+# 生成第三个提交对象
+ echo &amp;quot;third commit&amp;quot; | git commit-tree 403127d92cb74fa3f505adc2d90e1c16932151ab -p c9712137be81be7d4cd61640911a5b00ef2f91e3
+ #输出
+b91c0ac905ff7fee128de2cf33c3b7923343959e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+
+subgraph 提交对象
+commit1[first commit] --&amp;gt; tree1
+commit2[second commit] --&amp;gt; tree2
+commit3[third commit] --&amp;gt; git4
+commit3[third commit] --父提交--&amp;gt; commit2
+commit2[second commit] --父提交--&amp;gt; commit1
+subgraph tree对象
+	git4[第三颗树对象]--bak--&amp;gt;tree1
+	git4[第三颗树对象]--gyg.txt--&amp;gt;git3
+	git4[第三颗树对象]--test.txt v2--&amp;gt;git2
+	tree1(第一个树对象)--&amp;gt;git1[test.txt v1]
+	tree2(第二个树对象)--&amp;gt;git2[test.txt v2]
+	tree2(第二个树对象)--&amp;gt;git3[gyg.txt v1]
+subgraph git对象
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+	end
+	end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;说明&#34;&gt;说明&lt;/h6&gt;
+&lt;p&gt;真正代表一次项目版本的是提交对象,而代表一个项目快照的是树对象,提交对象只是对树对象的封装,但是&lt;strong&gt;提交对象的是链式&lt;/strong&gt;的&lt;/p&gt;
+&lt;p&gt;至此所有的&lt;code&gt;底层命令已经结束&lt;/code&gt;,git数据库的存储不是增量的,需要回退版本,只需要直接找到所需要的版本的提交对象的哈希值,直接跳过去就行&lt;/p&gt;
+&lt;h3 id=&#34;目录说明&#34;&gt;目录说明&lt;/h3&gt;
+&lt;h4 id=&#34;git目录&#34;&gt;.git目录&lt;/h4&gt;
+&lt;p&gt;在文件夹下,执行&lt;code&gt;git init&lt;/code&gt; 就能初始化一个git仓库,生成一个&lt;code&gt;.git&lt;/code&gt;隐藏目录&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/11/28/UYaTc7eCWrqgtFM.png&#34; alt=&#34;dir.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;hooks		——&amp;gt;	客户端或者服务端的钩子脚本&lt;/p&gt;
+&lt;p&gt;info			——&amp;gt;	包含全局排除文件&lt;/p&gt;
+&lt;p&gt;logs			——&amp;gt;	保存日志信息&lt;/p&gt;
+&lt;p&gt;objects	  ——&amp;gt;	存储所有数据内容(版本库)&lt;/p&gt;
+&lt;p&gt;refs			——&amp;gt;	存储指向数据(分支)的提交对象的指针&lt;/p&gt;
+&lt;p&gt;config		——&amp;gt;	git配置选项&lt;/p&gt;
+&lt;p&gt;description ——&amp;gt;  对仓库的描述&lt;/p&gt;
+&lt;p&gt;HEAD		——&amp;gt;	指示目前被检出的分支&lt;/p&gt;
+&lt;p&gt;index		  ——&amp;gt;	暂存区保存暂存数据(暂存区)&lt;/p&gt;
+&lt;h4 id=&#34;工作目录&#34;&gt;工作目录&lt;/h4&gt;
+&lt;p&gt;建议配合下面的高层命令看这一部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相当于沙箱环境,只要没有git add 或者git hash-object,可以随便修改&lt;/li&gt;
+&lt;li&gt;工作目录下的文件只有两种状态 &lt;strong&gt;已跟踪&lt;/strong&gt; &lt;strong&gt;未跟踪&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;已跟踪的文件有三个状态,&lt;strong&gt;已提交&lt;/strong&gt;,&lt;strong&gt;已修改&lt;/strong&gt;,&lt;strong&gt;已暂存&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;git add 使文件成为已暂存&lt;/li&gt;
+&lt;li&gt;暂存完,又修改变,该文件,此文件会出现两个状态
+&lt;ul&gt;
+&lt;li&gt;一个为已暂存&lt;/li&gt;
+&lt;li&gt;一个为已修改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;git commit 使文件变为已提交&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff&lt;/code&gt;查看当前哪些更新未暂存&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff –staged&lt;/code&gt; 或者 &lt;code&gt;git diff –cached&lt;/code&gt; 查看哪些已暂存,等待提交&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;可以用git status 查看当前文件状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;高层命令&#34;&gt;高层命令&lt;/h3&gt;
+&lt;h4 id=&#34;git-init-初始化仓库&#34;&gt;git init 初始化仓库&lt;/h4&gt;
+&lt;h4 id=&#34;git-add-file&#34;&gt;git add  &lt;file&gt;&lt;/h4&gt;
+&lt;h5 id=&#34;测试-3&#34;&gt;测试&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;git init
+echo &amp;quot;hello world&amp;quot; &amp;gt; gyg.txt
+# 查看暂存区
+git ls-files -s                     
+100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0       gyg.txt
+# 查看该git对象内容
+git cat-file -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+hello world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;git add 将工作目录的修改做成git对象放进版本库,再放入暂存区&lt;/strong&gt;&lt;/p&gt;
+&lt;h5 id=&#34;说明-2&#34;&gt;说明&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;对工作区修改几个文件就会生成几个git对象&lt;/li&gt;
+&lt;li&gt;一个对象,修改n次,就出生成n次对象,git不是增量的,而是直接生成新的git对象,旧的git对象也不会删除,会保留在版本库(.git/objects)&lt;/li&gt;
+&lt;li&gt;git是绝对安全的,尽管没有提交,加入到了暂存区,&lt;strong&gt;使文件变为已暂存状态&lt;/strong&gt;,git也能管理,不会丢失数据(找到对应的哈希值就能找回数据)&lt;/li&gt;
+&lt;li&gt;只有在提交的时候,才会去参照暂存区,做成一个树对象,放入版本库&lt;/li&gt;
+&lt;li&gt;在你想要添加注释信息的时候,才会把树对象拿出来,添加注释,将其包装成提交对象&lt;/li&gt;
+&lt;li&gt;git add 实则上执行了 &lt;code&gt;git hash-object -w&lt;/code&gt;,和&lt;code&gt;git update-index --add --cacheinfo&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;git-commit-m-注释&#34;&gt;git commit -m “注释”&lt;/h3&gt;
+&lt;h4 id=&#34;测试-4&#34;&gt;测试&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;git commit -m &amp;quot;注释&amp;quot;
+[master（根提交） 3b52ce7] “注释”
+ 1 file changed, 1 insertion(+)
+ create mode 100644 gyg.txt
+#查看暂存区,可以看到没有变化
+git ls-files -s                        
+100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0       gyg.txt
+#查看对象数,可以发现有三个对象,一个git对象,一个树对象,一个提交对象
+find .git/objects -type f          
+.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
+.git/objects/3b/52ce7e550af40b74c470afdd1675cf492a3cbe
+.git/objects/d0/0870593909003f4669d40cd6d65d0bcd081efe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;说明-3&#34;&gt;说明&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;可以不加-m参数 , 在打开的vim编辑器里面编辑比较长的注释&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以跳过使用暂存区,加上-a选项,git会将所有已跟踪的文件,暂存起来一并提交&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提交正如上述,版本库的树对象拿出来,然后,添加注释,包装成提交对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;git commit 实则上做了&lt;code&gt;git write-tree&lt;/code&gt;将暂存区的写入版本库,&lt;code&gt;git commit-tree&lt;/code&gt;生成提交对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使文件变为已提交状态,若所有文件都是已提交状态,则 &lt;code&gt;git status&lt;/code&gt;不会显示任何内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;git-status&#34;&gt;git status&lt;/h3&gt;
+&lt;p&gt;查看当前文件状态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git commit 使文件变为已提交&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff&lt;/code&gt;查看当前哪些更新未暂存&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff –staged&lt;/code&gt; 或者 &lt;code&gt;git diff –cached&lt;/code&gt; 查看哪些已暂存,等待提交&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;测试-5&#34;&gt;测试&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;echo &amp;quot;file1&amp;quot; &amp;gt; file1.txt
+git add file1.txt
+git status
+#输出
+1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+#修改文件
+vim file1.txt 加入file1 v2
+git status
+#输出
+要提交的变更：
+  （使用 &amp;quot;git rm --cached &amp;lt;文件&amp;gt;...&amp;quot; 以取消暂存）
+        新文件：   file1.txt
+尚未暂存以备提交的变更：
+  （使用 &amp;quot;git add &amp;lt;文件&amp;gt;...&amp;quot; 更新要提交的内容）
+  （使用 &amp;quot;git restore &amp;lt;文件&amp;gt;...&amp;quot; 丢弃工作区的改动）
+        修改：     file1.txt
+#出现了两个该文件的状态
+
+git diff
+#输出
+diff --git a/file1.txt b/file1.txt
+index e212970..98e6ed6 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1 +1,2 @@ 
+ file1
++file1 v2 
+#file1.txt已修改,未暂存
+git add file1.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;持续施工…..&lt;/p&gt;
+">git -版本控制工具</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/递归-八皇后问题/"" data-c="
+          &lt;h2 id=&#34;8皇后问题&#34;&gt;8皇后问题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;问题描述&lt;/li&gt;
+&lt;li&gt;思路&lt;/li&gt;
+&lt;li&gt;代码分析&lt;/li&gt;
+&lt;li&gt;难点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;问题描述&#34;&gt;问题描述&lt;/h4&gt;
+&lt;p&gt;在国际棋盘上,放置8个皇后,要求,皇后之间不能互相攻击,即不能同一行,不能同一列,不能在对角线&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h4 id=&#34;思路&#34;&gt;思路&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一个皇后放在第一行第一列&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二个皇后放在第二行第一列,判断是否满足条件,不满足就放在第二列,第三列……直到找到合适的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;继续第三个皇后,同样是先第三行第一列,第二列,第三列…….因为是递归,最终会回溯找到一个合适的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当8歌皇后都放在正确的位置时,在栈上木安回退到上一个栈,就会开始回溯,找到第一个皇后在第一列的所有正确结果&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后把第一个皇后放在第二个位置,重复上述步骤&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;tips :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;皇后的位置用一维数组表示,索引表示行数,数值表示列数&lt;/p&gt;
+&lt;h4 id=&#34;代码&#34;&gt;代码&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package henu.recursion;
+
+public class Queen {
+    //定义一个递归调用次数
+    public static int num = 0;
+    //定义找到的方案的个数
+    public static int resNum = 0;
+    //定义判断是否冲突的次数
+    public static int judgeNum = 0;
+    //定义max,皇后数量
+    int max = 8;
+    //结果数组
+    int[] arr = new int[max];
+    public static void main(String[] args) {
+        Queen queen = new Queen();
+        queen.check(0);
+        System.out.println(num);
+        System.out.println(resNum);
+        System.out.println(judgeNum);
+    }
+
+    //输出结果
+    private void print() {
+        resNum++;
+        for(int i=0;i&amp;lt;arr.length;i++) {
+            System.out.print(arr[i] + &amp;quot; &amp;quot;);
+        }
+        System.out.println();
+    }
+
+    //放置皇后
+    private void check(int n) {
+        num++;
+        //递归终止条件
+        if(n == max) {
+            print();
+            return;
+        }
+        //依次放入皇后,判断是否冲突
+        for(int i=0;i&amp;lt;max;i++) {
+            //先把当前皇后 n,放到该行的第一列
+            arr[n] = i;
+            //判断是否冲突
+            if(judge(n)) {
+                //不冲突,放置下一个皇后
+                check(n+1);
+            }
+            //冲突,会回溯,把第n个皇后放到下一列(for循环)
+        }
+    }
+
+    /**
+     *
+     * @param n 第n个皇后
+     * @return
+     */
+    public boolean judge(int n) {
+        judgeNum++;
+        for(int i=0;i&amp;lt;n;i++) {
+            //位于同一列 , 行差等于列差,判断是否为对角线
+            if(arr[i] == arr[n] || Math.abs(n-i) == Math.abs(arr[n]-arr[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Output:
+0 4 7 5 2 6 1 3 
+0 5 7 2 6 3 1 4 
+0 6 3 5 7 1 4 2 
+    ......
+7 2 0 5 1 4 6 3 
+7 3 0 2 5 1 6 4 
+2057
+92
+15720
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;难点&#34;&gt;难点&lt;/h4&gt;
+&lt;p&gt;如何理解,在找到一个正确答案时,会执行思路的第四步?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在把最后一个皇后第一次放在合适的位置时,坐上面的栈return了,会执行下一个置顶栈&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;也就是第7个皇后的位置,然后,挪动第7个皇后,判断是否合适…..&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第7个没合适的就继续回溯,去改变第6个皇后,以此类推……..&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最终会找到第一个皇后在第一列时的所有正确方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后第一个皇后又会放在第二列,重复上述整个过程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;整个程序执行完毕就是第一个皇后遍历的所有的7列找到所有的合适位置才会最终退出这个程序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以看出,最后程序一共递归了2057次,找到了92种方案,判断了15720次&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;可以看出递归的资源浪费量巨大&lt;/strong&gt;&lt;/p&gt;
+">递归 -八皇后问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/递归-迷宫问题/"" data-c="
+          &lt;h2 id=&#34;迷宫问题&#34;&gt;迷宫问题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;问题描述&lt;/li&gt;
+&lt;li&gt;递归的原则&lt;/li&gt;
+&lt;li&gt;问题分析&lt;/li&gt;
+&lt;li&gt;代码分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;问题描述&#34;&gt;问题描述&lt;/h4&gt;
+&lt;p&gt;用一个二维数组模拟一个迷宫,定义一个入口和出口,找出路径找到通往出口的路径&lt;/p&gt;
+&lt;p&gt;拓展问题,如何找出最短路径? —待施工……&lt;/p&gt;
+&lt;h4 id=&#34;递归的原则&#34;&gt;递归的原则&lt;/h4&gt;
+&lt;p&gt;递归的应用原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;执行一个方法时,就会创建一个新的受保护的栈空间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个空间的变量都是局部变量(引用传递除外),相互不会影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;递归必须向退出递归的条件逼近,否则会无限递归(死龟)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当一个方法执行完毕,或者遇到return,就会返回,遵守谁调用,就把结果返回给谁,同时当方法执行完毕或者返回时,该方法就执行完毕&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;问题分析&#34;&gt;问题分析&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;迷宫问题,从起点开始,定义一个策略(往四个方向探索的顺序)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定义: 0-&amp;gt;表示为探索过的,1-&amp;gt;墙, 2-&amp;gt;通路(已经走过切,能走通), 3-&amp;gt;死路(走过判断为死路)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后递归的结束条件就是出口点被修改为2,如果不满足这个条件就按照策略开始走&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每当开始探索一个点,就假设,这个点为通路,修改为2,究竟是否为通路,要看回溯的结果&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果,一个点上下左右都不能走,就修改为3,表示死路&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;代码分析&#34;&gt;代码分析&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;/**
+     *
+     * @param map 迷宫地图,0表示路,1表示墙,2表示通路,3表示死路
+     * @param i 迷宫起点
+     * @param j
+     */
+    public static boolean setMap(int[][] map, int i, int j) {
+        if(map[6][6] == 2) {
+            return true;
+        } else {
+            if(map[i][j] == 0) {
+                map[i][j] = 2;  //假设这个点可以走通,若果不能会回溯
+                if(setMap(map, i+1, j)) { //先向下走
+                    return true;
+                } else if(setMap(map, i, j+1)) { //向右走
+                    return true;
+                } else if(setMap(map, i-1, j)) { //向上走
+                    return true;
+                } else if(setMap(map, i, j-1)) { //向左走
+                    return true;
+                } else { //上下左右都无法走通
+                    map[i][j] = 3;
+                    return false;
+                }
+            } else { //可能是1,2,3墙不能走,2表示走过,3表示不能走,这三种情况都是不能走
+                return false;
+            }
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用一个8*8的迷宫模拟一下,迷宫如下&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;入口&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;出口&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;执行完毕后&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;说明&#34;&gt;说明&lt;/h4&gt;
+&lt;p&gt;第二张表,里面的3,就是因为,在坐标(2,2)的点会按照策略先向下走,但是(3,2)点的左,右,下都是墙(1),上面又是通路(2),因此这个向下的调用会返回false,并且标记为死路(3),然后进行策略的下一步,向右&lt;/p&gt;
+">递归 -迷宫问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/初来乍到-Manjaro/"" data-c="
+          &lt;h2 id=&#34;manjaro-kde-的日常使用&#34;&gt;Manjaro-kde 的日常使用&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;切换国内镜像源&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装搜狗输入法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装双显卡驱动(optimus-manager)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装常用软件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;科学上网&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!-- more --&gt;
+&lt;h4 id=&#34;切换国内源&#34;&gt;切换国内源&lt;/h4&gt;
+&lt;p&gt;为什么要切换为国内源?  -因为国内源不仅仅拥有更快的访问速度,还有更多的本地化软件,比如deepin-wine-qq,网易云音乐等等&lt;/p&gt;
+&lt;p&gt;国内源一般推荐使用&lt;a href=&#34;http://mirrors.ustc.edu.cn/&#34;&gt;ustc&lt;/a&gt;或&lt;a href=&#34;https://mirrors.tuna.tsinghua.edu.cn/&#34;&gt;tuna&lt;/a&gt;,两个源分别为中国科技大学源和清华大学源&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以清华大学源为例&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;官方仓库地址: &lt;a href=&#34;http://repo.archlinuxcn.org/&#34;&gt;http://repo.archlinuxcn.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用方法: 在&lt;code&gt;/etc/pacman.conf&lt;/code&gt;文件末尾添加以下两行:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-linux&#34;&gt;[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后安装&lt;code&gt;archlinuxcn-keyring&lt;/code&gt;,即执行&lt;code&gt;sudo pacman -S archlinuxcn-keyring&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;建议&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;切换为清华源后就执行&lt;code&gt;sudo pacman -Syyu&lt;/code&gt;更新一下系统,毕竟&lt;code&gt;多滚少挂,不滚等挂&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装搜狗输入法&#34;&gt;安装搜狗输入法&lt;/h4&gt;
+&lt;p&gt;一般的linux的发行版对中文输入法的支持都不是特别友好(&lt;a href=&#34;https://www.deepin.org/&#34;&gt;deepin&lt;/a&gt;除外),这个时候我们就需要一款得心应手的输入法,linux上比较好用的输入法,个人推荐:&lt;a href=&#34;https://pinyin.sogou.com/linux/?r=pinyin&#34;&gt;搜狗输入法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;教程开始&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sudo pacman -S yaourt  # AUR小助手,虽然停止维护了,但是很好用
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;yaourt -S qtwebkit-bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sudo pacman -S fcitx fcitx-im fcitx-libpinyin kcm-fcitx fcitx-configtool fcitx-sogoupinyin   fcitx-sunpinyin  # 安装搜狗输入法及其依赖
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sudo pacman -U https://arch-archive.tuna.tsinghua.edu.cn/2019/04-29/community/os/x86_64/fcitx-qt4-4.2.9.6-1-x86_64.pkg.tar.xz  # 说明: -U参数是安装本地包,也就是说先把后面的包下载下来,这个是配置输入法的工具
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sudo vim /etc/profile # 配置环境 vim 可以替换成你熟悉的文本处理器把下面的添加到末尾 必要时也需要把下面的加入到`/.xporfile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;export GTK2_RC_FILES=&amp;quot;$HOME/.gtkrc-2.0&amp;quot;
+export LC_CTYPE=zh_CN.UTF-8
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后终端运行&lt;code&gt;qtconfig-qt4&lt;/code&gt;找到&lt;code&gt;interface&lt;/code&gt;选项,在下面的&lt;code&gt;Defult Input Method&lt;/code&gt;改为&lt;code&gt;fcitx&lt;/code&gt;然后保存退出&lt;/p&gt;
+&lt;p&gt;终端执行&lt;code&gt;source /etc/profile&lt;/code&gt;,然后重启&lt;/p&gt;
+&lt;h4 id=&#34;安装双显卡驱动&#34;&gt;安装双显卡驱动&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;为什么要安装驱动?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Linux对笔记本双显卡的支持为何如此差?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Linux下可能是最好的双显卡解决方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;简单谈谈显卡驱动:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;显卡已经相当于一个上了锁的机器,驱动相当于钥匙,就比如在win上,没装独显驱动,怎能体验几千帧的快感,顶住图像处理的压力.在linux下也是如此,也需要安装驱动.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;如果你是台式机,或者你能屏蔽核显,请绕道 ,本教程仅针对N/I双显卡&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;如何确定自己是否为双显卡&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;win&lt;/code&gt;下,随便打开一个&lt;code&gt;光污染游戏&lt;/code&gt;(滑稽),打开任务管理器,看看你的核显输出是否为零,为零请绕道,不是零,我希望你能继续看下去&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;双显卡到底是什么&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其实双显卡的工作原理就是,独显负责计算资源,然后通过核显输出到显示屏,在win上NVIDIA给出了一系列技术支持这种方式,包括能源管理,所以你会发现,及时用的独显,也会在没有影响性能的情况下,自动关闭独显&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么Linux对双显卡的支持差&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其实现在主流的方案都是社区做的,主流的方案有&lt;a href=&#34;https://wiki.archlinux.org/index.php/Bumblebee&#34;&gt;Bumblebee&lt;/a&gt;,&lt;a href=&#34;https://wiki.archlinux.org/index.php/PRIME&#34;&gt;prime&lt;/a&gt;,[nvidia-run](&lt;a href=&#34;https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8_nvidia-xrun&#34;&gt;https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8_nvidia-xrun&lt;/a&gt;,&lt;a href=&#34;https://wiki.archlinux.org/index.php/Nouveau&#34;&gt;nouveau&lt;/a&gt;这些都是比较成熟的方案,最后一个为NVIDIA开源驱动(默认集成在内核里,性能最差的)&lt;br&gt;
+&lt;strong&gt;其实这个标题就是错的&lt;/strong&gt;&lt;code&gt;为什么Linux对双显卡的支持差&lt;/code&gt;,为什么一个做系统的要去适配硬件?按照逻辑也应该是,硬件厂商去适配系统,所以个人认为标题应该为&lt;code&gt;为何Nvidia对Linux支持这么差&lt;/code&gt;引用Linux之父&lt;code&gt;Linus Torvalds&lt;/code&gt;的一句话&lt;code&gt;So,Nvidia Fuck You&lt;/code&gt;&lt;a href=&#34;https://www.bilibili.com/video/av70951224?from=search&amp;amp;seid=8462594522463754800&#34;&gt;av70951224&lt;/a&gt;&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/11/24/ZJmlO7bQ6k9p1Nw.png&#34; alt=&#34;Nvidia.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/Askannz/optimus-manager&#34;&gt;optimus-manager&lt;/a&gt;可能是最好的,目前为止&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;言归正传,&lt;code&gt;optimus-manager&lt;/code&gt;支持nvidia闭源驱动的所有功能,支持一件切换显卡(需安装optimus-manager-qt),对&lt;code&gt;SDDM，LightDM，GDM&lt;/code&gt;这几个显示管理器支持很好&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;教程开始-进针对Arch或者Arch分支的发行版&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果你之前安装过Nvidia驱动,请删除配置文件&lt;code&gt;sudo rm -f /etc/X11/xorg.conf&lt;/code&gt;,如果你和我一样是manjaro用户,请一并删除manjaro生成的配置&lt;code&gt;sudo rm -f /etc/X11/xorg.conf.d/90-mhwd.conf&lt;/code&gt;,如果你正在使用&lt;code&gt;bumblebee&lt;/code&gt;,请禁用起守护进程&lt;code&gt;sudo systemctl disable bumblebeed.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;gdm管理器用户请安装&lt;code&gt;gdm-prime&lt;/code&gt;,&lt;code&gt;yaourt -S gdm-prime&lt;/code&gt;并且修改&lt;code&gt;/etc/gdm/custom.conf&lt;/code&gt;,将&lt;code&gt;#WaylandEnable=false&lt;/code&gt;前面的&lt;code&gt;#&lt;/code&gt;去掉 Gnomoe的显示管理器就是gdm&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;sddm用户请修改&lt;code&gt;/etc/sddm.conf&lt;/code&gt;,注释掉&lt;code&gt;DisplayCommand&lt;/code&gt;和&lt;code&gt;DisplayStopCommand&lt;/code&gt;前面加一个&lt;code&gt;#&lt;/code&gt;即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;安装主程序&lt;code&gt;sudo pacman -S optimus-manager optimus-manager-qt&lt;/code&gt;如果你没有安装过nvidia驱动,请安装nvidia驱动&lt;code&gt;sudo pacman -S nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-intel&lt;/code&gt; 安装的32为兼容包你或许需要开启软件源 &lt;code&gt;multilib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启用optimus-manajer守护进程&lt;code&gt;sudo systemctl enable optimus-manager.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;重启&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;至此显卡驱动安装完成&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装常用软件&#34;&gt;安装常用软件&lt;/h4&gt;
+&lt;p&gt;有了强大的AUR自行探索吧仅给出几个常用的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Typora &amp;lt;markdown编辑器&amp;gt;&lt;/li&gt;
+&lt;li&gt;deepin-wein-qq &amp;lt;wine-qq,deepin适配的不错&amp;gt;
+&lt;ul&gt;
+&lt;li&gt;需要安装gnome-settings-daemon&lt;code&gt;yaourt -S gnome-settings-daemon&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;然后然后将/usr/lib/gsd-xsettings设置为自动启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;wps wps-fonts &amp;lt;国产办公软件,无广告!!!!&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;科学上网-ssr&#34;&gt;科学上网-SSR&lt;/h4&gt;
+&lt;p&gt;不能讲,不敢讲,我很慌!&lt;/p&gt;
+&lt;p&gt;自行下载安装合适的版本&lt;a href=&#34;https://github.com/qingshuisiyuan/electron-ssr-backup/releases&#34;&gt;electron-ssr&lt;/a&gt;,安装即可,ssr订阅链接自备&lt;/p&gt;
+&lt;p&gt;若你无法科学上网,安装&lt;a href=&#34;http://marin.jb.free.fr/proxydriver/&#34;&gt;proxydriver&lt;/a&gt;&lt;code&gt;yaourt -S proxydriver&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;浏览器的配置,chrome请安装插件&lt;a href=&#34;https://github.com/FelisCatus/SwitchyOmega/releases&#34;&gt;SwitchyOmega&lt;/a&gt;如果你提示安装失败或者不会安装,可以去看看开发者怎么说&lt;/p&gt;
+&lt;p&gt;然后可以导入我的&lt;a href=&#34;https://pan.baidu.com/s/1Qd2oZX3BB3zmtyUayIFeFg&#34;&gt;配置文件&lt;/a&gt;&lt;code&gt;h11v&lt;/code&gt;,或者自行百度配置方案,这个太多了,在这就不过多赘述&lt;/p&gt;
+">初来乍到 -Manjaro</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
+
+<input hidden id="copy" />
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+  //拿来主义(真香)^_^，Clipboard 实现摘自掘金 https://juejin.im/post/5aefeb6e6fb9a07aa43c20af
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      if (e.srcElement.textContent === '复制成功') {
+        console.log('复制操作频率过高');
+        return;
+      }
+      e.srcElement.textContent = '复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          if (elem.textContent === '复制成功') {
+            elem.textContent = '复制代码'
+          }
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    copyElem.textContent = '复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 200
+  });
+</script>
+
+
+
+<script src="/media/js/cool.js"></script>
+
+
+</html>

@@ -1,0 +1,2129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://seulg.github.io/</id>
+    <title>Seul</title>
+    <updated>2020-06-06T15:35:32.540Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://seulg.github.io/"/>
+    <link rel="self" href="https://seulg.github.io/atom.xml"/>
+    <subtitle>为了活着而活着</subtitle>
+    <logo>https://seulg.github.io/images/avatar.png</logo>
+    <icon>https://seulg.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Seul</rights>
+    <entry>
+        <title type="html"><![CDATA[Win10部署spark开发环境]]></title>
+        <id>https://seulg.github.io/post/win10-bu-shu-spark-kai-fa-huan-jing/</id>
+        <link href="https://seulg.github.io/post/win10-bu-shu-spark-kai-fa-huan-jing/">
+        </link>
+        <updated>2020-06-06T15:31:13.000Z</updated>
+        <summary type="html"><![CDATA[<p>通过本文，你将了解到：</p>
+<ul>
+<li>win上安装包管理神器<code>scoop</code>（附带科学上网）</li>
+<li>安装<code>scala</code> <code>maven</code></li>
+<li>启用wsl2，安装Arch子系统</li>
+<li>解决wsl2虚拟机ip问题</li>
+<li>美化Terminal</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<p>通过本文，你将了解到：</p>
+<ul>
+<li>win上安装包管理神器<code>scoop</code>（附带科学上网）</li>
+<li>安装<code>scala</code> <code>maven</code></li>
+<li>启用wsl2，安装Arch子系统</li>
+<li>解决wsl2虚拟机ip问题</li>
+<li>美化Terminal</li>
+</ul>
+<!-- more -->
+<h3 id="scoop">Scoop</h3>
+<h4 id="简介">简介：</h4>
+<p>​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等），而在包管理器往往是linux上的工具，用来管理软件，而scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。主要是他能帮我们安装软件的时候自动设置环境变量。详情见<a href="https://scoop.sh/">官网</a>。</p>
+<h4 id="安装前准备"><a href="https://www.jianshu.com/p/50993df76b1c">安装前准备</a></h4>
+<ul>
+<li>用户名不含中文字符</li>
+<li>Windows 7 SP1+ / Windows Server 2008+</li>
+<li>计算机能够科学上网</li>
+<li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fdownload%2Fdetails.aspx%3Fid%3D34595">PowerShell 3+</a></li>
+<li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.microsoft.com%2Fnet%2Fdownload">.NET Framework 4.5+</a></li>
+</ul>
+<p><strong>若Powershell或.NET Franmework版本过旧，更新后重启即可。<br>
+若不清楚版本号，可<code>Win+R</code>运行powershell，输入以下命令获取版本号。</strong></p>
+<pre><code class="language-powershell">$PSVersionTable.PSVersion.Major   #查看Powershell版本
+$PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
+</code></pre>
+<h4 id="科学上网v2ray请自备vemss链接">科学上网（v2ray,请自备vemss链接）</h4>
+<h5 id="下载图形化界面qv2ray">下载图形化界面<a href="https://github.com/Qv2ray/Qv2ray/releases">qv2ray</a></h5>
+<p>点击链接，下载最新版本（对应自己系统的位数x64或着x32），安装到本地磁盘</p>
+<h5 id="下载v2ray核心">下载<a href="https://github.com/v2ray/v2ray-core/releases">v2ray核心</a></h5>
+<p>同样选择对应版本，在<code>C:/Users/xstar/AppData/Local/qv2ray</code>目录下新建vcore文件夹，将下载的v2ray压缩包的内容解压到该文件夹下</p>
+<p><strong>xstar为你的用户名</strong></p>
+<p>目录结构如下</p>
+<figure data-type="image" tabindex="1"><img src="https://img04.sogoucdn.com/app/a/100520146/5928e6d2d3ad7394ee3c2e67961d4593" alt="GA_Y97ZE800(L$CMNK8@_3E.png" loading="lazy"></figure>
+<h5 id="入站设置">入站设置</h5>
+<p>依次打开首选项-&gt;入站设置，监听地址不用动（默认127.0.0.1）</p>
+<ul>
+<li>建议scoket为1080端口</li>
+<li>http为2333端口</li>
+</ul>
+<h5 id="导入你的vmess链接">导入你的vmess链接</h5>
+<figure data-type="image" tabindex="2"><img src="https://img02.sogoucdn.com/app/a/100520146/2e7ca0733319b08fc8d29d90eada7f5f" alt="0SVASI%ODFPVMFA6Q~91.png" loading="lazy"></figure>
+<h5 id="启动系统代理">启动系统代理</h5>
+<p>开启代理，便可以进行科学上网，有关如何配合浏览器插件做到浏览器热切换代理，请在本站找Manjaro的有关内容</p>
+<h4 id="安装scoop">安装scoop</h4>
+<p><strong>tips:</strong></p>
+<ul>
+<li>scoop软件都是从git仓库clone下来的，因此需要科学上网</li>
+<li>scoop安装的软件默认在<code>C:\Users\xstar\scoop\apps</code>下xstar为你的用户名</li>
+<li>scoop 可以用-g参数为全局安装<code>C:\ProgramData\scoop\apps\</code></li>
+<li>scoop只会保留最新版的软件，因此对于scala2.11.12不能用scoop安装</li>
+</ul>
+<h5 id="打开powershell分别执行以下两条命令">打开<code>powershell</code>分别执行以下两条命令</h5>
+<pre><code class="language-powershell">Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+iwr -useb get.scoop.sh | iex
+</code></pre>
+<h5 id="scoop-帮助文档">scoop 帮助文档</h5>
+<pre><code class="language-powershell">Usage: scoop &lt;command&gt; [&lt;args&gt;]
+
+Some useful commands are:
+
+alias       Manage scoop aliases
+bucket      Manage Scoop buckets
+cache       Show or clear the download cache
+checkup     Check for potential problems
+cleanup     Cleanup apps by removing old versions
+config      Get or set configuration values
+create      Create a custom app manifest
+depends     List dependencies for an app
+export      Exports (an importable) list of installed apps
+help        Show help for a command
+home        Opens the app homepage
+info        Display information about an app
+install     Install apps
+list        List installed apps
+prefix      Returns the path to the specified app
+reset       Reset an app to resolve conflicts
+search      Search available apps
+status      Show status and check for new app versions
+uninstall   Uninstall an app
+update      Update apps, or Scoop itself
+virustotal  Look for app's hash on virustotal.com
+which       Locate a shim/executable (similar to 'which' on Linux)
+
+Type 'scoop help &lt;command&gt;' to get help for a specific command.
+</code></pre>
+<h5 id="用scoop安装git-busybox-sudo">用scoop安装git busybox sudo</h5>
+<pre><code class="language-powershell">scoop config proxy 127.0.0.1:1080	#为scoop设置代理
+scoop install git		#众所周知，强大的版本控制工具
+scoop install busybox	#让你在win上使用linux的部分命令
+scoop install sudo		#类似linux的提权，以管理员身份运行命令
+</code></pre>
+<h5 id="为scoop添加extras仓库">为scoop添加extras仓库</h5>
+<pre><code class="language-powershell">scoop bucket add extras
+</code></pre>
+<h3 id="安装maven-scala">安装maven scala</h3>
+<p>​	什么？有了scoop你还在为安装maven发愁么？一条命令轻松搞定<code>scoop install maven</code>,下面讲一下maven换源，以及IDEA整合maven。</p>
+<h5 id="maven设置">maven设置</h5>
+<p>用你的编辑器（记事本）打开<code>C:\Users\xstar\scoop\apps\maven\3.6.3\conf\settings</code></p>
+<ul>
+<li>
+<p>设置本地仓库位置，这里建议保存到C盘之外，</p>
+<ul>
+<li>直接添加<localRepository>E:\Java\MavenRepository</localRepository></li>
+</ul>
+</li>
+<li>
+<p>换阿里云的源</p>
+<ul>
+<li>找到mirrors标签，将以下内容复制进该标签内</li>
+</ul>
+<pre><code class="language-xml">     &lt;mirror&gt;
+        &lt;id&gt;aliyunmaven&lt;/id&gt;
+        &lt;name&gt;aliyun maven&lt;/name&gt;
+        &lt;url&gt;https://maven.aliyun.com/repository/public &lt;/url&gt;
+        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+    &lt;/mirror&gt;
+</code></pre>
+</li>
+</ul>
+<h5 id="idea整合maven">IDEA整合maven</h5>
+<p>打开idea，一次打开以下选项卡</p>
+<p><code>File-&gt;New Projects Settings-&gt;Setting for New Projects-&gt;Maven</code></p>
+<ul>
+<li>
+<p><code>Maven home directory</code>路径改为<code>C:/Users/xstar/scoop/apps/maven/3.6.3</code>(xstar为你的用户名)</p>
+</li>
+<li>
+<p><code>USer setting file</code>路径改为<code>C:\Users\xstar\scoop\apps\maven\3.6.3\conf\settings.xml</code>，并勾选<code>override</code></p>
+</li>
+<li>
+<p>此时,Local repository应该已经为你设置的本地仓库路径，勾选<code>override</code></p>
+</li>
+</ul>
+<p>至此，你新建maven项目，便会默认使用你本机安装的maven，而不是idea自带的maven环境</p>
+<h5 id="安装scala">安装scala</h5>
+<p>此处比较简单，直接下载scala对应版本的msi安装文件，无脑安装即可</p>
+<p><code>scala 2.11.12</code>版本的<a href="https://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.msi">下载链接</a></p>
+<h5 id="idea整合scala">IDEA整合scala</h5>
+<ul>
+<li>在IDEA安装插件scala</li>
+<li>在你新建的maven项目的pom.xml中添加以下内容</li>
+</ul>
+<pre><code class="language-xml">    &lt;build&gt;
+        &lt;finalName&gt;WordCount&lt;/finalName&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+                &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.3.2&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;compile&lt;/goal&gt;
+                            &lt;goal&gt;testCompile&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+</code></pre>
+<ul>
+<li>如果你要编写spark的内容，请完成下一步内容</li>
+</ul>
+<h5 id="配置winutils">配置winutils</h5>
+<p><strong>tips:</strong></p>
+<p>winutils，是支持在win上跑hadoop的一些静态库，并不是完整的hadoop环境,spark也需要此环境</p>
+<ul>
+<li>你可以选择用scoop安装此环境</li>
+</ul>
+<pre><code class="language-powershell">scoop install hadoop-winutils	#版本较低2.8.1,也就是说如果你要在win上安装hadoop，也只能安装2.8.1版本的hadoop
+</code></pre>
+<ul>
+<li>你可以选择较高版本的winutils手动安装
+<ul>
+<li>下载[<a href="https://github.com/s911415/apache-hadoop-3.1.0-winutils">apache-hadoop-3.1.0-winutils</a>],将此压缩包解压到本地磁盘</li>
+<li>添加环境变量直接在，请百度如何添加环境变量，基操不讲</li>
+</ul>
+</li>
+<li>关于要安装hadoop的说明，如果你要在win上安装完整的hadoop环境，在你解压缩玩hadoop后，请用对应版本的winutils覆盖hadoop安装路径下的bin目录</li>
+</ul>
+<p><strong>未完待续</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Spring优雅的编写代码之基于注解的IOC]]></title>
+        <id>https://seulg.github.io/post/spring-you-ya-de-bian-xie-dai-ma-zhi-ji-yu-zhu-jie-de-ioc/</id>
+        <link href="https://seulg.github.io/post/spring-you-ya-de-bian-xie-dai-ma-zhi-ji-yu-zhu-jie-de-ioc/">
+        </link>
+        <updated>2020-02-14T03:38:24.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="spring-ioc的常用注解">spring IOC的常用注解</h2>
+<ul>
+<li>
+<p>用于创建对象的</p>
+<ul>
+<li>
+<p>他们的作用就和在XML中编写一个bean标签实现的功能是一致的</p>
+</li>
+<li>
+<p><code>@Component</code></p>
+<ul>
+<li>作用:把当前类对象存入spring容器中</li>
+<li>属性:
+<ul>
+<li>value : 用于指定bean的id,当我们不写时,它的默认值是当前类名首字母小写</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>@Controller</code> 一般用于表现层</p>
+</li>
+<li>
+<p><code>@Service</code> 一般用于业务层</p>
+</li>
+<li>
+<p><code>@Repository</code> 一般用于持久层</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="spring-ioc的常用注解">spring IOC的常用注解</h2>
+<ul>
+<li>
+<p>用于创建对象的</p>
+<ul>
+<li>
+<p>他们的作用就和在XML中编写一个bean标签实现的功能是一致的</p>
+</li>
+<li>
+<p><code>@Component</code></p>
+<ul>
+<li>作用:把当前类对象存入spring容器中</li>
+<li>属性:
+<ul>
+<li>value : 用于指定bean的id,当我们不写时,它的默认值是当前类名首字母小写</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>@Controller</code> 一般用于表现层</p>
+</li>
+<li>
+<p><code>@Service</code> 一般用于业务层</p>
+</li>
+<li>
+<p><code>@Repository</code> 一般用于持久层</p>
+</li>
+</ul>
+</li>
+</ul>
+<!-- more -->
+<pre><code>上述三个注解的作用和属性与`Component`是一模一样的,是spring框架为我们提供明确的三层使用注解,是我们的三层对象更清晰(优雅)
+</code></pre>
+<ul>
+<li>
+<p>用于注入数据的</p>
+<ul>
+<li>和XML配置文件中bean写<code>property</code>标签是一致的</li>
+<li><code>@Autowired</code>
+<ul>
+<li>作用:自动按照类型注入.只要容器中有唯一一个bean对象类型和要注入的变量类型匹配,就可以注入成功,<strong>如果IOC容器中有多个匹配时,会根据变量名去匹配IOC容器(map结构)中的key(id)</strong></li>
+<li>出现位置:
+<ul>
+<li>可以是变量上,也可以是方法上(常用)</li>
+</ul>
+</li>
+<li>细节: 使用注解时,set方法就不是必须的了</li>
+</ul>
+</li>
+<li><code>@Qualifier</code>
+<ul>
+<li>作用: 在按照变量类型中注入的基础上再按照变量名注入.</li>
+<li>细节: 再给类成员注入时不能单独使用,但是在给方法参数注入时可以单独使用</li>
+<li>属性
+<ul>
+<li>value: 用于指定注入bean的id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>@Resource</code>
+<ul>
+<li>作用: 直接按照id注入</li>
+<li>属性:
+<ul>
+<li>name: 要注入值的id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以上三种注解只能注入其他bean类型数据,而基本类型和String类型无法用上述注解实现,另外集合类型的注入只能通过XML实现</li>
+<li><code>@Value</code>
+<ul>
+<li>作用: 用于注入指定数据的值.可以使用spring的SpEL(spring表达式)
+<ul>
+<li>SpEL写法 ${表达式}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>用于改变作用范围的</p>
+<ul>
+<li>和bean标签中使用<code>scope</code>属性的功能一致</li>
+<li><code>@Scope</code>
+<ul>
+<li>作用:用于指定bean作用范围</li>
+<li>属性:
+<ul>
+<li>value
+<ul>
+<li>singleton 单例(默认值)</li>
+<li>prototype 多例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>出现位置: 类上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>和生命周期相关的(了解即可)</p>
+<ul>
+<li>和bean标签中<code>init-method</code>和<code>destory-method</code>的功能一致</li>
+<li><code>@PreDestory</code>
+<ul>
+<li>作用: 用于指定销毁方法</li>
+</ul>
+</li>
+<li><code>@PostConstruct</code>
+<ul>
+<li>作用: 用于指定初始化方法</li>
+</ul>
+</li>
+<li>出现位置: 方法上</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例使用xml方式实现表单的crud操作">案例使用XML方式实现表单的CRUD操作</h2>
+<p><strong>采用dbutils，c3p0连接池,junit单元测试</strong></p>
+<ul>
+<li>bean.xml配置如下</li>
+<li>采用xml方式需要在Service和dao添加set方法</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+    &lt;!--配置Service--&gt;
+    &lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;&gt;
+        &lt;property name=&quot;accountDao&quot; ref=&quot;accountDao&quot; /&gt;
+    &lt;/bean&gt;
+    &lt;!--配置Dao对象--&gt;
+    &lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.IAccountDaoImpl&quot;&gt;
+        &lt;!--注入QuereyRunner--&gt;
+        &lt;property name=&quot;runner&quot; ref=&quot;runner&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;bean id=&quot;runner&quot; class=&quot;org.apache.commons.dbutils.QueryRunner&quot; scope=&quot;prototype&quot;&gt;
+        &lt;!--注入数据源--&gt;
+        &lt;constructor-arg name=&quot;ds&quot; ref=&quot;dataSource&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!--配置数据源--&gt;
+    &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;!--连接数据库的信息--&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;jdbc:mysql://localhost:3306/springioc&quot;/&gt;
+        &lt;property name=&quot;user&quot; value=&quot;root&quot;/&gt;
+        &lt;property name=&quot;password&quot; value=&quot;gyg06103234&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+<p><strong>QueryRunner</strong></p>
+<p>核心类</p>
+<ul>
+<li>QueryRunner(DataSource ds);  传入参数为连接池</li>
+<li>pdate(String sql, Object… params) ;  执行insert update delete操作</li>
+<li>query(String sql, ResultSetHandler rsh, Object… params) ;  执行 select操作</li>
+</ul>
+<p><strong>ResultSetHandler</strong></p>
+<p>结果集处理类</p>
+<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/03/16/8JVel4.png" alt="8JVel4.png" loading="lazy"></figure>
+<h2 id="改造上述案例使用纯注解方式实现">改造上述案例,使用纯注解方式实现</h2>
+<p>修改bean.xml约束：</p>
+<pre><code class="language-xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+    &lt;context:annotation-config/&gt;
+</code></pre>
+<ul>
+<li>
+<p>去掉Service和dao的注解</p>
+<ul>
+<li>
+<p>删除Service中dao的set方法以及dao中QueryRunner的set方法</p>
+</li>
+<li>
+<p>在类名上分别添加<code>@Service(accountService)</code>注解和<code>@Repository(&quot;accountDao&quot;)注解</code></p>
+</li>
+<li>
+<p>分别在两个成员变量上加入<code>@AutoWrite</code>注解即可，因为ioc容器中只存在唯一的对应对象</p>
+</li>
+</ul>
+</li>
+<li>
+<p>去掉所有注解</p>
+<ul>
+<li><code>Configuration</code> 指定当前类是一个配置类
+<ul>
+<li>当该类作为<code>AnnotationConfigApplicationContext</code>的参数时可以不加此注解</li>
+<li>作为参数就不用指定扫描范围,不作为参数就要指定扫描范围</li>
+</ul>
+</li>
+<li><code>ComponentScan</code>指定扫描包的范围
+<ul>
+<li>默认属性<code>value</code>和<code>basePackage</code>任选一</li>
+<li>数组类型的注解,如果只有一个值,可以去掉大括号</li>
+</ul>
+</li>
+<li><code>Bean</code> 把当前方法的返回值作为bean对象存入ioc容器中
+<ul>
+<li>name:用于指定bean的id
+<ul>
+<li>默认值为当前方法的名称</li>
+</ul>
+</li>
+<li>当使用<code>@Bean</code>注解配置方法时,如果有参数时,spring会按照<code>Autowired</code>的方式查找ioc容器中是否有唯一的对应变量的bean对象</li>
+</ul>
+</li>
+<li><code>import</code>用于导入其他的配置类
+<ul>
+<li><code>value</code>其他配置类字节码文件数组</li>
+<li>把其他的配置类都加入到主配置类
+<ul>
+<li>只用加载主配置类,就可以加载所有配置类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>PropertySource</code>导入配置文件
+<ul>
+<li>value:指定文件的名称和路径</li>
+<li><code>classpath:</code>指定类路径下</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="spring-和-junit整合">spring 和 Junit整合</h2>
+<ul>
+<li>导入<code>spring-test</code>依赖</li>
+</ul>
+<pre><code class="language-xml">&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+	&lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ul>
+<li>使用Junit提供的注解把原有的main方法替换成spring提供的main方法</li>
+</ul>
+<pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class)
+</code></pre>
+<ul>
+<li>告知spring的运行器,spring和ioc的创建是基于注解还是xml,并且说明位置
+<ul>
+<li>locations:指定xml文件位置,加上<code>classpath</code>关键字,表示在类路径下</li>
+<li>classes:指定注解类所在的位置</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">@ContextConfiguration(classes = SpringConfiguration.class)
+</code></pre>
+<ul>
+<li>当使用spring5.x版本的时候,要求Junit的版本必须是4.12及以上</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[初识Spring之IOC,DI]]></title>
+        <id>https://seulg.github.io/post/chu-shi-spring-zhi-iocdi/</id>
+        <link href="https://seulg.github.io/post/chu-shi-spring-zhi-iocdi/">
+        </link>
+        <updated>2020-02-13T06:48:51.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="ioc控制反转">IOC(控制反转)</h2>
+<pre><code>IOC是Spring框架的核心容器,任何Spring框架的模块都依赖于此容器,因此,在学习Spring时,一定要注意理解IOC容器的含义.
+</code></pre>
+<h3 id="ioc主要解决了什么问题">IOC主要解决了什么问题?</h3>
+<h3 id="耦合">耦合</h3>
+<p>​    先不着急给出答案,我们先来看一下,web持久层中的数据库链接是如何建立对象的<br>
+准备工作,创建数据库<code>demo</code>,然后创建表account,</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="ioc控制反转">IOC(控制反转)</h2>
+<pre><code>IOC是Spring框架的核心容器,任何Spring框架的模块都依赖于此容器,因此,在学习Spring时,一定要注意理解IOC容器的含义.
+</code></pre>
+<h3 id="ioc主要解决了什么问题">IOC主要解决了什么问题?</h3>
+<h3 id="耦合">耦合</h3>
+<p>​    先不着急给出答案,我们先来看一下,web持久层中的数据库链接是如何建立对象的<br>
+准备工作,创建数据库<code>demo</code>,然后创建表account,</p>
+<!-- more -->
+<pre><code class="language-mysql">create table account(
+	id int primary key auto_increment,
+    name varhchar(40),
+    money float
+) character set utf8 collate utf8_general_ci;
+插入数据
+insert into account(name,money) values('gyg',1000);
+insert into account(name,money) values('gyk',1200);
+insert into account(name,money) values('gyl',1500);
+</code></pre>
+<p>添加mysql依赖坐标</p>
+<pre><code class="language-xml">&lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.6&lt;/version&gt;
+        &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<p>JDBCDemo如下:</p>
+<pre><code class="language-java">public class JDBCDemo {
+    public static void main(String[] args) throws Exception{
+        //1.注册驱动
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //2.获取连接
+        Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/demo&quot;,&quot;root&quot;,&quot;gyg06103234&quot;);
+        //3.获取操作数据库预处理对象
+        PreparedStatement pstm = conn.prepareStatement(&quot;select * from account&quot;);
+        //4.通过sql语句,查询数据库得到结果集
+        ResultSet rs = pstm.executeQuery();
+        //5.遍历结果集
+        while (rs.next()) {
+            System.out.println(rs.getString(&quot;name&quot;)+&quot; &quot;+ rs.getString(&quot;money&quot;));
+        }
+        //6.释放资源
+        rs.close();
+        pstm.close();
+        conn.close();
+    }
+}
+</code></pre>
+<p>此时如果在pom.xml中把mysql驱动注释掉,就会出现编译时异常,如果你用的是高级的IDE(例如IDEA),会直接提示错误Cannot resolve symbol 'mysql',因为在编译的时候找不到驱动,肯定会报错,这就是<code>程序的耦合</code>:</p>
+<ul>
+<li>类之间的耦合</li>
+<li>方法之间的耦合</li>
+<li>需要注意耦合无法完全消除,只能降低耦合(这个过程就是解耦)</li>
+</ul>
+<p>实际开发中应做到,编译器不依赖,运行期依赖</p>
+<p>上述例子中解耦的方式想家都知道,例如注册驱动的解耦</p>
+<pre><code class="language-java">//1.注册驱动
+//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+</code></pre>
+<p>此时,在编译期并不会报错,但是程序并不能运行,因为没有依赖,这就做到了把<code>编译期依赖转换成运行时依赖</code></p>
+<p>总结一下上述做法</p>
+<ul>
+<li>创建对象时,使用反射创建,避免使用<code>new</code>关键字(上述例子中可以看出,一个是依赖类,另一个是依赖字符串,但是上述做法有一个问题 驱动类是写死的,更换数据库仍然需要修改)</li>
+<li>通过读取配置文件的形式,获取要创建对象的全限定类名</li>
+</ul>
+<p>我们依旧可以举一个保存账户的例子</p>
+<p>目录结构如下:</p>
+<figure data-type="image" tabindex="1"><img src="https://s2.ax1x.com/2020/02/03/1aFkfe.png" alt="1aFkfe.png" loading="lazy"></figure>
+<p>可以看出在ui.Client里面类的耦合程度很高,那么该如何解决这个问题呢?</p>
+<p>根据上一个例子,我们依然可以采用反射的方式,将类名存在一个配置文件,然后建立一个工厂类,读取配置文件,创建对象,这样在ui.Client就不用依赖具体的类,而只依赖类的全限定类名(字符串),这就实现了解耦</p>
+<p>具体做法如下:</p>
+<p>创建factory.BeanFactory类内容如下:</p>
+<pre><code class="language-java">public class BeanFactory {
+    private static Properties props;
+    static {
+        try {
+            //1.实例化对象
+            props = new Properties();
+            //2.获取propertoes流对象
+            InputStream in = BeanFactory.class.getClassLoader().getResourceAsStream(&quot;be
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(&quot;初始化properties文件失败&quot;);
+        }
+    }
+     public static Object getBean(String beanName) {
+        Object bean = null;
+        try {
+            String beanPath = props.getProperty(beanName);
+            bean = Class.forName(beanPath).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return beans.get(beanName);
+    }
+}
+</code></pre>
+<p>这样就可以通过工厂模式创建对象</p>
+<p>此时可以将ui.Client和service.AccountServiceImpl修改为:</p>
+<pre><code class="language-java">public class Client {
+    public static void main(String[] args) {
+        //IAccountService as = new AccountServiceImpl();
+        IAccountService as = (IAccountService)BeanFactory.getBean(&quot;accountService&quot;);
+        as.saveAccount();
+    }
+}
+
+
+public class AccountServiceImpl implements IAccountService {
+    private IAccountDao accountDao = (IAccountDao) BeanFactory.getBean(&quot;accountDao&quot;);
+    public void saveAccount() {
+        accountDao.saveAccount();
+    }
+}
+
+</code></pre>
+<p>这样就降低了类之间的耦合,实现方式如上述例子中的相似,都是通过反射的方式解耦</p>
+<h3 id="多例化对象问题">多例化对象问题</h3>
+<p>但是此时,我们会发现每次通过<code>IAccountService as = (IAccountService)BeanFactory.getBean(&quot;accountService&quot;);</code>获取对象,都是一个新的对象,不是从始至终都是一个对象.这就是多例化对象</p>
+<ul>
+<li>
+<p>多例化对象会创建多次,效率低</p>
+</li>
+<li>
+<p>但是,多例化对象更加适用于多线程,因为每个对象都是独立的</p>
+</li>
+<li>
+<p>当然,如果对象中存在成员变量,则可能多线程兼容不太好</p>
+</li>
+<li>
+<p>所以应该尽可能的把成员变量加入到成员方法中</p>
+</li>
+</ul>
+<p>在web中一般并没有多少成员变量,因此一般使用单例化创建对象</p>
+<p>那么该如何解决呢?</p>
+<p>我们可以在读取完配置文件后就创建所有对象,存入一个HashMap容器(这已经类似于IOC容器了)中,如果不保存,可能会因为java的垃圾处理机制导致对象被回收,然后修改getBean,返回Map中对应的value</p>
+<p>修改factory.BeanFactory如下:</p>
+<pre><code class="language-java">public class BeanFactory {
+    private static Properties props;
+    private static Map&lt;String,Object&gt; beans;
+    static {
+        try {
+            //1.实例化对象
+            props = new Properties();
+            //2.获取propertoes流对象
+            InputStream in = BeanFactory.class.getClassLoader().getResourceAsStream(&quot;bean.properties&quot;);
+            props.load(in);
+            //3.实例化容器
+            beans = new HashMap&lt;String, Object&gt;();
+            //4.取出配置文件中的所有key
+            Enumeration keys = props.keys();
+            //5.遍历枚举,取出key
+            while (keys.hasMoreElements()) {
+                String key = keys.nextElement().toString();
+                //6.根据key获取value 反射创建对象
+                String beanPath = props.getProperty(key);
+                Object value = Class.forName(beanPath).newInstance();
+                //7.存入Map
+                beans.put(key,value);
+            }
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(&quot;初始化properties文件失败&quot;);
+        }
+    }
+    public static Object getBean(String beanName) {
+       return beans.get(beanName);
+    }
+}
+
+</code></pre>
+<p>这就解决了多例化对象的问题</p>
+<p>至此,我们就已经模拟了<code>spring ioc</code>的设计模式,即通过配置文件方式,用工厂模式创建对象</p>
+<h3 id="ioc的理解">IOC的理解</h3>
+<pre><code class="language-java">//IAccountService as = new AccountServiceImpl();
+IAccountService as = (IAccountService)BeanFactory.getBean(&quot;accountService&quot;);
+</code></pre>
+<p>这两句话就体现了IOC为何称之为控制反转</p>
+<ul>
+<li>
+<p>第一种方式(被注释掉的),是程序员自主的创建一个对象,拥有这个对象的所有控制权</p>
+</li>
+<li>
+<p>第二种方式,则将创建对象的权利交给了工厂,这就是控制反转</p>
+</li>
+<li>
+<p>工厂得到的对象由配置文件控制</p>
+</li>
+<li>
+<p>当然程序员有权选啧这两种创建方式</p>
+</li>
+</ul>
+<p>IOC含义:</p>
+<p><strong>控制反转</strong>（Inversion of Control，缩写为<strong>IoC</strong>），是<a href="https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B">面向对象编程</a>中的一种设计原则，可以用来减低计算机代码之间的<a href="https://baike.baidu.com/item/%E8%80%A6%E5%90%88%E5%BA%A6">耦合度</a>。其中最常见的方式叫做<strong>依赖注入</strong>（Dependency Injection，简称<strong>DI</strong>），还有一种方式叫“依赖查找”（Dependency Lookup）。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象中。(来自百度百科)</p>
+<h3 id="ioc解决了什么问题">IOC解决了什么问题</h3>
+<pre><code class="language-mermaid">graph LR
+	App --&gt; 资源1
+	App --&gt; 资源2
+	App --&gt; 资源3
+	
+</code></pre>
+<p>原始的创建对象的方式，App和资源之间依赖关系很强,而IOC模式为</p>
+<pre><code class="language-mermaid">graph LR
+	App --获取资源--&gt; 工厂
+	工厂 --控制--&gt; 资源1
+	工厂 --控制--&gt; 资源2
+	工厂 --控制--&gt; 资源3
+</code></pre>
+<ul>
+<li>
+<p>IOC解决了app和资源之间依赖关系,使得App和资源的独立更方便</p>
+</li>
+<li>
+<h3 id="ioc降低了类之间耦合程度">IOC降低了类之间耦合程度</h3>
+</li>
+</ul>
+<h2 id="spring-ioc">Spring IOC</h2>
+<p>​	通过Spring获取Ioc容器可分为两种:</p>
+<ul>
+<li>通过xml配置文件</li>
+<li>通过注解</li>
+</ul>
+<h3 id="可以通过applicationcontext接口获取核心容器该接口有三个常用实现类">可以通过ApplicationContext接口获取核心容器,该接口有三个常用实现类</h3>
+<ul>
+<li>ClassPathApplicationContext 顾名思义就是 读取类路径下的配置文件</li>
+<li>SystemXmlApplicationContext 同上,系统内的xml文件(需要有读取权限)</li>
+<li>AnnotationConfigApplicationContext 通过注解的方式取得核心容器</li>
+</ul>
+<p>我们先来了解前两种通过xml配置文件的方式</p>
+<p>maven工程在resource文件夹下创建bean.xml,这个文件名可以任意(非中文),但是有一个约定俗成的文件名<code>applicationContext.xml</code>暂时先使用bean.xml</p>
+<p>添加一下约束条件</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;/&gt;
+    &lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.AccountDaoImpl&quot;/&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>联想前面的bean.properties文件内容,不难发现属性id必须是唯一的,class属性就是该类的全限定类名,<code>此配置文件到后面还会细说,此处可以先用</code></p>
+<pre><code class="language-java">ApplicationContext context = new ClassPathApplicationContext(&quot;bean.xml&quot;);
+</code></pre>
+<p>这个context便类似于上面模拟的BeanFactory,即为spring的核心容器,接下来就可以使用此容器,根据配置的id获取对象了</p>
+<ul>
+<li>可以直接传入id获取Object对象然后强转</li>
+</ul>
+<pre><code class="language-java">IAccountService ac = (IAccountService)context.getBean(&quot;accountService&quot;);
+</code></pre>
+<ul>
+<li>亦可以传入class,直接获得对应对象</li>
+</ul>
+<pre><code class="language-java">IAccountService ac = context.getBean(&quot;accountService&quot;,IAccountServiceImpl.class);
+</code></pre>
+<h3 id="applicationcontext创建容器的细节">ApplicationContext创建容器的细节:</h3>
+<ul>
+<li>一旦读取完配置文件,立马创建配置文件内配置的对象</li>
+<li>适用于单例对象的创建</li>
+</ul>
+<p>当然还有另一种方式就是采用顶层接口BeanFactory</p>
+<p>先展示一下接口间的依赖关系</p>
+<figure data-type="image" tabindex="2"><img src="https://s2.ax1x.com/2020/02/14/1XY658.png" alt="1XY658.png" loading="lazy"></figure>
+<p>可以看出BeanFactory是一个顶层接口(也就意味着功能不是特别强大)</p>
+<p>我们用BeanFactory(已经过时了的)的方式获取:</p>
+<pre><code class="language-java">Resource resource = new ClassPathResource(&quot;bean.xml&quot;);
+BeanFactory factory = new XmlBeanFactory(resource);
+IAccountService as = (IAccountService)factory.getBean(&quot;accountService&quot;);
+</code></pre>
+<p>BeanFactory区别于ApplicationContext采用的立即加载策略</p>
+<ul>
+<li>采用的是延迟加载的策略,即要真正获取对象时才会创建对象</li>
+<li>适用于多例对象的创建</li>
+</ul>
+<h3 id="如何验证">如何验证?</h3>
+<p>我们可以在IAccountService中加入一个默认构造器,输出一句话(service对象已经创建)</p>
+<p>然后分别在两种方式读取配置文件时打断点</p>
+<p>ApplicationContext:</p>
+<p><img src="https://s2.ax1x.com/2020/02/14/1XY28g.png" alt="1XY28g.png" loading="lazy">BeanFactory:</p>
+<figure data-type="image" tabindex="3"><img src="https://s2.ax1x.com/2020/02/14/1XY75T.png" alt="1XY75T.png" loading="lazy"></figure>
+<p>红色是断点位置,绿色是下一步要执行的即,此步执行的是绿色上面的语句,很容易就能看出两种方式区别</p>
+<h3 id="spring对bean对象的管理细节">spring对bean对象的管理细节</h3>
+<ul>
+<li>创建对象的三种方式</li>
+<li>bean对象的作用范围</li>
+<li>bean对象的生命周期</li>
+</ul>
+<h3 id="创建对象的三种方式">创建对象的三种方式</h3>
+<ul>
+<li>
+<p>使用默认构造函数创建</p>
+<p>在spring的配置文件中用bean标签配置id和class属性后,没有其他的标签和属性,就采用默认构造函数创建bean对象,此时如果类中无默认构造函数,则无法创建</p>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;/&gt;
+&lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.AccountDaoImpl&quot;/&gt;
+</code></pre>
+<ul>
+<li>使用类中成员方法创建对象,存入spring容器(非静态方法返回值)</li>
+</ul>
+<pre><code class="language-java">//创建一个简单工厂类进行模拟
+factory.InstanceFactory
+    
+public class InstanceFactory {
+    public IAccountService getAccountService() {
+        return new AccountServiceImpl();
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;bean id=&quot;instanceFactory&quot; class=&quot;com.henu.factory.InstanceFactory&quot;/&gt;
+&lt;bean id=&quot;accountService&quot; factory-bean=&quot;instanceFactory&quot; factory-method=&quot;getAccountService&quot; /&gt;
+</code></pre>
+<p>可以通过此方式创建accountService对象</p>
+<p>factory-bean属性值为 类的id<code>必须提前编写此类的bean标签</code></p>
+<p>factory-method属性值为 类中用于生成对象的方法名</p>
+<ul>
+<li>使用类中静态方法返回值创建对象(静态方法返回值)</li>
+</ul>
+<p>将上述工厂类中的方法加上<code>static</code>修饰符,可以通过以下配置文件创建</p>
+<pre><code class="language-xml">&lt;bean id=&quot;accountService&quot; class=&quot;com.henu.factory.InstanceFactory&quot; factory-method=&quot;getAccountService&quot; /&gt;
+</code></pre>
+<p><strong>其中后两种方法适用于jar文件中的类</strong></p>
+<h3 id="bean对象的作用范围">bean对象的作用范围</h3>
+<ul>
+<li>
+<p>bean标签scope属性</p>
+<p>作用:指定bean的作用范围</p>
+<p>取值:</p>
+<p>​	<code>singleton</code> :单例的,默认值</p>
+<p>​	<code>prototype</code>:多例的</p>
+<p>​	<code>request</code>:作用于web应用请求范围</p>
+<p>​	<code>session</code>:作用web应用会话范围</p>
+<p>​	<code>global-session</code>:作用于集群环境的会话范围(雾)</p>
+<p>只验证前两个值</p>
+<pre><code class="language-java">&lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.AccountDaoImpl&quot; scope=&quot;singleton&quot;/&gt;
+    
+IAccountDao dao1 = ac.getBean(&quot;accountDao&quot;,IAccountDao.class);
+IAccountDao dao2 = ac.getBean(&quot;accountDao&quot;,IAccountDao.class);
+System.out.println(dao1==dao2); //true,证明只创建了一次对象,即是单例对象
+
+&lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.AccountDaoImpl&quot; scope=&quot;prototype&quot;/&gt;
+IAccountDao dao1 = ac.getBean(&quot;accountDao&quot;,IAccountDao.class);
+IAccountDao dao2 = ac.getBean(&quot;accountDao&quot;,IAccountDao.class);
+System.out.println(dao1==dao2); //false,证明只创建了两次次对象,即是多例对象    
+</code></pre>
+</li>
+<li>
+<p>bean对象的生命周期</p>
+<p>单例对象:</p>
+<p>​	出生:容器创建时,对象就被创建</p>
+<p>​	活着:容器存在时.对象就存在</p>
+<p>​	死亡:容器销毁,对象狗带</p>
+<p>​	总结单例对象生命周期与容器一致</p>
+<pre><code class="language-java">//bean 标签指定初始化方法和销毁方法,在AccountDaoimpl类中添加相应方法
+&lt;bean id=&quot;accountDao&quot; class=&quot;com.henu.dao.impl.AccountDaoImpl&quot; scope=&quot;singleton&quot; init-method=&quot;init&quot; destroy-method=&quot;destory&quot;/&gt;
+ 
+public void init() {
+    System.out.println(&quot;对象被创建了&quot;);
+}
+public void destory() {
+    System.out.println(&quot;对象销毁了&quot;);
+}
+/* 结果正确的输出了&quot;对象被创建了&quot;,没有输出对象被销毁了
+ * why? 在main方法执行完毕后,就会把当前应用中线程栈中的内存就会被全部释放,但是还并没有调用销毁方法
+ * 需要手动释放方法才能调用销毁方法
+ * 在main方法中作出如下修改
+ **/
+
+//ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;bean.xml&quot;);java多态的体现
+ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(&quot;bean.xml&quot;);
+//添加
+ac.close();
+//此时,销毁方法便会正常执行
+</code></pre>
+<p>多例对象</p>
+<p>​	出生:当要使用对象时,spring才会创建,验证方法与上文类似,打断点即可</p>
+<p>​	活着 : 对象在使用过程中,就会一直活着</p>
+<p>​	死亡: 当对象长时间不使用,且没有别的对象引用时,由Java的垃圾回收器销毁</p>
+</li>
+</ul>
+<h2 id="依赖注入dependency-injection">依赖注入Dependency Injection</h2>
+<ul>
+<li>
+<p>IOC作用:</p>
+<p>​	降低程序间的耦合(依赖关系)</p>
+</li>
+<li>
+<p>依赖关系</p>
+<p>​	在当前类需要用到其他类的对象,由spring提供,只需在配置文件说明</p>
+</li>
+<li>
+<p>依赖关系的管理</p>
+<p>​	交给spring管理和维护</p>
+</li>
+<li>
+<p>依赖注入</p>
+<ul>
+<li>
+<p>能注入的数据</p>
+<ul>
+<li>基本类型和String</li>
+<li>其他bean类型(在配置文件中或者注释配置过的)</li>
+<li>复杂类型/集合类型</li>
+</ul>
+</li>
+<li>
+<p>注入方式</p>
+<ul>
+<li>
+<p>使用构造函数提供</p>
+</li>
+<li>
+<p>使用set方法提供</p>
+</li>
+<li>
+<p>使用注解提供(雾)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>例如, 我们将AccountService修改为:</p>
+<pre><code class="language-java">public class AccountServiceImpl implements IAccountService {
+    private String name;
+    private Integer age;
+    private Date birthday;
+
+    public AccountServiceImpl(String name,Integer age, Date birthday) {
+        this.name = name;
+        this.age = age;
+        this.birthday = birthday;
+    }
+    public void saveAccount() {
+        System.out.println(name + &quot; &quot; + age + &quot; &quot; + &quot; &quot; + birthday);
+    }
+
+}
+</code></pre>
+<h3 id="构造函数注入">构造函数注入</h3>
+<p>使用 <code>constructor-arg</code>标签</p>
+<ul>
+<li>
+<p>type :用于指定要注入数据的类型,该类型必须是构造函数中某个或默写参数的类型</p>
+</li>
+<li>
+<p>index:用于指定要注入数据给构造函数中指定索引位置的参数赋值,起始值为<strong>0</strong></p>
+</li>
+<li>
+<p>name: 用于给构造函数中指定名称的参数赋值(常用)</p>
+<p>--------------用于指定给构造函数中哪个参数赋值--------------</p>
+</li>
+<li>
+<p>value: 用于提供基本类型和String类型的数据</p>
+</li>
+<li>
+<p>ref: 用于指定在spring核心容器ioc中出现过的bean对象</p>
+</li>
+</ul>
+<p>因此可以用以下配置文件</p>
+<pre><code class="language-xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;test&quot;/&gt;
+        &lt;constructor-arg name=&quot;age&quot; value=&quot;18&quot;/&gt;
+        &lt;constructor-arg name=&quot;birthday&quot; value=&quot;1999-11-23&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+<p><strong>注意:</strong></p>
+<ul>
+<li>配置文件里面所有的value都是字符串</li>
+<li>Integer 可以 直接用字符串类型的18赋值(spring可以强转)</li>
+<li>Date类型不能直接用字符串&quot;1999-11-23&quot;</li>
+</ul>
+<p>因此上述配置文件是错误的,需要作出如下修改</p>
+<pre><code class="language-xml">&lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;&gt;
+    &lt;constructor-arg name=&quot;name&quot; value=&quot;test&quot;/&gt;
+    &lt;constructor-arg name=&quot;age&quot; value=&quot;18&quot;/&gt;
+    &lt;constructor-arg name=&quot;birthday&quot; ref=&quot;now&quot;/&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;now&quot; class=&quot;java.util.Date&quot;/&gt;
+</code></pre>
+<p><strong>优势:</strong></p>
+<p>​	在获取bean对象时,诸如数据是必须操作,否则无法创建对象(没有默认构造参数)</p>
+<p><strong>弊端:</strong></p>
+<p>​	改变了bean对象的实例化方式,使我们在创建对象时,如果用不到这些数据,也必须提供</p>
+<h3 id="set方法注入更常用">set方法注入(更常用)</h3>
+<p>使用<code>property</code>标签</p>
+<ul>
+<li>name: 用于指定注入时调用的set方法名称(与成员变量名无关,只与set方法名称有关,去掉set,首字母变小写)</li>
+<li>value: 用于提供基本类型和String类型的数据</li>
+<li>ref: 用于指定在spring核心容器ioc中出现过的bean对象</li>
+</ul>
+<p>在AccountService中生成setter方法,并且注释掉带参构造函数</p>
+<pre><code class="language-java">public void setUserName(String name) {
+    this.name = name;
+}
+public void setAge(Integer age) {
+     this.age = age;
+}
+public void setBirthday(Date birthday) {
+    this.birthday = birthday;
+}
+</code></pre>
+<p>则配置文件可以这么写</p>
+<pre><code class="language-xml">&lt;bean id=&quot;now&quot; class=&quot;java.util.Date&quot;/&gt;
+&lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot;&gt;
+    &lt;property name=&quot;userName&quot; value=&quot;qaq&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+    &lt;property name=&quot;birthday&quot; ref=&quot;now&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<p><strong>优势:</strong></p>
+<p>​	创建对象时没有限制,可以使用默认构造函数</p>
+<p><strong>弊端:</strong></p>
+<p>​	如果某个成员必须有值,则获取对象时,set方法没有执行</p>
+<h3 id="复杂类型集合类型注入">复杂类型/集合类型注入</h3>
+<ul>
+<li>
+<p>用于给List结构注入的标签有</p>
+<p><code>list</code> <code>array</code> <code>set</code></p>
+</li>
+<li>
+<p>用于给Map结构注入的标签有</p>
+<p><code>map</code> <code>props</code></p>
+</li>
+<li>
+<p>结构相同,标签可以互换</p>
+</li>
+</ul>
+<p>修改AccountService</p>
+<pre><code class="language-java">private String[] myStrings;
+private List&lt;String&gt; myList;
+private Set&lt;String&gt; mySet;
+private Map&lt;String,String&gt; myMap;
+private Properties myProps;
+public void saveAccount() {
+    System.out.println(Arrays.toString(myStrings));
+    System.out.println(myList);
+    System.out.println(mySet);
+    System.out.println(myMap);
+    System.out.println(myProps);
+}
+
+public void setMySet(Set&lt;String&gt; mySet) {
+    this.mySet = mySet;
+}
+
+public void setMyProps(Properties myPops) {
+    this.myProps = myPops;
+}
+
+public void setMyStrings(String[] myStrings) {
+    this.myStrings = myStrings;
+}
+
+public void setMyList(List&lt;String&gt; myList) {
+    this.myList = myList;
+}
+
+public void setMyMap(Map&lt;String, String&gt; myMap) {
+    this.myMap = myMap;
+}
+</code></pre>
+<p>依旧可以使用set方式注入</p>
+<pre><code class="language-xml">
+&lt;bean id=&quot;accountService&quot; class=&quot;com.henu.service.impl.AccountServiceImpl&quot; &gt;
+    &lt;property name=&quot;myStrings&quot;&gt;
+        &lt;set&gt;
+            &lt;value&gt;AAA&lt;/value&gt;
+            &lt;value&gt;BBB&lt;/value&gt;
+            &lt;value&gt;CCC&lt;/value&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;myList&quot;&gt;
+        &lt;array&gt;
+            &lt;value&gt;AAA&lt;/value&gt;
+            &lt;value&gt;BBB&lt;/value&gt;
+            &lt;value&gt;CCC&lt;/value&gt;
+        &lt;/array&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;mySet&quot;&gt;
+        &lt;list&gt;
+            &lt;value&gt;AAA&lt;/value&gt;
+            &lt;value&gt;BBB&lt;/value&gt;
+            &lt;value&gt;CCC&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;myMap&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;A&quot; value=&quot;a&quot; /&gt;
+            &lt;entry key=&quot;B&quot;&gt;
+                &lt;value&gt;b&lt;/value&gt;
+            &lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;myProps&quot;&gt;
+        &lt;props&gt;
+            &lt;prop key=&quot;AA&quot;&gt;aa&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p><strong>基于xml的spring ioc di到此结束</strong>,明天继续注解ioc(雾)</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git -版本控制工具]]></title>
+        <id>https://seulg.github.io/post/git-版本控制工具/</id>
+        <link href="https://seulg.github.io/post/git-版本控制工具/">
+        </link>
+        <updated>2019-11-28T05:05:16.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="git-分布式版本控制系统">Git 分布式版本控制系统</h2>
+<h3 id="底层命令">底层命令</h3>
+<h4 id="git对象">git对象</h4>
+<ul>
+<li>git对象</li>
+<li>树对象</li>
+<li>提交对象</li>
+</ul>
+<h5 id="git对象-2">git对象</h5>
+<h6 id="命令介绍">命令介绍</h6>
+<ul>
+<li>
+<p><code>git init</code>在工作区下,初始化仓库</p>
+</li>
+<li>
+<p><code>echo “test” | git hash-object -w --stdin</code></p>
+</li>
+<li>
+<p>-stdin (standard input)从标准输入流读取数据 ,也可以是文件路径(对文件进行版本控制)</p>
+<ul>
+<li>-w 存入版本库(.git/object),若不加则不会存,仅输出哈希值</li>
+</ul>
+</li>
+<li>
+<p><code>gir cat-file -p 哈希值</code>查看文件内容</p>
+</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="git-分布式版本控制系统">Git 分布式版本控制系统</h2>
+<h3 id="底层命令">底层命令</h3>
+<h4 id="git对象">git对象</h4>
+<ul>
+<li>git对象</li>
+<li>树对象</li>
+<li>提交对象</li>
+</ul>
+<h5 id="git对象-2">git对象</h5>
+<h6 id="命令介绍">命令介绍</h6>
+<ul>
+<li>
+<p><code>git init</code>在工作区下,初始化仓库</p>
+</li>
+<li>
+<p><code>echo “test” | git hash-object -w --stdin</code></p>
+</li>
+<li>
+<p>-stdin (standard input)从标准输入流读取数据 ,也可以是文件路径(对文件进行版本控制)</p>
+<ul>
+<li>-w 存入版本库(.git/object),若不加则不会存,仅输出哈希值</li>
+</ul>
+</li>
+<li>
+<p><code>gir cat-file -p 哈希值</code>查看文件内容</p>
+</li>
+</ul>
+<!-- more -->
+<h6 id="测试">测试</h6>
+<pre><code class="language-git">echo “test” | git hash-object -w --stdin  
+bd721793c916757eb17ffc248799ad00f0b35735 (输出的哈希值就是&quot;test&quot;的唯一标示,只与内容有关,内容改变,哈希值也改变)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/28/numF5cWHDtjdSye.png" alt="git对象.png" loading="lazy"></figure>
+<p>如图: 命名方式为 哈希值前位为文件夹,后面的为文件名</p>
+<pre><code class="language-git"># 查看文件内容
+git cat-file -p bd721793c916757eb17ffc248799ad00f0b35735
+“test”
+</code></pre>
+<p>如果直接用cat 命令,则会乱码,证明内容被压缩过</p>
+<pre><code class="language-git">cat .git//objects/bd/721793c916757eb17ffc248799ad00f0b35735
+xK��OR04dx�0�$���Q�\.IR�% 
+</code></pre>
+<p>说明了一个问题,git将用户的文件或者内容,生成唯一hash值,并压缩数据</p>
+<pre><code class="language-git">echo “test v1” &gt; test.txt
+git hash-object -w ./test.txt
+89f9ceab790a0662e30ff1f2f3e8bac0bf7fd895 (输出,若文件内的内容仍然是test,则哈希值不变,证明,保存的仍然是文件内容)
+</code></pre>
+<p>若修改文件内容,git并不会自动记录修改内容,必须再显式提交一次</p>
+<pre><code class="language-git">vim test.txt 
+输入一些内容
+git hash-object -w ./test.txt
+会输出一个新的hash值
+</code></pre>
+<p>object目录下会多出来一个文件,也就是说git不是增量修改</p>
+<h6 id="git对象的问题">git对象的问题:</h6>
+<ul>
+<li>记住文件的每一个版本对应的hash值并不现实</li>
+<li>在git中,文件名没有被保存,仅保存了文件内容</li>
+<li>这些操作都是在本地数据库(git实质上就是一个简单数据库)操作,不涉及暂存区</li>
+<li>git对象并不能表示项目的快照,仅代表每个文件内容的快照</li>
+<li>只能通过哈希值读取文件内容</li>
+</ul>
+<h5 id="树对象tree-object">树对象(tree object)</h5>
+<p>能解决文件名的保存,并且允许我们将多个文件组织在一起</p>
+<h6 id="命令介绍-2">命令介绍</h6>
+<ul>
+<li><code>git ls-files -s</code>查看树对象的样子,(这个命令其实是查看暂存区的,树对象存在暂存区,git对象不涉及暂存区操作)</li>
+<li><code>git update-index --add --cacheinfo 100644 bd721793c916 757eb17ffc248799ad00f0b35735 test.txt</code> 创建树对象,不在版本库存储东西
+<ul>
+<li>
+<p>–add:因为目前文件不在暂存区,首次创建树对象才需要</p>
+</li>
+<li>
+<p>-cacheinfo:要把需要添加的文件存入数据库,而不是挡墙目录</p>
+</li>
+<li>
+<p>文件模式</p>
+</li>
+<li>
+<p>100644,普通文件</p>
+</li>
+<li>
+<p>100755,可执行文件</p>
+</li>
+<li>
+<p>120000,符号链接</p>
+</li>
+</ul>
+</li>
+<li><code>git cat-file - p</code>查看树对象内容</li>
+<li><code>git read-tree -prefix=那么 第一棵树的哈希值</code> name表示新树的名字,将第二颗树加入第一棵树</li>
+</ul>
+<h6 id="测试如下">测试如下</h6>
+<pre><code class="language-git">git update-index --add --cacheinfo 100644 bd721793c916757eb17ffc248799ad00f0b35735 test.txt
+git ls-files -s 	#查看暂存区
+100644 bd721793c916757eb17ffc248799ad00f0b35735 0       test.txt	#输出
+
+find .git/objects -type f     #查看版本库        
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735	#输出
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895	#输出
+#版本库中并没有树对象
+git write-tree       #将暂存区的内容写入版本库               
+91db0f4cfb1a0eff06a0dd80db40069cebe97332 #树对象的哈希值
+git cat-file -t 91db0f4cfb1a0eff06a0dd80db40069cebe97332
+tree 	#文件类型,树对象
+
+#此时版本库就有了树对象
+find .git/objects -type f
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735 #&quot;text&quot;的哈希
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895 #&quot;test.txt内容的哈希&quot;
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 #树对象的哈希值
+</code></pre>
+<p>**说明:**git write-tree可以等树对象修改多次后,或者添加删除多次后在执行,这也就是说,树对象能代表项目的一个快照</p>
+<p>**总结:**git对象代表每个文件的版本,树对象可以代表项目版本</p>
+<h6 id="树对象的构建">树对象的构建</h6>
+<p>新建一个gyg.txt 修改 test.txt 将这两个文件塞入暂存区,并生成树对象</p>
+<pre><code class="language-git">#新建gyg.txt
+echo &quot;new file v1&quot; &gt; gyg.txt
+git hash-object -w gyg.txt  #添加新文件的git对象
+b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c #gyg.txt的哈希
+
+#修改test.txt的内容
+vim test.txt #加入test v2
+git hash-object -w ./test.txt  #创建test.txt第二个版本的git对象
+6623ae759d09947564e5b45ce93e2633f943cca2
+
+#将test.txt第二个版本塞入暂存区
+git update-index --add --cacheinfo 100644 6623ae759d09947564e5b45ce93e2633f943cca2 test.txt  
+
+#查看暂存区
+git ls-files -s                    
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#可以看出将test.txt的第一个版本的记录覆盖掉了(对比上面的记录)
+
+#将gyg.txt塞入暂存区
+git update-index --add --cacheinfo 100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c gyg.txt
+
+#查看暂存区
+git ls-files -s                
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#证明,暂存区的覆盖是根据文件名覆盖的
+#生成项目第二个版本的树对象
+git write-tree                     
+fe52097435752e39aded6f64dbb74746a96e5d4c
+
+#查看版本库
+find .git/objects -type f          
+.git/objects/66/23ae759d09947564e5b45ce93e2633f943cca2
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895
+.git/objects/fe/52097435752e39aded6f64dbb74746a96e5d4c  #workspace第二个树对象
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 	#workspace第一个树对象
+.git/objects/b2/b44573b56f7ea44cbe6e34a69b4f1b19311c5c
+</code></pre>
+<p>树对象目前的状态:</p>
+<pre><code class="language-mermaid">graph LR
+	tree1(第一个树对象)--&gt;git1[test.txt v1]
+	tree2(第二个树对象)--&gt;git2[test.txt v2]
+	tree2(第二个树对象)--&gt;git3[gyg.txt v1]
+subgraph git
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+</code></pre>
+<p>将第一棵树加入第二颗树</p>
+<pre><code class="language-git">#先查看暂存区
+git ls-files -s                       
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#执行加入操作
+git read-tree --prefix=bak 91db0f4cfb1a0eff06a0dd80db40069cebe97332 
+#查看暂存区变化,可以看出多出了一个新的记录
+git ls-files -s                     
+100644 bd721793c916757eb17ffc248799ad00f0b35735 0       bak/test.txt
+100644 b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c 0       gyg.txt
+100644 6623ae759d09947564e5b45ce93e2633f943cca2 0       test.txt
+#生成新的树对象
+git write-tree                    
+403127d92cb74fa3f505adc2d90e1c16932151ab
+#查看版本库
+find .git/objects -type f           
+.git/objects/66/23ae759d09947564e5b45ce93e2633f943cca2
+.git/objects/bd/721793c916757eb17ffc248799ad00f0b35735
+.git/objects/89/f9ceab790a0662e30ff1f2f3e8bac0bf7fd895
+.git/objects/40/3127d92cb74fa3f505adc2d90e1c16932151ab #第三棵树对象
+.git/objects/fe/52097435752e39aded6f64dbb74746a96e5d4c #第二个
+.git/objects/91/db0f4cfb1a0eff06a0dd80db40069cebe97332 #第一个
+.git/objects/b2/b44573b56f7ea44cbe6e34a69b4f1b19311c5c
+#查看第三课树的内容,如下:
+git cat-file -p 403127d92cb74fa3f505adc2d90e1c16932151ab
+040000 tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332    bak
+100644 blob b2b44573b56f7ea44cbe6e34a69b4f1b19311c5c    gyg.txt
+100644 blob 6623ae759d09947564e5b45ce93e2633f943cca2    test.txt
+</code></pre>
+<p>此时树对象的状态:</p>
+<p>​	tree3右边的其实就是第二棵树,本质上就是第二颗树通过bak指针,连接上了第一棵树</p>
+<pre><code class="language-mermaid">graph TB
+	git4[第三颗树对象]--bak--&gt;tree1
+	git4[第三颗树对象]--gyg.txt--&gt;git3
+	git4[第三颗树对象]--test.txt v2--&gt;git2
+subgraph tree对象
+	tree1(第一个树对象)--&gt;git1[test.txt v1]
+	tree2(第二个树对象)--&gt;git2[test.txt v2]
+	tree2(第二个树对象)--&gt;git3[gyg.txt v1]
+subgraph git对象
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+	end
+</code></pre>
+<h6 id="树对象的问题">树对象的问题</h6>
+<ul>
+<li>没有对每个版本所做的事,做出解释</li>
+<li>但是若要重用,必须记住哈希值</li>
+<li>解决方式:提交对象</li>
+</ul>
+<h4 id="提交对象">提交对象</h4>
+<h5 id="代码说明">代码说明</h5>
+<ul>
+<li><code>commit-tree 树对象哈希值</code> 创建提交对象</li>
+</ul>
+<h6 id="测试-2">测试</h6>
+<pre><code class="language-git">#前面的表示对这次提交的注释
+echo &quot;first commit&quot; | git commit-tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332
+7a2b96724dc580540d292862a013a72376a43624
+#查看提交对象
+git cat-file -p 7a2b96724dc580540d292862a013a72376a43624
+tree 91db0f4cfb1a0eff06a0dd80db40069cebe97332	#树对象
+author seulG &lt;gengyagexstar1@gmail.com&gt; 1574947028 +0800	#配置好的用户名和邮箱
+committer seulG &lt;gengyagexstar1@gmail.com&gt; 1574947028 +0800
+first commit	# 注释
+</code></pre>
+<p>也就是提交对象对树对象做了一次包裹,对树对象作出解释,每个提交对象都需要一个父对象(第一次除外)</p>
+<pre><code class="language-git"># 生成第二个提交对象,指定父提交
+ echo &quot;second commit&quot; | git commit-tree fe52097435752e39aded6f64dbb74746a96e5d4c -p 7a2b96724dc580540d292862a013a72376a43624
+ #这是输出
+c9712137be81be7d4cd61640911a5b00ef2f91e3
+# 生成第三个提交对象
+ echo &quot;third commit&quot; | git commit-tree 403127d92cb74fa3f505adc2d90e1c16932151ab -p c9712137be81be7d4cd61640911a5b00ef2f91e3
+ #输出
+b91c0ac905ff7fee128de2cf33c3b7923343959e
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+
+subgraph 提交对象
+commit1[first commit] --&gt; tree1
+commit2[second commit] --&gt; tree2
+commit3[third commit] --&gt; git4
+commit3[third commit] --父提交--&gt; commit2
+commit2[second commit] --父提交--&gt; commit1
+subgraph tree对象
+	git4[第三颗树对象]--bak--&gt;tree1
+	git4[第三颗树对象]--gyg.txt--&gt;git3
+	git4[第三颗树对象]--test.txt v2--&gt;git2
+	tree1(第一个树对象)--&gt;git1[test.txt v1]
+	tree2(第二个树对象)--&gt;git2[test.txt v2]
+	tree2(第二个树对象)--&gt;git3[gyg.txt v1]
+subgraph git对象
+	git1[test.txt v1]
+	git2[test.txt v2]
+	git3[gyg.txt v1]
+	end
+	end
+	end
+</code></pre>
+<h6 id="说明">说明</h6>
+<p>真正代表一次项目版本的是提交对象,而代表一个项目快照的是树对象,提交对象只是对树对象的封装,但是<strong>提交对象的是链式</strong>的</p>
+<p>至此所有的<code>底层命令已经结束</code>,git数据库的存储不是增量的,需要回退版本,只需要直接找到所需要的版本的提交对象的哈希值,直接跳过去就行</p>
+<h3 id="目录说明">目录说明</h3>
+<h4 id="git目录">.git目录</h4>
+<p>在文件夹下,执行<code>git init</code> 就能初始化一个git仓库,生成一个<code>.git</code>隐藏目录</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/28/UYaTc7eCWrqgtFM.png" alt="dir.png" loading="lazy"></figure>
+<p>hooks		——&gt;	客户端或者服务端的钩子脚本</p>
+<p>info			——&gt;	包含全局排除文件</p>
+<p>logs			——&gt;	保存日志信息</p>
+<p>objects	  ——&gt;	存储所有数据内容(版本库)</p>
+<p>refs			——&gt;	存储指向数据(分支)的提交对象的指针</p>
+<p>config		——&gt;	git配置选项</p>
+<p>description ——&gt;  对仓库的描述</p>
+<p>HEAD		——&gt;	指示目前被检出的分支</p>
+<p>index		  ——&gt;	暂存区保存暂存数据(暂存区)</p>
+<h4 id="工作目录">工作目录</h4>
+<p>建议配合下面的高层命令看这一部分</p>
+<ul>
+<li>相当于沙箱环境,只要没有git add 或者git hash-object,可以随便修改</li>
+<li>工作目录下的文件只有两种状态 <strong>已跟踪</strong> <strong>未跟踪</strong></li>
+<li>已跟踪的文件有三个状态,<strong>已提交</strong>,<strong>已修改</strong>,<strong>已暂存</strong>
+<ul>
+<li>git add 使文件成为已暂存</li>
+<li>暂存完,又修改变,该文件,此文件会出现两个状态
+<ul>
+<li>一个为已暂存</li>
+<li>一个为已修改</li>
+</ul>
+</li>
+<li>git commit 使文件变为已提交</li>
+<li><code>git diff</code>查看当前哪些更新未暂存</li>
+<li><code>git diff –staged</code> 或者 <code>git diff –cached</code> 查看哪些已暂存,等待提交</li>
+</ul>
+</li>
+<li>可以用git status 查看当前文件状态</li>
+</ul>
+<h3 id="高层命令">高层命令</h3>
+<h4 id="git-init-初始化仓库">git init 初始化仓库</h4>
+<h4 id="git-add-file">git add  <file></h4>
+<h5 id="测试-3">测试</h5>
+<pre><code class="language-git">git init
+echo &quot;hello world&quot; &gt; gyg.txt
+# 查看暂存区
+git ls-files -s                     
+100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0       gyg.txt
+# 查看该git对象内容
+git cat-file -p 3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+hello world
+</code></pre>
+<p><strong>git add 将工作目录的修改做成git对象放进版本库,再放入暂存区</strong></p>
+<h5 id="说明-2">说明</h5>
+<ul>
+<li>对工作区修改几个文件就会生成几个git对象</li>
+<li>一个对象,修改n次,就出生成n次对象,git不是增量的,而是直接生成新的git对象,旧的git对象也不会删除,会保留在版本库(.git/objects)</li>
+<li>git是绝对安全的,尽管没有提交,加入到了暂存区,<strong>使文件变为已暂存状态</strong>,git也能管理,不会丢失数据(找到对应的哈希值就能找回数据)</li>
+<li>只有在提交的时候,才会去参照暂存区,做成一个树对象,放入版本库</li>
+<li>在你想要添加注释信息的时候,才会把树对象拿出来,添加注释,将其包装成提交对象</li>
+<li>git add 实则上执行了 <code>git hash-object -w</code>,和<code>git update-index --add --cacheinfo</code></li>
+</ul>
+<h3 id="git-commit-m-注释">git commit -m “注释”</h3>
+<h4 id="测试-4">测试</h4>
+<pre><code class="language-git">git commit -m &quot;注释&quot;
+[master（根提交） 3b52ce7] “注释”
+ 1 file changed, 1 insertion(+)
+ create mode 100644 gyg.txt
+#查看暂存区,可以看到没有变化
+git ls-files -s                        
+100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0       gyg.txt
+#查看对象数,可以发现有三个对象,一个git对象,一个树对象,一个提交对象
+find .git/objects -type f          
+.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad
+.git/objects/3b/52ce7e550af40b74c470afdd1675cf492a3cbe
+.git/objects/d0/0870593909003f4669d40cd6d65d0bcd081efe
+</code></pre>
+<h4 id="说明-3">说明</h4>
+<ul>
+<li>
+<p>可以不加-m参数 , 在打开的vim编辑器里面编辑比较长的注释</p>
+</li>
+<li>
+<p>可以跳过使用暂存区,加上-a选项,git会将所有已跟踪的文件,暂存起来一并提交</p>
+</li>
+<li>
+<p>提交正如上述,版本库的树对象拿出来,然后,添加注释,包装成提交对象</p>
+</li>
+<li>
+<p>git commit 实则上做了<code>git write-tree</code>将暂存区的写入版本库,<code>git commit-tree</code>生成提交对象</p>
+</li>
+<li>
+<p>使文件变为已提交状态,若所有文件都是已提交状态,则 <code>git status</code>不会显示任何内容</p>
+</li>
+</ul>
+<h3 id="git-status">git status</h3>
+<p>查看当前文件状态</p>
+<ul>
+<li>git commit 使文件变为已提交</li>
+<li><code>git diff</code>查看当前哪些更新未暂存</li>
+<li><code>git diff –staged</code> 或者 <code>git diff –cached</code> 查看哪些已暂存,等待提交</li>
+</ul>
+<h4 id="测试-5">测试</h4>
+<pre><code class="language-git">echo &quot;file1&quot; &gt; file1.txt
+git add file1.txt
+git status
+#输出
+1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+#修改文件
+vim file1.txt 加入file1 v2
+git status
+#输出
+要提交的变更：
+  （使用 &quot;git rm --cached &lt;文件&gt;...&quot; 以取消暂存）
+        新文件：   file1.txt
+尚未暂存以备提交的变更：
+  （使用 &quot;git add &lt;文件&gt;...&quot; 更新要提交的内容）
+  （使用 &quot;git restore &lt;文件&gt;...&quot; 丢弃工作区的改动）
+        修改：     file1.txt
+#出现了两个该文件的状态
+
+git diff
+#输出
+diff --git a/file1.txt b/file1.txt
+index e212970..98e6ed6 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1 +1,2 @@ 
+ file1
++file1 v2 
+#file1.txt已修改,未暂存
+git add file1.txt
+</code></pre>
+<p>持续施工…..</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[递归 -八皇后问题]]></title>
+        <id>https://seulg.github.io/post/递归-八皇后问题/</id>
+        <link href="https://seulg.github.io/post/递归-八皇后问题/">
+        </link>
+        <updated>2019-11-25T13:34:29.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="8皇后问题">8皇后问题</h2>
+<ul>
+<li>问题描述</li>
+<li>思路</li>
+<li>代码分析</li>
+<li>难点</li>
+</ul>
+<h4 id="问题描述">问题描述</h4>
+<p>在国际棋盘上,放置8个皇后,要求,皇后之间不能互相攻击,即不能同一行,不能同一列,不能在对角线</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="8皇后问题">8皇后问题</h2>
+<ul>
+<li>问题描述</li>
+<li>思路</li>
+<li>代码分析</li>
+<li>难点</li>
+</ul>
+<h4 id="问题描述">问题描述</h4>
+<p>在国际棋盘上,放置8个皇后,要求,皇后之间不能互相攻击,即不能同一行,不能同一列,不能在对角线</p>
+<!-- more -->
+<h4 id="思路">思路</h4>
+<ul>
+<li>
+<p>第一个皇后放在第一行第一列</p>
+</li>
+<li>
+<p>第二个皇后放在第二行第一列,判断是否满足条件,不满足就放在第二列,第三列……直到找到合适的</p>
+</li>
+<li>
+<p>继续第三个皇后,同样是先第三行第一列,第二列,第三列…….因为是递归,最终会回溯找到一个合适的位置</p>
+</li>
+<li>
+<p>当8歌皇后都放在正确的位置时,在栈上木安回退到上一个栈,就会开始回溯,找到第一个皇后在第一列的所有正确结果</p>
+</li>
+<li>
+<p>然后把第一个皇后放在第二个位置,重复上述步骤</p>
+</li>
+</ul>
+<p><strong>tips :</strong></p>
+<p>皇后的位置用一维数组表示,索引表示行数,数值表示列数</p>
+<h4 id="代码">代码</h4>
+<pre><code class="language-java">package henu.recursion;
+
+public class Queen {
+    //定义一个递归调用次数
+    public static int num = 0;
+    //定义找到的方案的个数
+    public static int resNum = 0;
+    //定义判断是否冲突的次数
+    public static int judgeNum = 0;
+    //定义max,皇后数量
+    int max = 8;
+    //结果数组
+    int[] arr = new int[max];
+    public static void main(String[] args) {
+        Queen queen = new Queen();
+        queen.check(0);
+        System.out.println(num);
+        System.out.println(resNum);
+        System.out.println(judgeNum);
+    }
+
+    //输出结果
+    private void print() {
+        resNum++;
+        for(int i=0;i&lt;arr.length;i++) {
+            System.out.print(arr[i] + &quot; &quot;);
+        }
+        System.out.println();
+    }
+
+    //放置皇后
+    private void check(int n) {
+        num++;
+        //递归终止条件
+        if(n == max) {
+            print();
+            return;
+        }
+        //依次放入皇后,判断是否冲突
+        for(int i=0;i&lt;max;i++) {
+            //先把当前皇后 n,放到该行的第一列
+            arr[n] = i;
+            //判断是否冲突
+            if(judge(n)) {
+                //不冲突,放置下一个皇后
+                check(n+1);
+            }
+            //冲突,会回溯,把第n个皇后放到下一列(for循环)
+        }
+    }
+
+    /**
+     *
+     * @param n 第n个皇后
+     * @return
+     */
+    public boolean judge(int n) {
+        judgeNum++;
+        for(int i=0;i&lt;n;i++) {
+            //位于同一列 , 行差等于列差,判断是否为对角线
+            if(arr[i] == arr[n] || Math.abs(n-i) == Math.abs(arr[n]-arr[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
+
+</code></pre>
+<pre><code class="language-java">Output:
+0 4 7 5 2 6 1 3 
+0 5 7 2 6 3 1 4 
+0 6 3 5 7 1 4 2 
+    ......
+7 2 0 5 1 4 6 3 
+7 3 0 2 5 1 6 4 
+2057
+92
+15720
+</code></pre>
+<h4 id="难点">难点</h4>
+<p>如何理解,在找到一个正确答案时,会执行思路的第四步?</p>
+<ul>
+<li>
+<p>在把最后一个皇后第一次放在合适的位置时,坐上面的栈return了,会执行下一个置顶栈</p>
+</li>
+<li>
+<p>也就是第7个皇后的位置,然后,挪动第7个皇后,判断是否合适…..</p>
+</li>
+<li>
+<p>第7个没合适的就继续回溯,去改变第6个皇后,以此类推……..</p>
+</li>
+<li>
+<p>最终会找到第一个皇后在第一列时的所有正确方案</p>
+</li>
+<li>
+<p>然后第一个皇后又会放在第二列,重复上述整个过程</p>
+</li>
+<li>
+<p>整个程序执行完毕就是第一个皇后遍历的所有的7列找到所有的合适位置才会最终退出这个程序</p>
+</li>
+<li>
+<p>可以看出,最后程序一共递归了2057次,找到了92种方案,判断了15720次</p>
+</li>
+</ul>
+<p><strong>可以看出递归的资源浪费量巨大</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[递归 -迷宫问题]]></title>
+        <id>https://seulg.github.io/post/递归-迷宫问题/</id>
+        <link href="https://seulg.github.io/post/递归-迷宫问题/">
+        </link>
+        <updated>2019-11-25T05:24:58.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="迷宫问题">迷宫问题</h2>
+<ul>
+<li>问题描述</li>
+<li>递归的原则</li>
+<li>问题分析</li>
+<li>代码分析</li>
+</ul>
+<h4 id="问题描述">问题描述</h4>
+<p>用一个二维数组模拟一个迷宫,定义一个入口和出口,找出路径找到通往出口的路径</p>
+<p>拓展问题,如何找出最短路径? —待施工……</p>
+<h4 id="递归的原则">递归的原则</h4>
+<p>递归的应用原则</p>
+<ul>
+<li>
+<p>执行一个方法时,就会创建一个新的受保护的栈空间</p>
+</li>
+<li>
+<p>每个空间的变量都是局部变量(引用传递除外),相互不会影响</p>
+</li>
+<li>
+<p>递归必须向退出递归的条件逼近,否则会无限递归(死龟)</p>
+</li>
+<li>
+<p>当一个方法执行完毕,或者遇到return,就会返回,遵守谁调用,就把结果返回给谁,同时当方法执行完毕或者返回时,该方法就执行完毕</p>
+</li>
+</ul>
+<h4 id="问题分析">问题分析</h4>
+<ul>
+<li>
+<p>迷宫问题,从起点开始,定义一个策略(往四个方向探索的顺序)</p>
+</li>
+<li>
+<p>定义: 0-&gt;表示为探索过的,1-&gt;墙, 2-&gt;通路(已经走过切,能走通), 3-&gt;死路(走过判断为死路)</p>
+</li>
+<li>
+<p>然后递归的结束条件就是出口点被修改为2,如果不满足这个条件就按照策略开始走</p>
+</li>
+<li>
+<p>每当开始探索一个点,就假设,这个点为通路,修改为2,究竟是否为通路,要看回溯的结果</p>
+</li>
+<li>
+<p>如果,一个点上下左右都不能走,就修改为3,表示死路</p>
+</li>
+</ul>
+<h4 id="代码分析">代码分析</h4>
+<pre><code class="language-java">/**
+     *
+     * @param map 迷宫地图,0表示路,1表示墙,2表示通路,3表示死路
+     * @param i 迷宫起点
+     * @param j
+     */
+    public static boolean setMap(int[][] map, int i, int j) {
+        if(map[6][6] == 2) {
+            return true;
+        } else {
+            if(map[i][j] == 0) {
+                map[i][j] = 2;  //假设这个点可以走通,若果不能会回溯
+                if(setMap(map, i+1, j)) { //先向下走
+                    return true;
+                } else if(setMap(map, i, j+1)) { //向右走
+                    return true;
+                } else if(setMap(map, i-1, j)) { //向上走
+                    return true;
+                } else if(setMap(map, i, j-1)) { //向左走
+                    return true;
+                } else { //上下左右都无法走通
+                    map[i][j] = 3;
+                    return false;
+                }
+            } else { //可能是1,2,3墙不能走,2表示走过,3表示不能走,这三种情况都是不能走
+                return false;
+            }
+        }
+    }
+</code></pre>
+<p>用一个8*8的迷宫模拟一下,迷宫如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">入口</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">出口</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>执行完毕后</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="说明">说明</h4>
+<p>第二张表,里面的3,就是因为,在坐标(2,2)的点会按照策略先向下走,但是(3,2)点的左,右,下都是墙(1),上面又是通路(2),因此这个向下的调用会返回false,并且标记为死路(3),然后进行策略的下一步,向右</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[初来乍到 -Manjaro]]></title>
+        <id>https://seulg.github.io/post/初来乍到-Manjaro/</id>
+        <link href="https://seulg.github.io/post/初来乍到-Manjaro/">
+        </link>
+        <updated>2019-11-24T04:07:45.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="manjaro-kde-的日常使用">Manjaro-kde 的日常使用</h2>
+<ol>
+<li>
+<p>切换国内镜像源</p>
+</li>
+<li>
+<p>安装搜狗输入法</p>
+</li>
+<li>
+<p>安装双显卡驱动(optimus-manager)</p>
+</li>
+<li>
+<p>安装常用软件</p>
+</li>
+<li>
+<p>科学上网</p>
+</li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="manjaro-kde-的日常使用">Manjaro-kde 的日常使用</h2>
+<ol>
+<li>
+<p>切换国内镜像源</p>
+</li>
+<li>
+<p>安装搜狗输入法</p>
+</li>
+<li>
+<p>安装双显卡驱动(optimus-manager)</p>
+</li>
+<li>
+<p>安装常用软件</p>
+</li>
+<li>
+<p>科学上网</p>
+</li>
+</ol>
+<!-- more -->
+<h4 id="切换国内源">切换国内源</h4>
+<p>为什么要切换为国内源?  -因为国内源不仅仅拥有更快的访问速度,还有更多的本地化软件,比如deepin-wine-qq,网易云音乐等等</p>
+<p>国内源一般推荐使用<a href="http://mirrors.ustc.edu.cn/">ustc</a>或<a href="https://mirrors.tuna.tsinghua.edu.cn/">tuna</a>,两个源分别为中国科技大学源和清华大学源</p>
+<p><strong>以清华大学源为例</strong></p>
+<ul>
+<li>官方仓库地址: <a href="http://repo.archlinuxcn.org/">http://repo.archlinuxcn.org</a></li>
+</ul>
+<p>使用方法: 在<code>/etc/pacman.conf</code>文件末尾添加以下两行:</p>
+<pre><code class="language-linux">[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+</code></pre>
+<p>然后安装<code>archlinuxcn-keyring</code>,即执行<code>sudo pacman -S archlinuxcn-keyring</code></p>
+<p><strong>建议</strong></p>
+<p>切换为清华源后就执行<code>sudo pacman -Syyu</code>更新一下系统,毕竟<code>多滚少挂,不滚等挂</code></p>
+<h4 id="安装搜狗输入法">安装搜狗输入法</h4>
+<p>一般的linux的发行版对中文输入法的支持都不是特别友好(<a href="https://www.deepin.org/">deepin</a>除外),这个时候我们就需要一款得心应手的输入法,linux上比较好用的输入法,个人推荐:<a href="https://pinyin.sogou.com/linux/?r=pinyin">搜狗输入法</a></p>
+<p>教程开始</p>
+<pre><code class="language-python">sudo pacman -S yaourt  # AUR小助手,虽然停止维护了,但是很好用
+</code></pre>
+<pre><code class="language-python">yaourt -S qtwebkit-bin
+</code></pre>
+<pre><code class="language-python">sudo pacman -S fcitx fcitx-im fcitx-libpinyin kcm-fcitx fcitx-configtool fcitx-sogoupinyin   fcitx-sunpinyin  # 安装搜狗输入法及其依赖
+</code></pre>
+<pre><code class="language-python">sudo pacman -U https://arch-archive.tuna.tsinghua.edu.cn/2019/04-29/community/os/x86_64/fcitx-qt4-4.2.9.6-1-x86_64.pkg.tar.xz  # 说明: -U参数是安装本地包,也就是说先把后面的包下载下来,这个是配置输入法的工具
+</code></pre>
+<pre><code class="language-python">sudo vim /etc/profile # 配置环境 vim 可以替换成你熟悉的文本处理器把下面的添加到末尾 必要时也需要把下面的加入到`/.xporfile
+</code></pre>
+<pre><code class="language-python">export GTK2_RC_FILES=&quot;$HOME/.gtkrc-2.0&quot;
+export LC_CTYPE=zh_CN.UTF-8
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+</code></pre>
+<p>然后终端运行<code>qtconfig-qt4</code>找到<code>interface</code>选项,在下面的<code>Defult Input Method</code>改为<code>fcitx</code>然后保存退出</p>
+<p>终端执行<code>source /etc/profile</code>,然后重启</p>
+<h4 id="安装双显卡驱动">安装双显卡驱动</h4>
+<ul>
+<li>
+<p>为什么要安装驱动?</p>
+</li>
+<li>
+<p>Linux对笔记本双显卡的支持为何如此差?</p>
+</li>
+<li>
+<p>Linux下可能是最好的双显卡解决方案</p>
+</li>
+</ul>
+<p><strong>简单谈谈显卡驱动:</strong></p>
+<p>显卡已经相当于一个上了锁的机器,驱动相当于钥匙,就比如在win上,没装独显驱动,怎能体验几千帧的快感,顶住图像处理的压力.在linux下也是如此,也需要安装驱动.</p>
+<blockquote>
+<p><strong>如果你是台式机,或者你能屏蔽核显,请绕道 ,本教程仅针对N/I双显卡</strong></p>
+</blockquote>
+<p><strong>如何确定自己是否为双显卡</strong></p>
+<p>在<code>win</code>下,随便打开一个<code>光污染游戏</code>(滑稽),打开任务管理器,看看你的核显输出是否为零,为零请绕道,不是零,我希望你能继续看下去</p>
+<p><strong>双显卡到底是什么</strong></p>
+<p>其实双显卡的工作原理就是,独显负责计算资源,然后通过核显输出到显示屏,在win上NVIDIA给出了一系列技术支持这种方式,包括能源管理,所以你会发现,及时用的独显,也会在没有影响性能的情况下,自动关闭独显</p>
+<p><strong>为什么Linux对双显卡的支持差</strong></p>
+<p>其实现在主流的方案都是社区做的,主流的方案有<a href="https://wiki.archlinux.org/index.php/Bumblebee">Bumblebee</a>,<a href="https://wiki.archlinux.org/index.php/PRIME">prime</a>,[nvidia-run](<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8_nvidia-xrun">https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8_nvidia-xrun</a>,<a href="https://wiki.archlinux.org/index.php/Nouveau">nouveau</a>这些都是比较成熟的方案,最后一个为NVIDIA开源驱动(默认集成在内核里,性能最差的)<br>
+<strong>其实这个标题就是错的</strong><code>为什么Linux对双显卡的支持差</code>,为什么一个做系统的要去适配硬件?按照逻辑也应该是,硬件厂商去适配系统,所以个人认为标题应该为<code>为何Nvidia对Linux支持这么差</code>引用Linux之父<code>Linus Torvalds</code>的一句话<code>So,Nvidia Fuck You</code><a href="https://www.bilibili.com/video/av70951224?from=search&amp;seid=8462594522463754800">av70951224</a></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/24/ZJmlO7bQ6k9p1Nw.png" alt="Nvidia.png" loading="lazy"></figure>
+<p><strong><a href="https://github.com/Askannz/optimus-manager">optimus-manager</a>可能是最好的,目前为止</strong></p>
+<p>言归正传,<code>optimus-manager</code>支持nvidia闭源驱动的所有功能,支持一件切换显卡(需安装optimus-manager-qt),对<code>SDDM，LightDM，GDM</code>这几个显示管理器支持很好</p>
+<p><strong>教程开始-进针对Arch或者Arch分支的发行版</strong></p>
+<ol>
+<li>如果你之前安装过Nvidia驱动,请删除配置文件<code>sudo rm -f /etc/X11/xorg.conf</code>,如果你和我一样是manjaro用户,请一并删除manjaro生成的配置<code>sudo rm -f /etc/X11/xorg.conf.d/90-mhwd.conf</code>,如果你正在使用<code>bumblebee</code>,请禁用起守护进程<code>sudo systemctl disable bumblebeed.service</code></li>
+<li>
+<ul>
+<li>
+<p>gdm管理器用户请安装<code>gdm-prime</code>,<code>yaourt -S gdm-prime</code>并且修改<code>/etc/gdm/custom.conf</code>,将<code>#WaylandEnable=false</code>前面的<code>#</code>去掉 Gnomoe的显示管理器就是gdm</p>
+</li>
+<li>
+<p>sddm用户请修改<code>/etc/sddm.conf</code>,注释掉<code>DisplayCommand</code>和<code>DisplayStopCommand</code>前面加一个<code>#</code>即可</p>
+</li>
+</ul>
+</li>
+<li>安装主程序<code>sudo pacman -S optimus-manager optimus-manager-qt</code>如果你没有安装过nvidia驱动,请安装nvidia驱动<code>sudo pacman -S nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-intel</code> 安装的32为兼容包你或许需要开启软件源 <code>multilib</code></li>
+<li>启用optimus-manajer守护进程<code>sudo systemctl enable optimus-manager.service</code></li>
+<li>重启</li>
+</ol>
+<p><strong>至此显卡驱动安装完成</strong></p>
+<h4 id="安装常用软件">安装常用软件</h4>
+<p>有了强大的AUR自行探索吧仅给出几个常用的</p>
+<ul>
+<li>Typora &lt;markdown编辑器&gt;</li>
+<li>deepin-wein-qq &lt;wine-qq,deepin适配的不错&gt;
+<ul>
+<li>需要安装gnome-settings-daemon<code>yaourt -S gnome-settings-daemon</code></li>
+<li>然后然后将/usr/lib/gsd-xsettings设置为自动启动</li>
+</ul>
+</li>
+<li>wps wps-fonts &lt;国产办公软件,无广告!!!!&gt;</li>
+</ul>
+<h4 id="科学上网-ssr">科学上网-SSR</h4>
+<p>不能讲,不敢讲,我很慌!</p>
+<p>自行下载安装合适的版本<a href="https://github.com/qingshuisiyuan/electron-ssr-backup/releases">electron-ssr</a>,安装即可,ssr订阅链接自备</p>
+<p>若你无法科学上网,安装<a href="http://marin.jb.free.fr/proxydriver/">proxydriver</a><code>yaourt -S proxydriver</code></p>
+<p>浏览器的配置,chrome请安装插件<a href="https://github.com/FelisCatus/SwitchyOmega/releases">SwitchyOmega</a>如果你提示安装失败或者不会安装,可以去看看开发者怎么说</p>
+<p>然后可以导入我的<a href="https://pan.baidu.com/s/1Qd2oZX3BB3zmtyUayIFeFg">配置文件</a><code>h11v</code>,或者自行百度配置方案,这个太多了,在这就不过多赘述</p>
+]]></content>
+    </entry>
+</feed>
