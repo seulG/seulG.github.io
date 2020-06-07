@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Spring优雅的编写代码之基于注解的IOC | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591457785319">
+<link rel="shortcut icon" href="/favicon.ico?v=1591544482038">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1467,7 +1467,7 @@ scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;安装maven-scala&#34;&gt;安装maven scala&lt;/h3&gt;
 &lt;p&gt;​	什么？有了scoop你还在为安装maven发愁么？一条命令轻松搞定&lt;code&gt;scoop install maven&lt;/code&gt;,下面讲一下maven换源，以及IDEA整合maven。&lt;/p&gt;
-&lt;h5 id=&#34;maven设置&#34;&gt;maven设置&lt;/h5&gt;
+&lt;h4 id=&#34;maven设置&#34;&gt;maven设置&lt;/h4&gt;
 &lt;p&gt;用你的编辑器（记事本）打开&lt;code&gt;C:\Users\xstar\scoop\apps\maven\3.6.3\conf\settings&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1490,7 +1490,7 @@ scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;idea整合maven&#34;&gt;IDEA整合maven&lt;/h5&gt;
+&lt;h4 id=&#34;idea整合maven&#34;&gt;IDEA整合maven&lt;/h4&gt;
 &lt;p&gt;打开idea，一次打开以下选项卡&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;File-&amp;gt;New Projects Settings-&amp;gt;Setting for New Projects-&amp;gt;Maven&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1505,10 +1505,10 @@ scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;至此，你新建maven项目，便会默认使用你本机安装的maven，而不是idea自带的maven环境&lt;/p&gt;
-&lt;h5 id=&#34;安装scala&#34;&gt;安装scala&lt;/h5&gt;
+&lt;h4 id=&#34;安装scala&#34;&gt;安装scala&lt;/h4&gt;
 &lt;p&gt;此处比较简单，直接下载scala对应版本的msi安装文件，无脑安装即可&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;scala 2.11.12&lt;/code&gt;版本的&lt;a href=&#34;https://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.msi&#34;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
-&lt;h5 id=&#34;idea整合scala&#34;&gt;IDEA整合scala&lt;/h5&gt;
+&lt;h4 id=&#34;idea整合scala&#34;&gt;IDEA整合scala&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;在IDEA安装插件scala&lt;/li&gt;
 &lt;li&gt;在你新建的maven项目的pom.xml中添加以下内容&lt;/li&gt;
@@ -1535,7 +1535,7 @@ scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;ul&gt;
 &lt;li&gt;如果你要编写spark的内容，请完成下一步内容&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;配置winutils&#34;&gt;配置winutils&lt;/h5&gt;
+&lt;h4 id=&#34;配置winutils&#34;&gt;配置winutils&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;tips:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;winutils，是支持在win上跑hadoop的一些静态库，并不是完整的hadoop环境,spark也需要此环境&lt;/p&gt;
 &lt;ul&gt;
@@ -1552,7 +1552,149 @@ scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;/li&gt;
 &lt;li&gt;关于要安装hadoop的说明，如果你要在win上安装完整的hadoop环境，在你解压缩玩hadoop后，请用对应版本的winutils覆盖hadoop安装路径下的bin目录&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;未完待续&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;启用wsl2安装arch子系统&#34;&gt;启用wsl2,安装Arch子系统&lt;/h3&gt;
+&lt;h4 id=&#34;前提条件&#34;&gt;前提条件&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;win10版本必须2004 的内部版本 19041 及以上
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;win+r&lt;/code&gt;输入&lt;code&gt;winver&lt;/code&gt;查看你的版本号&lt;/li&gt;
+&lt;li&gt;若版本号过低，请先升级您的系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;已经打开wsl服务
+&lt;ul&gt;
+&lt;li&gt;打开控制面板&lt;/li&gt;
+&lt;li&gt;选择卸载程序&lt;/li&gt;
+&lt;li&gt;点击左侧的&lt;code&gt;启用或关闭windows功能&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到&lt;code&gt;适用于windows的linux子系统&lt;/code&gt;打勾起启用即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;设置默认启用wsl2&#34;&gt;设置默认启用wsl2&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;没有特殊说明以下步骤都是管理员身份运行powershell&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启用虚拟机平台&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;将wsl2设为默认版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;wsl --set-default-version 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;如果你的电脑有使用wsl1的子系统，需要手动为其升级wsl2，若没有请跳过此步骤&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;#1.查看已安装的子系统
+wsl --list --verbose
+#为其升级
+wsl --set-version &amp;lt;distribution name&amp;gt; &amp;lt;versionNumber&amp;gt;
+#distribution name 为你的子系统的名字，第一部中会显示
+#versionNumber写2即可
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;安装arch或者其他版本的子系统&#34;&gt;安装Arch或者其他版本的子系统&lt;/h4&gt;
+&lt;h5 id=&#34;其他版本&#34;&gt;其他版本&lt;/h5&gt;
+&lt;p&gt;打开win10应用商店，搜索wsl2，安装你想用的即可，比较简单&lt;/p&gt;
+&lt;h5 id=&#34;arch&#34;&gt;Arch&lt;/h5&gt;
+&lt;p&gt;我Arch邪教，win10商店没有，但是github上有&lt;a href=&#34;https://github.com/yuk7/ArchWSL&#34;&gt;开源项目&lt;/a&gt;，完美支持wsl2&lt;/p&gt;
+&lt;h6 id=&#34;安装步骤&#34;&gt;安装步骤&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;下载&lt;a href=&#34;https://github.com/yuk7/ArchWSL/releases&#34;&gt;release&lt;/a&gt;的&lt;a href=&#34;https://github.com/yuk7/ArchWSL/releases/download/20.4.3.0/Arch.zip&#34;&gt;Arch.zip&lt;/a&gt;,&lt;a href=&#34;https://github.com/yuk7/ArchWSL/releases/download/20.4.3.0/ArchWSL-AppX_20.4.3.0_x64.appx&#34;&gt;ArchWSL-AppX_20.4.3.0_x64.appx&lt;/a&gt;,&lt;a href=&#34;https://github.com/yuk7/ArchWSL/releases/download/20.4.3.0/ArchWSL-AppX_20.4.3.0_x64.cer&#34;&gt;ArchWSL-AppX_20.4.3.0_x64.cer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;将压缩包解压至那你要安装的目录&lt;/li&gt;
+&lt;li&gt;双击安装cer证书&lt;/li&gt;
+&lt;li&gt;安装Archappx&lt;/li&gt;
+&lt;li&gt;然后你就可以启动你的子系统了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;配置&#34;&gt;配置&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;终端输入Arch.exe，修改root密码 passwd&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入Arch后输入&lt;code&gt;EDITOR=vim visudo&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;按&lt;code&gt;/%wheel ALL=(ALL) ALL&lt;/code&gt;（/是vim里面的搜索模式）&lt;/li&gt;
+&lt;li&gt;去掉该行注释即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加普通用户&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;添加用户&#34;&gt;添加用户&lt;/h1&gt;
+&lt;p&gt;useradd -m -G wheel -s /bin/bash {username}&lt;/p&gt;
+&lt;h1 id=&#34;修改密码&#34;&gt;修改密码&lt;/h1&gt;
+&lt;p&gt;passwd {username}&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;退出子系统&lt;code&gt;输入exit&lt;/code&gt;即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置默认登录用户为普通用户&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在powershell中输入&lt;code&gt;Arch.exe config --default-user {username}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;此后你可以在你的powershell中键入bash 快速进入子系统（前提只安装了一个子系统）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始化密钥圈&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;bash
+[user@PC-NAME]$ sudo pacman-key --init
+[root@PC-NAME]$ sudo pacman-key --populate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;换源&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo vim /etc/pacman.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将以下内容添加至末尾&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;shell [archlinuxcn] Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装密钥并立即更新系统&lt;code&gt;sudo pacman -Sy archlinuxcn-keyring &amp;amp;&amp;amp; sudo pacman -Syyu&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装yay &lt;code&gt;sudo pacman -S yay&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解决D-Bus&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code&gt;sudo mkdir /run/dbus -p
+sudo dbus-daemon --system
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;systemd&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下载 &lt;a href=&#34;https://github.com/yuk7/arch-systemctl-alt/releases/download/1.4.4181-1/systemd-altctl-1.4.4181-1-any.pkg.tar.xz&#34;&gt;systemd-altctl-1.4.4181-1-any.pkg.tar.xz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;进入该文件目录&lt;code&gt;sudo pacman -U systemd-altctl-1.4.4181-1-any.pkg.tar.xz&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;a href=&#34;https://aur.archlinux.org/packages/genie-systemd&#34;&gt;genie-systemd&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yay -S genie-systemd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;genie -s &amp;amp;&lt;/code&gt;添加至~/.bashrc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解决wsl2虚拟机ip问题&#34;&gt;解决wsl2虚拟机ip问题&lt;/h3&gt;
+&lt;h4 id=&#34;问题由来&#34;&gt;问题由来&lt;/h4&gt;
+&lt;p&gt;wsl2相当于一个虚拟机，每次启动都会为子系统分配一个ip，但是这个ip不是固定的，导致了如果你在子系统部署docker需要经常查看其ip，很不方便&lt;/p&gt;
+&lt;p&gt;未完待续&lt;/p&gt;
 ">Win10部署spark开发环境</a>
       </div>
       
