@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Win10部署spark开发环境 | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591544482038">
+<link rel="shortcut icon" href="/favicon.ico?v=1591584746247">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -275,6 +275,7 @@
 <li><a href="#%E4%B8%8B%E8%BD%BDv2ray%E6%A0%B8%E5%BF%83">下载v2ray核心</a></li>
 <li><a href="#%E5%85%A5%E7%AB%99%E8%AE%BE%E7%BD%AE">入站设置</a></li>
 <li><a href="#%E5%AF%BC%E5%85%A5%E4%BD%A0%E7%9A%84vmess%E9%93%BE%E6%8E%A5">导入你的vmess链接</a></li>
+<li><a href="#%E6%88%96%E8%80%85%E5%AF%BC%E5%85%A5vmess%E8%AE%A2%E9%98%85">或者导入vmess订阅</a></li>
 <li><a href="#%E5%90%AF%E5%8A%A8%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86">启动系统代理</a></li>
 </ul>
 </li>
@@ -639,7 +640,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>2159<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>2167<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
@@ -664,7 +665,7 @@
 <!-- more -->
 <h3 id="scoop">Scoop</h3>
 <h4 id="简介">简介：</h4>
-<p>​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等），而在包管理器往往是linux上的工具，用来管理软件，而scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。主要是他能帮我们安装软件的时候自动设置环境变量。详情见<a href="https://scoop.sh/">官网</a>。</p>
+<p>​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等）。而在包管理器往往用于linux上，用来管理软件，scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。（主要是他能帮我们安装软件的时候自动设置环境变量）。详情见<a href="https://scoop.sh/">官网</a>。</p>
 <h4 id="安装前准备"><a href="https://www.jianshu.com/p/50993df76b1c">安装前准备</a></h4>
 <ul>
 <li>用户名不含中文字符</li>
@@ -678,14 +679,14 @@
 <pre><code class="language-powershell">$PSVersionTable.PSVersion.Major   #查看Powershell版本
 $PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
 </code></pre>
-<h4 id="科学上网v2ray请自备vemss链接">科学上网（v2ray,请自备vemss链接）</h4>
+<h4 id="科学上网v2ray请自备vemss链接">科学上网（v2ray,请自备<a href="https://railgun.best/">vemss</a>链接）</h4>
 <h5 id="下载图形化界面qv2ray">下载图形化界面<a href="https://github.com/Qv2ray/Qv2ray/releases">qv2ray</a></h5>
 <p>点击链接，下载最新版本（对应自己系统的位数x64或着x32），安装到本地磁盘</p>
 <h5 id="下载v2ray核心">下载<a href="https://github.com/v2ray/v2ray-core/releases">v2ray核心</a></h5>
 <p>同样选择对应版本，在<code>C:/Users/xstar/AppData/Local/qv2ray</code>目录下新建vcore文件夹，将下载的v2ray压缩包的内容解压到该文件夹下</p>
 <p><strong>xstar为你的用户名</strong></p>
 <p>目录结构如下</p>
-<figure data-type="image" tabindex="1"><img src="https://img04.sogoucdn.com/app/a/100520146/5928e6d2d3ad7394ee3c2e67961d4593" alt="GA_Y97ZE800(L$CMNK8@_3E.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/06/08/tWFDH0.png" alt="tWFDH0.png" loading="lazy"></figure>
 <h5 id="入站设置">入站设置</h5>
 <p>依次打开首选项-&gt;入站设置，监听地址不用动（默认127.0.0.1）</p>
 <ul>
@@ -693,7 +694,9 @@ $PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
 <li>http为2333端口</li>
 </ul>
 <h5 id="导入你的vmess链接">导入你的vmess链接</h5>
-<figure data-type="image" tabindex="2"><img src="https://img02.sogoucdn.com/app/a/100520146/2e7ca0733319b08fc8d29d90eada7f5f" alt="0SVASI%ODFPVMFA6Q~91.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://s1.ax1x.com/2020/06/08/tWFhuR.png" alt="tWFhuR.png" loading="lazy"></figure>
+<h5 id="或者导入vmess订阅">或者导入vmess订阅</h5>
+<figure data-type="image" tabindex="3"><img src="https://s1.ax1x.com/2020/06/08/tWknaV.png" alt="tWknaV.png" loading="lazy"></figure>
 <h5 id="启动系统代理">启动系统代理</h5>
 <p>开启代理，便可以进行科学上网，有关如何配合浏览器插件做到浏览器热切换代理，请在本站找Manjaro的有关内容</p>
 <h4 id="安装scoop">安装scoop</h4>
@@ -741,7 +744,7 @@ Type 'scoop help &lt;command&gt;' to get help for a specific command.
 <h5 id="用scoop安装git-busybox-sudo">用scoop安装git busybox sudo</h5>
 <pre><code class="language-powershell">scoop config proxy 127.0.0.1:1080	#为scoop设置代理
 scoop install git		#众所周知，强大的版本控制工具
-scoop install busybox	#让你在win上使用linux的部分命令
+scoop install busybox	#让你在win上使用linux的部分命令，包括netcat（nc）
 scoop install sudo		#类似linux的提权，以管理员身份运行命令
 </code></pre>
 <h5 id="为scoop添加extras仓库">为scoop添加extras仓库</h5>
@@ -903,7 +906,8 @@ wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 <p>添加普通用户</p>
 <ul>
 <li>
-<pre><code class="language-powershell"></code></pre>
+<pre><code class="language-powershell">
+</code></pre>
 </li>
 </ul>
 <h1 id="添加用户">添加用户</h1>
@@ -918,9 +922,9 @@ wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 </li>
 <li>
 <p>设置默认登录用户为普通用户</p>
-<ul>
-<li>在powershell中输入<code>Arch.exe config --default-user {username}</code></li>
-</ul>
+</li>
+<li>
+<p>在powershell中输入<code>Arch.exe config --default-user {username}</code></p>
 </li>
 <li>
 <p>此后你可以在你的powershell中键入bash 快速进入子系统（前提只安装了一个子系统）</p>
@@ -1534,7 +1538,7 @@ sudo dbus-daemon --system
 &lt;!-- more --&gt;
 &lt;h3 id=&#34;scoop&#34;&gt;Scoop&lt;/h3&gt;
 &lt;h4 id=&#34;简介&#34;&gt;简介：&lt;/h4&gt;
-&lt;p&gt;​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等），而在包管理器往往是linux上的工具，用来管理软件，而scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。主要是他能帮我们安装软件的时候自动设置环境变量。详情见&lt;a href=&#34;https://scoop.sh/&#34;&gt;官网&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;​		对于scoop你可能比较陌生，但是对于包管理器你应该已经了解了相关知识（apt yum pacman 等等）。而在包管理器往往用于linux上，用来管理软件，scoop就是一款在win上的包管理器，它可以解决大多数程序员较为苦恼的开发环境的部署问题。（主要是他能帮我们安装软件的时候自动设置环境变量）。详情见&lt;a href=&#34;https://scoop.sh/&#34;&gt;官网&lt;/a&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;安装前准备&#34;&gt;&lt;a href=&#34;https://www.jianshu.com/p/50993df76b1c&#34;&gt;安装前准备&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;用户名不含中文字符&lt;/li&gt;
@@ -1548,14 +1552,14 @@ sudo dbus-daemon --system
 &lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;$PSVersionTable.PSVersion.Major   #查看Powershell版本
 $PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;科学上网v2ray请自备vemss链接&#34;&gt;科学上网（v2ray,请自备vemss链接）&lt;/h4&gt;
+&lt;h4 id=&#34;科学上网v2ray请自备vemss链接&#34;&gt;科学上网（v2ray,请自备&lt;a href=&#34;https://railgun.best/&#34;&gt;vemss&lt;/a&gt;链接）&lt;/h4&gt;
 &lt;h5 id=&#34;下载图形化界面qv2ray&#34;&gt;下载图形化界面&lt;a href=&#34;https://github.com/Qv2ray/Qv2ray/releases&#34;&gt;qv2ray&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;点击链接，下载最新版本（对应自己系统的位数x64或着x32），安装到本地磁盘&lt;/p&gt;
 &lt;h5 id=&#34;下载v2ray核心&#34;&gt;下载&lt;a href=&#34;https://github.com/v2ray/v2ray-core/releases&#34;&gt;v2ray核心&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;同样选择对应版本，在&lt;code&gt;C:/Users/xstar/AppData/Local/qv2ray&lt;/code&gt;目录下新建vcore文件夹，将下载的v2ray压缩包的内容解压到该文件夹下&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;xstar为你的用户名&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;目录结构如下&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://img04.sogoucdn.com/app/a/100520146/5928e6d2d3ad7394ee3c2e67961d4593&#34; alt=&#34;GA_Y97ZE800(L$CMNK8@_3E.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/08/tWFDH0.png&#34; alt=&#34;tWFDH0.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h5 id=&#34;入站设置&#34;&gt;入站设置&lt;/h5&gt;
 &lt;p&gt;依次打开首选项-&amp;gt;入站设置，监听地址不用动（默认127.0.0.1）&lt;/p&gt;
 &lt;ul&gt;
@@ -1563,7 +1567,9 @@ $PSVersionTable.CLRVersion.Major  #查看.NET Framework版本
 &lt;li&gt;http为2333端口&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5 id=&#34;导入你的vmess链接&#34;&gt;导入你的vmess链接&lt;/h5&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://img02.sogoucdn.com/app/a/100520146/2e7ca0733319b08fc8d29d90eada7f5f&#34; alt=&#34;0SVASI%ODFPVMFA6Q~91.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/08/tWFhuR.png&#34; alt=&#34;tWFhuR.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h5 id=&#34;或者导入vmess订阅&#34;&gt;或者导入vmess订阅&lt;/h5&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/08/tWknaV.png&#34; alt=&#34;tWknaV.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h5 id=&#34;启动系统代理&#34;&gt;启动系统代理&lt;/h5&gt;
 &lt;p&gt;开启代理，便可以进行科学上网，有关如何配合浏览器插件做到浏览器热切换代理，请在本站找Manjaro的有关内容&lt;/p&gt;
 &lt;h4 id=&#34;安装scoop&#34;&gt;安装scoop&lt;/h4&gt;
@@ -1611,7 +1617,7 @@ Type &#39;scoop help &amp;lt;command&amp;gt;&#39; to get help for a specific com
 &lt;h5 id=&#34;用scoop安装git-busybox-sudo&#34;&gt;用scoop安装git busybox sudo&lt;/h5&gt;
 &lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;scoop config proxy 127.0.0.1:1080	#为scoop设置代理
 scoop install git		#众所周知，强大的版本控制工具
-scoop install busybox	#让你在win上使用linux的部分命令
+scoop install busybox	#让你在win上使用linux的部分命令，包括netcat（nc）
 scoop install sudo		#类似linux的提权，以管理员身份运行命令
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h5 id=&#34;为scoop添加extras仓库&#34;&gt;为scoop添加extras仓库&lt;/h5&gt;
@@ -1773,7 +1779,8 @@ wsl --set-version &amp;lt;distribution name&amp;gt; &amp;lt;versionNumber&amp;gt
 &lt;p&gt;添加普通用户&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;添加用户&#34;&gt;添加用户&lt;/h1&gt;
@@ -1788,9 +1795,9 @@ wsl --set-version &amp;lt;distribution name&amp;gt; &amp;lt;versionNumber&amp;gt
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;设置默认登录用户为普通用户&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在powershell中输入&lt;code&gt;Arch.exe config --default-user {username}&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在powershell中输入&lt;code&gt;Arch.exe config --default-user {username}&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;此后你可以在你的powershell中键入bash 快速进入子系统（前提只安装了一个子系统）&lt;/p&gt;
