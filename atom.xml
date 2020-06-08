@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seulg.github.io/</id>
     <title>Seul</title>
-    <updated>2020-06-08T02:52:30.572Z</updated>
+    <updated>2020-06-08T03:39:27.411Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://seulg.github.io/"/>
     <link rel="self" href="https://seulg.github.io/atom.xml"/>
@@ -350,7 +350,50 @@ sudo dbus-daemon --system
 </ul>
 <h3 id="解决wsl2虚拟机ip问题">解决wsl2虚拟机ip问题</h3>
 <h4 id="问题由来">问题由来</h4>
-<p>wsl2相当于一个虚拟机，每次启动都会为子系统分配一个ip，但是这个ip不是固定的，导致了如果你在子系统部署docker需要经常查看其ip，很不方便</p>
+<p>​	wsl2相当于一个虚拟机，每次启动都会为子系统分配一个ip，但是这个ip不是固定的，导致了如果你在子系统部署docker需要经常查看其ip，很不方便。当然如果你需要在局域网内访问wsl2，则需要win端口转发。</p>
+<p>​	目前比较好的解决方案就是<a href="https://link.zhihu.com/?target=https%3A//github.com/shayne/go-wsl2-host/">go-wsl2-host</a>,这个项目，可以在你每次启动wsl2时，自动把wsl2的ip写入宿主机的hosts，这就保证了每次都可以用同一个hostname访问wsl2</p>
+<h4 id="下载wsl2hostexe">下载<a href="https://github.com/shayne/go-wsl2-host/releases/download/v0.3.4/wsl2host.exe">wsl2host.exe</a></h4>
+<p>建议将其放入C盘,以避免误删</p>
+<ul>
+<li>以管理员身份打开cmd，或者powershell，进入<code>wsl2host.exe</code>目录
+<ul>
+<li>如果你安装了sudo，那么直接打开cmd或powershell，用sudo提权即可</li>
+</ul>
+</li>
+<li>执行<code>.\wsl2host.exe install</code>
+<ul>
+<li>Windows Username: <username-you-use-to-login-to-windows>
+<ul>
+<li>你的win账户名</li>
+</ul>
+</li>
+<li>Windows Password: <password-for-this-user>
+<ul>
+<li>该账户的密码，<strong>注意不是PIN，是密码！</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="添加启动服务权限">添加启动服务权限</h4>
+<ul>
+<li>
+<p>windows管理工具-本地安全策略-本地策略-用户分配权限</p>
+</li>
+<li>
+<p>找到作为服务登录</p>
+<figure data-type="image" tabindex="4"><img src="https://s1.ax1x.com/2020/06/08/tWu5b4.png" alt="tWu5b4.png" loading="lazy"></figure>
+</li>
+<li>
+<p>然后重启一下，启动wsl2，查看hosts是否有wsl2的</p>
+<ul>
+<li>
+<pre><code class="language-powershell">cat C:\Windows\System32\drivers\etc\hosts
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 <p>未完待续</p>
 ]]></content>
     </entry>

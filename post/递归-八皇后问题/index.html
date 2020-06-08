@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>递归 -八皇后问题 | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591584746247">
+<link rel="shortcut icon" href="/favicon.ico?v=1591587564657">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1595,7 +1595,50 @@ sudo dbus-daemon --system
 &lt;/ul&gt;
 &lt;h3 id=&#34;解决wsl2虚拟机ip问题&#34;&gt;解决wsl2虚拟机ip问题&lt;/h3&gt;
 &lt;h4 id=&#34;问题由来&#34;&gt;问题由来&lt;/h4&gt;
-&lt;p&gt;wsl2相当于一个虚拟机，每次启动都会为子系统分配一个ip，但是这个ip不是固定的，导致了如果你在子系统部署docker需要经常查看其ip，很不方便&lt;/p&gt;
+&lt;p&gt;​	wsl2相当于一个虚拟机，每次启动都会为子系统分配一个ip，但是这个ip不是固定的，导致了如果你在子系统部署docker需要经常查看其ip，很不方便。当然如果你需要在局域网内访问wsl2，则需要win端口转发。&lt;/p&gt;
+&lt;p&gt;​	目前比较好的解决方案就是&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/shayne/go-wsl2-host/&#34;&gt;go-wsl2-host&lt;/a&gt;,这个项目，可以在你每次启动wsl2时，自动把wsl2的ip写入宿主机的hosts，这就保证了每次都可以用同一个hostname访问wsl2&lt;/p&gt;
+&lt;h4 id=&#34;下载wsl2hostexe&#34;&gt;下载&lt;a href=&#34;https://github.com/shayne/go-wsl2-host/releases/download/v0.3.4/wsl2host.exe&#34;&gt;wsl2host.exe&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;建议将其放入C盘,以避免误删&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以管理员身份打开cmd，或者powershell，进入&lt;code&gt;wsl2host.exe&lt;/code&gt;目录
+&lt;ul&gt;
+&lt;li&gt;如果你安装了sudo，那么直接打开cmd或powershell，用sudo提权即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;执行&lt;code&gt;.\wsl2host.exe install&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows Username: &lt;username-you-use-to-login-to-windows&gt;
+&lt;ul&gt;
+&lt;li&gt;你的win账户名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Windows Password: &lt;password-for-this-user&gt;
+&lt;ul&gt;
+&lt;li&gt;该账户的密码，&lt;strong&gt;注意不是PIN，是密码！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;添加启动服务权限&#34;&gt;添加启动服务权限&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;windows管理工具-本地安全策略-本地策略-用户分配权限&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;找到作为服务登录&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;4&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/08/tWu5b4.png&#34; alt=&#34;tWu5b4.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后重启一下，启动wsl2，查看hosts是否有wsl2的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cat C:\Windows\System32\drivers\etc\hosts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;未完待续&lt;/p&gt;
 ">Win10部署spark开发环境</a>
       </div>
