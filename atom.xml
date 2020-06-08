@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seulg.github.io/</id>
     <title>Seul</title>
-    <updated>2020-06-08T03:39:27.411Z</updated>
+    <updated>2020-06-08T03:43:35.673Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://seulg.github.io/"/>
     <link rel="self" href="https://seulg.github.io/atom.xml"/>
@@ -277,16 +277,14 @@ wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 <p>添加普通用户</p>
 <ul>
 <li>
-<pre><code class="language-powershell">
+<pre><code class="language-powershell"> # 添加用户
+useradd -m -G wheel -s /bin/bash {username}
+# 修改密码
+passwd {username}
+
 </code></pre>
 </li>
 </ul>
-<h1 id="添加用户">添加用户</h1>
-<p>useradd -m -G wheel -s /bin/bash {username}</p>
-<h1 id="修改密码">修改密码</h1>
-<p>passwd {username}</p>
-<pre><code>
-</code></pre>
 </li>
 <li>
 <p>退出子系统<code>输入exit</code>即可</p>

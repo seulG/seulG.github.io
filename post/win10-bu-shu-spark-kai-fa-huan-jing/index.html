@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Win10部署spark开发环境 | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591587564657">
+<link rel="shortcut icon" href="/favicon.ico?v=1591587813609">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -315,19 +315,13 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7">添加用户</a></li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81">修改密码</a><br>
-*
-<ul>
 <li><a href="#%E8%A7%A3%E5%86%B3wsl2%E8%99%9A%E6%8B%9F%E6%9C%BAip%E9%97%AE%E9%A2%98">解决wsl2虚拟机ip问题</a>
 <ul>
 <li><a href="#%E9%97%AE%E9%A2%98%E7%94%B1%E6%9D%A5">问题由来</a></li>
 <li><a href="#%E4%B8%8B%E8%BD%BDwsl2hostexe">下载wsl2host.exe</a></li>
 <li><a href="#%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E6%9D%83%E9%99%90">添加启动服务权限</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -908,16 +902,14 @@ wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 <p>添加普通用户</p>
 <ul>
 <li>
-<pre><code class="language-powershell">
+<pre><code class="language-powershell"> # 添加用户
+useradd -m -G wheel -s /bin/bash {username}
+# 修改密码
+passwd {username}
+
 </code></pre>
 </li>
 </ul>
-<h1 id="添加用户">添加用户</h1>
-<p>useradd -m -G wheel -s /bin/bash {username}</p>
-<h1 id="修改密码">修改密码</h1>
-<p>passwd {username}</p>
-<pre><code>
-</code></pre>
 </li>
 <li>
 <p>退出子系统<code>输入exit</code>即可</p>
@@ -1824,16 +1816,14 @@ wsl --set-version &amp;lt;distribution name&amp;gt; &amp;lt;versionNumber&amp;gt
 &lt;p&gt;添加普通用户&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt; # 添加用户
+useradd -m -G wheel -s /bin/bash {username}
+# 修改密码
+passwd {username}
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;添加用户&#34;&gt;添加用户&lt;/h1&gt;
-&lt;p&gt;useradd -m -G wheel -s /bin/bash {username}&lt;/p&gt;
-&lt;h1 id=&#34;修改密码&#34;&gt;修改密码&lt;/h1&gt;
-&lt;p&gt;passwd {username}&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;退出子系统&lt;code&gt;输入exit&lt;/code&gt;即可&lt;/p&gt;

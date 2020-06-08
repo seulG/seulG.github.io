@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591587564657">
+<link rel="shortcut icon" href="/favicon.ico?v=1591587813609">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1123,16 +1123,14 @@ wsl --set-version &amp;lt;distribution name&amp;gt; &amp;lt;versionNumber&amp;gt
 &lt;p&gt;添加普通用户&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt; # 添加用户
+useradd -m -G wheel -s /bin/bash {username}
+# 修改密码
+passwd {username}
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;添加用户&#34;&gt;添加用户&lt;/h1&gt;
-&lt;p&gt;useradd -m -G wheel -s /bin/bash {username}&lt;/p&gt;
-&lt;h1 id=&#34;修改密码&#34;&gt;修改密码&lt;/h1&gt;
-&lt;p&gt;passwd {username}&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;退出子系统&lt;code&gt;输入exit&lt;/code&gt;即可&lt;/p&gt;
