@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Spring优雅的编写代码之基于注解的IOC | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1591587813609">
+<link rel="shortcut icon" href="/favicon.ico?v=1592033466916">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1738,7 +1738,160 @@ sudo dbus-daemon --system
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;未完待续&lt;/p&gt;
+&lt;h3 id=&#34;terminal安装与美化&#34;&gt;Terminal安装与美化&lt;/h3&gt;
+&lt;h4 id=&#34;安装&#34;&gt;安装&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;你可以直接在win10应用商店直接安装&lt;/li&gt;
+&lt;li&gt;也可以通过scoop安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;scoop install windows-terminal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;美化与设置&#34;&gt;美化与设置&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;tips:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以下操作必须以管理员模式打开Powershell，如果询问你&lt;code&gt;yes or no&lt;/code&gt;，直接选&lt;code&gt;A&lt;/code&gt;，全部yes&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;安装posh-git (前提你需要git，而且已经安装了git)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装git&lt;code&gt;scoop install git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Install-Module posh-git -Scope CurrentUser&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装oh-mu-posh&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Install-Module oh-my-posh -Scope CurrentUser&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成Powershell档案，类似&lt;code&gt;bashrc&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;if (!(Test-Path -Path $PROFILE )) { New-Item -Type File -Path $PROFILE -Force }&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;编辑&lt;code&gt;$PROFILE&lt;/code&gt;,你需要安装vscode或者自己找到该文件用记事本打开。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;若安装了vscode&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;code $PROFILE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;# 写入以下文件
+#禁用默认快捷键
+Remove-PSReadlineKeyHandler &#39;Ctrl+r&#39;
+#导入模块(git)
+Import-Module posh-git
+Import-Module oh-my-posh
+#设置主题
+Set-Theme Paradox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;允许powershell运行脚本(必须)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;set-executionpolicy remotesigned&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装字体&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/adam7/delugia-code/releases/download/v1910.04.1/Delugia.Nerd.Font.Complete.ttf&#34;&gt;下载字体&lt;/a&gt;并且安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开terminal,点击设置，会弹出json配置文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;该json格式为&lt;code&gt;profiles{defaults,list[powershell,cmd,wsl]}&lt;/code&gt;,list下面得就是对每一个实例得设置，你可以用icon设置tab列表显示得图片&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;//添加以下代码，到你需要应用这写设置得实例
+“colorScheme&amp;quot;: &amp;quot;Campbell&amp;quot;,
+
+&amp;quot;useAcrylic&amp;quot;: true,
+
+&amp;quot;closeOnExit&amp;quot;: false,
+
+&amp;quot;acrylicOpacity&amp;quot;: 0.8,
+
+&amp;quot;fontFace&amp;quot;: &amp;quot;Delugia Nerd Font&amp;quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后重启Termina，大功告成，附我的设置，图片自己下载，路径自己改&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;list&amp;quot;:
+        [
+            {
+                // Make changes here to the powershell.exe profile.
+                &amp;quot;guid&amp;quot;: &amp;quot;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&amp;quot;,
+                &amp;quot;name&amp;quot;: &amp;quot;PowerShell&amp;quot;,
+                &amp;quot;commandline&amp;quot;: &amp;quot;powershell.exe&amp;quot;,
+                &amp;quot;useAcrylic&amp;quot;: true,
+                &amp;quot;closeOnExit&amp;quot;: false,
+                &amp;quot;acrylicOpacity&amp;quot;: 0.7,
+                &amp;quot;colorScheme&amp;quot; : &amp;quot;Frost&amp;quot;,
+                &amp;quot;cursorColor&amp;quot; : &amp;quot;#000000&amp;quot;,
+                &amp;quot;fontFace&amp;quot;: &amp;quot;Delugia Nerd Font&amp;quot;,
+                &amp;quot;hidden&amp;quot;: false,
+                &amp;quot;icon&amp;quot;: &amp;quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\Powershell.png&amp;quot;
+ 
+            },
+            {
+                // Make changes here to the cmd.exe profile.
+                &amp;quot;guid&amp;quot;: &amp;quot;{0caa0dad-35be-5f56-a8ff-afceeeaa6101}&amp;quot;,
+                &amp;quot;name&amp;quot;: &amp;quot;命令提示符&amp;quot;,
+                &amp;quot;acrylicOpacity&amp;quot;: 0.7,
+                &amp;quot;colorScheme&amp;quot; : &amp;quot;Frost&amp;quot;,
+                &amp;quot;cursorColor&amp;quot; : &amp;quot;#000000&amp;quot;,
+                &amp;quot;commandline&amp;quot;: &amp;quot;cmd.exe&amp;quot;,
+                &amp;quot;hidden&amp;quot;: false,
+                &amp;quot;icon&amp;quot;: &amp;quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\CMD.png&amp;quot;
+            },
+            {
+                &amp;quot;guid&amp;quot;: &amp;quot;{a5a97cb8-8961-5535-816d-772efe0c6a3f}&amp;quot;,
+                &amp;quot;hidden&amp;quot;: false,
+                &amp;quot;name&amp;quot;: &amp;quot;Arch&amp;quot;,
+                &amp;quot;tabTitle&amp;quot;: &amp;quot;Arch&amp;quot;,
+                &amp;quot;suppressApplicationTitle&amp;quot;: true,
+                &amp;quot;useAcrylic&amp;quot;: true,
+                &amp;quot;acrylicOpacity&amp;quot;: 0.7,
+                &amp;quot;colorScheme&amp;quot; : &amp;quot;Frost&amp;quot;,
+                &amp;quot;cursorColor&amp;quot; : &amp;quot;#000000&amp;quot;,
+                &amp;quot;fontFace&amp;quot;: &amp;quot;Delugia Nerd Font&amp;quot;,
+                &amp;quot;source&amp;quot;: &amp;quot;Windows.Terminal.Wsl&amp;quot;,
+                &amp;quot;icon&amp;quot;: &amp;quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\Arch.png&amp;quot;
+            },
+            {
+                &amp;quot;guid&amp;quot;: &amp;quot;{b453ae62-4e3d-5e58-b989-0a998ec441b8}&amp;quot;,
+                &amp;quot;hidden&amp;quot;: false,
+                &amp;quot;name&amp;quot;: &amp;quot;Azure Cloud Shell&amp;quot;,
+                &amp;quot;source&amp;quot;: &amp;quot;Windows.Terminal.Azure&amp;quot;
+            }
+        ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;展示&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;5&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/13/tvm9YR.png&#34; alt=&#34;tvm9YR.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h4 id=&#34;给terminal设置快捷键&#34;&gt;给Terminal设置快捷键&lt;/h4&gt;
+&lt;p&gt;大部分人用久了linux，都很喜欢用&lt;code&gt;Ctrl+Alt+T&lt;/code&gt;打开终端&lt;/p&gt;
+&lt;p&gt;找到你的Termianl快捷方式&lt;code&gt;右键-&amp;gt;属性-&amp;gt;快捷方式&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在快捷键栏目直接按下&lt;code&gt;Ctrl+Alt+T&lt;/code&gt;即可&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;6&#34;&gt;&lt;img src=&#34;https://s1.ax1x.com/2020/06/13/tve6JI.png&#34; alt=&#34;tve6JI.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;接下来，享受你得windows&lt;/p&gt;
+&lt;p&gt;完结撒花👏👏&lt;/p&gt;
 ">Win10部署spark开发环境</a>
       </div>
       

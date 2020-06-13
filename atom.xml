@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seulg.github.io/</id>
     <title>Seul</title>
-    <updated>2020-06-08T03:43:35.673Z</updated>
+    <updated>2020-06-13T07:31:13.028Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://seulg.github.io/"/>
     <link rel="self" href="https://seulg.github.io/atom.xml"/>
@@ -392,7 +392,160 @@ sudo dbus-daemon --system
 </ul>
 </li>
 </ul>
-<p>未完待续</p>
+<h3 id="terminal安装与美化">Terminal安装与美化</h3>
+<h4 id="安装">安装</h4>
+<ul>
+<li>你可以直接在win10应用商店直接安装</li>
+<li>也可以通过scoop安装</li>
+</ul>
+<pre><code class="language-powershell">scoop install windows-terminal
+</code></pre>
+<h4 id="美化与设置">美化与设置</h4>
+<p><strong>tips:</strong></p>
+<p>以下操作必须以管理员模式打开Powershell，如果询问你<code>yes or no</code>，直接选<code>A</code>，全部yes</p>
+<ul>
+<li>
+<p>安装posh-git (前提你需要git，而且已经安装了git)</p>
+<ul>
+<li>安装git<code>scoop install git</code></li>
+</ul>
+</li>
+<li>
+<p><code>Install-Module posh-git -Scope CurrentUser</code></p>
+</li>
+<li>
+<p>安装oh-mu-posh</p>
+</li>
+<li>
+<p><code>Install-Module oh-my-posh -Scope CurrentUser</code></p>
+</li>
+<li>
+<p>生成Powershell档案，类似<code>bashrc</code></p>
+<ul>
+<li>
+<p><code>if (!(Test-Path -Path $PROFILE )) { New-Item -Type File -Path $PROFILE -Force }</code></p>
+</li>
+<li>
+<p>编辑<code>$PROFILE</code>,你需要安装vscode或者自己找到该文件用记事本打开。</p>
+<ul>
+<li>
+<p>若安装了vscode</p>
+</li>
+<li>
+<pre><code class="language-powershell">code $PROFILE
+</code></pre>
+</li>
+<li>
+<pre><code class="language-powershell"># 写入以下文件
+#禁用默认快捷键
+Remove-PSReadlineKeyHandler 'Ctrl+r'
+#导入模块(git)
+Import-Module posh-git
+Import-Module oh-my-posh
+#设置主题
+Set-Theme Paradox
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>允许powershell运行脚本(必须)</p>
+<ul>
+<li><code>set-executionpolicy remotesigned</code></li>
+</ul>
+</li>
+<li>
+<p>安装字体</p>
+<ul>
+<li>
+<p><a href="https://github.com/adam7/delugia-code/releases/download/v1910.04.1/Delugia.Nerd.Font.Complete.ttf">下载字体</a>并且安装</p>
+</li>
+<li>
+<p>打开terminal,点击设置，会弹出json配置文件</p>
+</li>
+<li>
+<p>该json格式为<code>profiles{defaults,list[powershell,cmd,wsl]}</code>,list下面得就是对每一个实例得设置，你可以用icon设置tab列表显示得图片</p>
+</li>
+<li>
+<pre><code class="language-json">//添加以下代码，到你需要应用这写设置得实例
+“colorScheme&quot;: &quot;Campbell&quot;,
+
+&quot;useAcrylic&quot;: true,
+
+&quot;closeOnExit&quot;: false,
+
+&quot;acrylicOpacity&quot;: 0.8,
+
+&quot;fontFace&quot;: &quot;Delugia Nerd Font&quot;,
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>然后重启Termina，大功告成，附我的设置，图片自己下载，路径自己改</p>
+</li>
+</ul>
+<pre><code class="language-json">&quot;list&quot;:
+        [
+            {
+                // Make changes here to the powershell.exe profile.
+                &quot;guid&quot;: &quot;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&quot;,
+                &quot;name&quot;: &quot;PowerShell&quot;,
+                &quot;commandline&quot;: &quot;powershell.exe&quot;,
+                &quot;useAcrylic&quot;: true,
+                &quot;closeOnExit&quot;: false,
+                &quot;acrylicOpacity&quot;: 0.7,
+                &quot;colorScheme&quot; : &quot;Frost&quot;,
+                &quot;cursorColor&quot; : &quot;#000000&quot;,
+                &quot;fontFace&quot;: &quot;Delugia Nerd Font&quot;,
+                &quot;hidden&quot;: false,
+                &quot;icon&quot;: &quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\Powershell.png&quot;
+ 
+            },
+            {
+                // Make changes here to the cmd.exe profile.
+                &quot;guid&quot;: &quot;{0caa0dad-35be-5f56-a8ff-afceeeaa6101}&quot;,
+                &quot;name&quot;: &quot;命令提示符&quot;,
+                &quot;acrylicOpacity&quot;: 0.7,
+                &quot;colorScheme&quot; : &quot;Frost&quot;,
+                &quot;cursorColor&quot; : &quot;#000000&quot;,
+                &quot;commandline&quot;: &quot;cmd.exe&quot;,
+                &quot;hidden&quot;: false,
+                &quot;icon&quot;: &quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\CMD.png&quot;
+            },
+            {
+                &quot;guid&quot;: &quot;{a5a97cb8-8961-5535-816d-772efe0c6a3f}&quot;,
+                &quot;hidden&quot;: false,
+                &quot;name&quot;: &quot;Arch&quot;,
+                &quot;tabTitle&quot;: &quot;Arch&quot;,
+                &quot;suppressApplicationTitle&quot;: true,
+                &quot;useAcrylic&quot;: true,
+                &quot;acrylicOpacity&quot;: 0.7,
+                &quot;colorScheme&quot; : &quot;Frost&quot;,
+                &quot;cursorColor&quot; : &quot;#000000&quot;,
+                &quot;fontFace&quot;: &quot;Delugia Nerd Font&quot;,
+                &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;,
+                &quot;icon&quot;: &quot;C:\\Users\\xstar\\AppData\\Local\\Terminal\\Arch.png&quot;
+            },
+            {
+                &quot;guid&quot;: &quot;{b453ae62-4e3d-5e58-b989-0a998ec441b8}&quot;,
+                &quot;hidden&quot;: false,
+                &quot;name&quot;: &quot;Azure Cloud Shell&quot;,
+                &quot;source&quot;: &quot;Windows.Terminal.Azure&quot;
+            }
+        ]
+</code></pre>
+<p>展示</p>
+<figure data-type="image" tabindex="5"><img src="https://s1.ax1x.com/2020/06/13/tvm9YR.png" alt="tvm9YR.png" loading="lazy"></figure>
+<h4 id="给terminal设置快捷键">给Terminal设置快捷键</h4>
+<p>大部分人用久了linux，都很喜欢用<code>Ctrl+Alt+T</code>打开终端</p>
+<p>找到你的Termianl快捷方式<code>右键-&gt;属性-&gt;快捷方式</code></p>
+<p>在快捷键栏目直接按下<code>Ctrl+Alt+T</code>即可</p>
+<figure data-type="image" tabindex="6"><img src="https://s1.ax1x.com/2020/06/13/tve6JI.png" alt="tve6JI.png" loading="lazy"></figure>
+<p>接下来，享受你得windows</p>
+<p>完结撒花👏👏</p>
 ]]></content>
     </entry>
     <entry>
