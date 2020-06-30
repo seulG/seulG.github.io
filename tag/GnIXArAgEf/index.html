@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1592549252386">
+<link rel="shortcut icon" href="/favicon.ico?v=1593495066775">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1960,7 +1960,7 @@ public void setMyMap(Map&amp;lt;String, String&amp;gt; myMap) {
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;gir cat-file -p 哈希值&lt;/code&gt;查看文件内容&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git cat-file -p 哈希值&lt;/code&gt;查看文件内容&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- more --&gt;
@@ -2155,8 +2155,8 @@ subgraph git对象
 &lt;li&gt;但是若要重用,必须记住哈希值&lt;/li&gt;
 &lt;li&gt;解决方式:提交对象&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;提交对象&#34;&gt;提交对象&lt;/h4&gt;
-&lt;h5 id=&#34;代码说明&#34;&gt;代码说明&lt;/h5&gt;
+&lt;h5 id=&#34;提交对象&#34;&gt;提交对象&lt;/h5&gt;
+&lt;h6 id=&#34;代码说明&#34;&gt;代码说明&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;commit-tree 树对象哈希值&lt;/code&gt; 创建提交对象&lt;/li&gt;
 &lt;/ul&gt;
@@ -2220,6 +2220,7 @@ subgraph git对象
 &lt;p&gt;description ——&amp;gt;  对仓库的描述&lt;/p&gt;
 &lt;p&gt;HEAD		——&amp;gt;	指示目前被检出的分支&lt;/p&gt;
 &lt;p&gt;index		  ——&amp;gt;	暂存区保存暂存数据(暂存区)&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/3139616-d5f236844b57eb2f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/596/format/webp&#34; alt=&#34;git&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h4 id=&#34;工作目录&#34;&gt;工作目录&lt;/h4&gt;
 &lt;p&gt;建议配合下面的高层命令看这一部分&lt;/p&gt;
 &lt;ul&gt;
@@ -2337,6 +2338,269 @@ index e212970..98e6ed6 100644
 git add file1.txt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;持续施工…..&lt;/p&gt;
+&lt;h2 id=&#34;个人理解总结&#34;&gt;个人理解总结&lt;/h2&gt;
+&lt;h3 id=&#34;git对象-3&#34;&gt;git对象&lt;/h3&gt;
+&lt;h4 id=&#34;git对象blob类型&#34;&gt;git对象(blob类型)&lt;/h4&gt;
+&lt;p&gt;也可以成为数据对象，这个对象只组织数据，不会记录文件。也就是说这个对象只会记录每个文件的内容，并且根据内容生成hash，存入git的数据库(键值对数据库)，这就有一个问题，git对象只能代表每个数据的一个版本，而无法代表一个文件的版本。&lt;/p&gt;
+&lt;h4 id=&#34;树对象tree类型&#34;&gt;树对象(tree类型)&lt;/h4&gt;
+&lt;p&gt;树对象，能将git对象组织起来，并将文件组织起来，从而能够代表一个项目的版本。对于树对象的操作，仍然只能通过hash操作，并且无法显式知道每次对文件作出了什么修改。&lt;/p&gt;
+&lt;h4 id=&#34;提交对象commit类型&#34;&gt;提交对象(commit类型)&lt;/h4&gt;
+&lt;p&gt;提交对象，将树对象封装上自定义的说明，以及git的一些配置信息，如提交用户，提交用户的邮箱。并且会带有其父提交对象的hash(第一个提交对象除外)，可以通过&lt;code&gt;git commit-tree hash -p hash&lt;/code&gt;指定父提交对象。能够真正代表一个项目的版本，我们只需要访问提交对象就可以访问到这个版本的所有文件信息以及注释。注意，提交对象是链式的，这就很容易进行回滚版本，直接指向对应的提交对象就相当于回退版本&lt;/p&gt;
+&lt;h3 id=&#34;git三大区域&#34;&gt;git三大区域&lt;/h3&gt;
+&lt;h4 id=&#34;暂存区&#34;&gt;暂存区&lt;/h4&gt;
+&lt;p&gt;暂存区存放的是待提交为数对象的git对象，或者是树对象。可以用&lt;code&gt;git ls-files -s&lt;/code&gt;查看暂存区的内容。使用&lt;code&gt;git update-index --add --cacheinfo 文件类型[100644普通文件,100755可执行文件,120000符号链接] git对象hash [name]&lt;/code&gt;将一个git对象提交到暂存区，如果对一个git对象进行了修改，并且生成了新的git对象，希望将修改后的git都想提交到暂存区，则可以去掉&lt;code&gt;--add&lt;/code&gt;参数，并且用同样地名字，进行覆盖。同样可以使用&lt;code&gt;git read-tree prefix=[name] 树对象hash&lt;/code&gt;将一个输对象以name的名字提交到暂存区。注意，每次执行&lt;code&gt;write-tree&lt;/code&gt;都会将暂存区的所有内容生成一个新的树对象。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;暂存区的名字默认与文件名字相同，也就是说暂存区的内容是与文件相对应的&lt;/p&gt;
+&lt;h4 id=&#34;版本库&#34;&gt;版本库&lt;/h4&gt;
+&lt;p&gt;版本库存储了每个提交的三大对象，git对象 、树对象、提交对象这些东西都存储在.git\object文件夹下，且命名方式为，每个对象的hash的前两位作为文件夹，后几位为文件的名字。&lt;/p&gt;
+&lt;h4 id=&#34;工作区&#34;&gt;工作区&lt;/h4&gt;
+&lt;p&gt;工作区就是项目的目录，项目目录的文件除了&lt;code&gt;.git&lt;/code&gt;文件夹的内容，只存在两种状态，未跟踪，和未跟踪。工作区是一个沙箱环境，只要是没有 将文件提交给git管理，文件可以做任何修改，这就是未跟踪状态(就不能进行版本控制)。通过&lt;code&gt;git add&lt;/code&gt;或者&lt;code&gt;git hash-object&lt;/code&gt;将文件提交给git管理，该文件就是已跟踪，此后文件所做的修改都要存入版本库(git对象不是增量的好处)，就可以进行数据的回滚。&lt;/p&gt;
+&lt;p&gt;已跟踪的文件存在三种状态，已提交，已修改，已暂存。&lt;/p&gt;
+&lt;h3 id=&#34;git高层命令&#34;&gt;git高层命令&lt;/h3&gt;
+&lt;h4 id=&#34;git-add&#34;&gt;git add&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git add&lt;/code&gt;做了以下几件事&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先将修改的数据生成git对象，并存入版本库
+&lt;ul&gt;
+&lt;li&gt;git hash-object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;后将该git对象从版本库存入暂存区
+&lt;ul&gt;
+&lt;li&gt;git update-index --add --cacheinfo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;git-commit&#34;&gt;git commit&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git commit&lt;/code&gt;做了以下几件事&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将暂存区的内容生成树对象
+&lt;ul&gt;
+&lt;li&gt;git write-tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;将树对象和注释 包装为提交对象
+&lt;ul&gt;
+&lt;li&gt;git commit-tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;提交并不会清空暂存区&lt;/li&gt;
+&lt;li&gt;若一次要写的提交注释太长，可以用&lt;code&gt;git commit&lt;/code&gt;会打开设定的默认编辑器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;git-status-2&#34;&gt;git status&lt;/h4&gt;
+&lt;p&gt;会给出工作区的所有文件所处的状态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;注意每次修改文件，git并不会自动提交修改的文件，需要手动git add，也就是说，修改已追踪的文件，必须要手动git add 该文件，否则直接提交并不会提交该修改。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;已跟踪的文件应该执行提交。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;已修改的文件应该执行git add，或者进行暂存，或者执行git restore进行回退。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个文件可以存在两种状态，在git add后，该文件被标记为已暂存，然后修改该文件，该文件会被标记为已修改，同时存在两种状态。此时提交，只会提交修改的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因为git status显示的信息过于简单，可以通过&lt;code&gt;git diff --staged&lt;/code&gt;查看已经暂存待提交的文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;跳过暂存区，我们可以使用&lt;code&gt;git commit -m -a&lt;/code&gt;跳过使用暂存区，直接把所有已跟踪的文件加入暂存区，并提交，节省了&lt;code&gt;git add&lt;/code&gt;的步骤&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;git-删除操作&#34;&gt;git 删除操作&lt;/h4&gt;
+&lt;p&gt;当删除了工作区的某个文件，该文件就会被标记为已删除，可以通过git add ./将修改存入暂存区，如果此时提交，用户执行的是删除操作，但是git在版本库种执行的仍然是新增操作，新增了一个不包含删除文件的树对象，和该树对象的提交对象&lt;/p&gt;
+&lt;p&gt;当然上述操作，可以用&lt;code&gt;git rm&lt;/code&gt;实现，git rm 会删除指定文件，并将修改存入暂存区，只需要提交修改即可&lt;/p&gt;
+&lt;h4 id=&#34;git-修改文件名字&#34;&gt;git 修改文件名字&lt;/h4&gt;
+&lt;p&gt;直接将文件修改名字，git会将该文件标记为已删除和未跟踪，但是当我们执行&lt;code&gt;git add ./&lt;/code&gt;时，git会自动比较两个文件的内容，内容一直就会将该文件标记为renamed&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;git mv&lt;/code&gt;快速实现上述操作，能重命名文件，并将修改存入暂存区&lt;/p&gt;
+&lt;h4 id=&#34;git-查看历史记录&#34;&gt;git 查看历史记录&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git log&lt;/code&gt;会显示每个提交对象的hash，注释，以及做了什么操作，作者信息和时间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git log --pretty=oneline&lt;/code&gt;或者&lt;code&gt;git log --oneline&lt;/code&gt;,将每次提交放在一行显示,会隐藏作者信息，并且会显示提交对象hash的前几位&lt;/p&gt;
+&lt;h3 id=&#34;git分支&#34;&gt;git分支&lt;/h3&gt;
+&lt;h4 id=&#34;简介&#34;&gt;简介&lt;/h4&gt;
+&lt;p&gt;git的分支就是一个指针(HEAD)。HEAD是一只指向提交对象，每次进行提交操作，HEAD都会进行更新，上面也说了，提交操作是链式的(通过其父提交对象组织)，因此HEAD指针可以很方便的进行版本的回退和切换分支，只要让HEAD指向不同分支的提交对象即可。&lt;/p&gt;
+&lt;p&gt;每个分支的最新提交对象的hash只存储在ref目录&lt;/p&gt;
+&lt;h4 id=&#34;模型&#34;&gt;模型&lt;/h4&gt;
+&lt;p&gt;git的分支极其高效，我们可以把该模型理解为：每次对项目文件的修改都存在一个链表中，默认一个master分支每次指向最近加入链表的提交对象，HEAD指向master,只有被HEAD指向的指针才能移动，因此创建分支就相当于新加入了一个指针(锚点)，如果新增代码，该分支(锚点)就往前移动，而其他分支由于失去了HEAD的指向，而不能移动。当新的分支做的不行的话，就可以让HEAD指针直接指向master，从而实现代码回退，做的可以就可以直接让master指向新的分支，这就是代码的合并。而这一切建立的基础就是，git的版本库是增量的，每次的修改都是一次新的提交，不会去覆盖之前的提交。&lt;/p&gt;
+&lt;h4 id=&#34;命令&#34;&gt;命令&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;显示分支列表&lt;code&gt;git branch&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建分支&lt;code&gt;git branch&lt;/code&gt;,会在当前所在的提交对象上创建一个指针，但是此时HEAD并没有指向新的指针&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切换分支&lt;code&gt;git checkout&lt;/code&gt;，会让HEAD指向指定的分支&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;加上&lt;code&gt;-g&lt;/code&gt;参数表示新建分支并且换&lt;/li&gt;
+&lt;li&gt;分支切换会改变HEAD，工作目录的文件，和暂存区的内容&lt;/li&gt;
+&lt;li&gt;如果git不能干净利落的切换分支，git会禁止切换分支
+&lt;ul&gt;
+&lt;li&gt;在新分支修改了项目文件，没有执行&lt;code&gt;git add&lt;/code&gt;就会禁止切换分支&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果git在新分支上创建了新的未跟踪文件，git允许切换分支，但是该文件也会随着进入新的工作区&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最好的方法，每次切换分支查看状态，无状态才切换分支&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除分支&lt;code&gt;git branch -d&lt;/code&gt;不能删除当前HEAD所在的分支&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若该分支确定不用合并则用-D参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看完整分支历史&lt;code&gt;git log --oneline --decorate --graph --all&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;注意老分支看不到完整地log日志，上述命令才可以&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看每个分支最后一个提交&lt;code&gt;git branch -v&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;新建一个分支指向指定的提交对象&lt;code&gt;git branch commitHash&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以变相的用于回退版本&lt;/li&gt;
+&lt;li&gt;时光机，版本穿梭&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;配置别名&#34;&gt;配置别名&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git config --global alias.lol “log --oneline --decorate --graph --all”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将上述命令直接用别名 lol替换，不能添加git&lt;/p&gt;
+&lt;h3 id=&#34;合并分支&#34;&gt;合并分支&lt;/h3&gt;
+&lt;p&gt;在分支测试通过之后，就可以将分支合并到主分支上。只能是其他分支，合并到主分支。&lt;/p&gt;
+&lt;h4 id=&#34;快进合并&#34;&gt;快进合并&lt;/h4&gt;
+&lt;p&gt;切换分支步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先切换到主分支&lt;/li&gt;
+&lt;li&gt;执行&lt;code&gt;git merge [branch]&lt;/code&gt;将[branch]合并到主分支&lt;/li&gt;
+&lt;li&gt;合并完的分支可以删除，留着无意义&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;直接将master指针指向要合并的分支&lt;/li&gt;
+&lt;li&gt;会造成 合并前目标分支与master分支之间所产生的分支过期&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;典型合并&#34;&gt;典型合并&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;回到主分支&lt;/li&gt;
+&lt;li&gt;合并分支&lt;/li&gt;
+&lt;li&gt;会自动合并代码的修改
+&lt;ul&gt;
+&lt;li&gt;遇到&lt;strong&gt;冲突&lt;/strong&gt;会报错，只能手动解决&lt;/li&gt;
+&lt;li&gt;手动解决的方式，就是手动打开冲突文件，进行修改，然后&lt;code&gt;git add ./&lt;/code&gt;就代表解决了冲突&lt;/li&gt;
+&lt;li&gt;然后&lt;code&gt;git commit&lt;/code&gt;就行了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;遇到合并冲突的情况，两个平行分支同时修改了同一个文件的同一行代码，注意若是修改同一文件，不一定会造成冲突。&lt;/p&gt;
+&lt;h4 id=&#34;git存储&#34;&gt;git存储&lt;/h4&gt;
+&lt;p&gt;当你在一个分支做了一些工作后，突然想切到其他分支工作，而又不想为一次没有完成的工作做一次提交，这时就可以用到git存储。git存储会把未完成的修改存到一个栈上，我们可以在任何时候重新应用这些改动。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git stash 存储&lt;/li&gt;
+&lt;li&gt;git stash list 查看git存储&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;git存储，本质上是git帮我们做了一次提交，但是该提交没有被记录在日志，而是被存贮在一个栈中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git stash apply  stash@{2} //可以从git stash list查看存储，若不指定，git默认应用最近的一次存储&lt;/li&gt;
+&lt;li&gt;git stash drop stash@{2}  //应用完存储就可以删除该存储&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上操作我们通常使用&lt;code&gt;git stash pop&lt;/code&gt;应用并立即删除该存储&lt;/p&gt;
+&lt;h3 id=&#34;git后悔药&#34;&gt;git后悔药&lt;/h3&gt;
+&lt;h4 id=&#34;撤回工作区的修改&#34;&gt;撤回工作区的修改&lt;/h4&gt;
+&lt;p&gt;当已被跟踪的文件被修改，想要撤回修改，可以使用&lt;code&gt;git checkout --file&lt;/code&gt;，就可以撤回对该文件的修改。&lt;/p&gt;
+&lt;h4 id=&#34;撤回暂存&#34;&gt;撤回暂存&lt;/h4&gt;
+&lt;p&gt;当文件已经被暂存&lt;code&gt;git add&lt;/code&gt;，这是文件就被存入了暂存区，此时如果想要撤回该暂存就可以使用&lt;code&gt;git reset HEAD file&lt;/code&gt;，可以取消暂存。将该文件从已暂存的状态切换为已修改，此时如果想要撤销文件修改，可以参照 撤回工作区修改&lt;/p&gt;
+&lt;h4 id=&#34;撤回提交&#34;&gt;撤回提交&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;注释写错：当注释写错，就不适用于上面的重新提交。此时可以使用&lt;code&gt;git commit --amend&lt;/code&gt;就可以重新修改日志，并自动提交&lt;/li&gt;
+&lt;li&gt;提交内容错误：如果提交了错误的内容，要先修改错误内容，然后将其加入暂存区，之后再执行&lt;code&gt;git commit --amend&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;没有真正撤回提交的方式，只是提供给了我们一次重新写注释的情况&lt;/p&gt;
+&lt;h4 id=&#34;reset三部曲后悔药的实现机制&#34;&gt;reset三部曲(后悔药的实现机制)&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;移动HEAD(包括分支)，checkout是只移动HEAD，而分支指针不会移动。
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git reset --soft HEAD~&lt;/code&gt;HEAD~是当前分支上一次提交的别名，页可以直接用提交对象的hash&lt;/li&gt;
+&lt;li&gt;这种操作，就相当于撤销了一次提交，因为他是连带分支指针一起前移&lt;/li&gt;
+&lt;li&gt;是&lt;code&gt;git commit --amend&lt;/code&gt;所做的操作的实现原理，就是&lt;code&gt;--amend&lt;/code&gt;做了一次&lt;code&gt;git reset --soft HEAD~&lt;/code&gt;然后在重新提交(会出现分叉)&lt;/li&gt;
+&lt;li&gt;可以通过&lt;code&gt;git reflog&lt;/code&gt;查看HEAD的变化&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git reset --soft&lt;/code&gt;只动了HEAD和分支指针，暂存区和工作目录不受影响&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;既修改HEAD(包括分支)也修改暂存区，不修改工作区
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git reset [--mixed] HEAD~&lt;/code&gt;注：mixed是默认选项，可以不填&lt;/li&gt;
+&lt;li&gt;此操作不会改变工作区，能撤销暂存区操作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;同时修改暂存区、HEAD、工作区
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git reset --hard HEAD~&lt;/code&gt;，既修改HEAD(包括分支)，也重置暂存区，也修改工作区&lt;/li&gt;
+&lt;li&gt;也是reset里面唯一的危险用法，是git能真正销毁数据的几个操作之一，如果工作区存在未跟踪的文件，或者未提交，已修改，但是没有被commit的文件，这个命令会强制覆盖工作区，会销毁上述所说的数据。&lt;/li&gt;
+&lt;li&gt;在所有数据都&lt;code&gt;commit&lt;/code&gt;之后，运行此命令是安全的，因为commit对象会保存工作区的内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;是&lt;code&gt;git checkout branch&lt;/code&gt;的实现原理，只不过checkout不会改变分支，checkout命令给出了相应的保护机制，他不会将未被提交的文件删除，而是带入目标分支。并且，不会移动分支指针&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;路径reset(只有 --mixed可以跟文件名)
+&lt;ol&gt;
+&lt;li&gt;如果给reset提供了一个文件路径，他就会跳过移动HEAD，只修改暂存区&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;其实就是用HEAD里面的内容覆盖掉暂存区的内容(此时HEAD，指向的上次提交，也就是说，HEAD保存了上次提交的暂存区信息)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;路径reset的作用范围是仅有该文件的暂存区，不会影响其他文件&lt;/li&gt;
+&lt;li&gt;这就是回退暂存区的实现原理&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout file&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;相比于&lt;code&gt;git reset --hard commithash --filename&lt;/code&gt;跳过了修改HEAD，暂存区，只修改了工作目录。类比于reset路径。只不过这个命令无法通过语法检查。&lt;/li&gt;
+&lt;li&gt;本质上是用HEAD里面的工作区信息区强制覆盖工作目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout commitHash file&lt;/code&gt;只会跳过移动HEAD，修改暂存区和工作目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout&lt;/code&gt;是&lt;code&gt;git reset --hard&lt;/code&gt;的变种&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数据恢复&#34;&gt;数据恢复&lt;/h3&gt;
+&lt;p&gt;当出现了某种状况，我们重置了某个分支，或者删除了他，但是事后又要恢复他。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果是硬重置，直接在reflog里面找到对象的提交对象，再硬重置回去就行&lt;/li&gt;
+&lt;li&gt;如果是要恢复已删除的分支，也是只需要在reflog找到对应的提交对象，用“版本时光机”，直接用该提交对象的hash创建一个分支就行(更常用)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;tag&#34;&gt;tag&lt;/h3&gt;
+&lt;h4 id=&#34;列出标签&#34;&gt;列出标签&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git tag {-l tagname*}&lt;/code&gt;列出tag或者指定的一个或多标签&lt;/p&gt;
+&lt;h4 id=&#34;创建tag&#34;&gt;创建tag&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git tag tagname commitHash&lt;/code&gt;，给指定的提交对象打上tag&lt;/p&gt;
+&lt;h4 id=&#34;查看特定标签&#34;&gt;查看特定标签&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git show tagname&lt;/code&gt;,列出该标签所在的提交对象的信息&lt;/p&gt;
+&lt;h3 id=&#34;删除tag&#34;&gt;删除tag&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;git tag -d tagname&lt;/code&gt;删除指定标签&lt;/p&gt;
+&lt;h4 id=&#34;检出标签&#34;&gt;检出标签&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;git checkout -b tagname&lt;/code&gt;此时，HEAD会指向该标签所在提交对象，但是没有创建新分支，处于“分离头指针”的状态，如果此时作出了某些修改，并提交，，tag不会变，但是新的提交不属于任何分支，并且无法访问，除非用hash访问。如果是要修复某个tag版本的错误，则要创建新的分支(指向该标签后，加上**-b**参数)，去修复错误，并将修复后的分支合并到主分支&lt;/p&gt;
+&lt;h3 id=&#34;钩子函数husky&#34;&gt;钩子函数(Husky)&lt;/h3&gt;
+&lt;p&gt;必须先初始化git仓库，然后安装Husky&lt;/p&gt;
+&lt;h4 id=&#34;husky&#34;&gt;Husky&lt;/h4&gt;
+&lt;p&gt;安装&lt;code&gt;npm install husky --save-dev&lt;/code&gt;,该模块使用来给git创建钩子的，会默认注册很多钩子&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;// package.json
+{
+  &amp;quot;husky&amp;quot;: {
+    &amp;quot;hooks&amp;quot;: {
+      &amp;quot;pre-commit&amp;quot;: &amp;quot;npm test&amp;quot;,
+      &amp;quot;pre-push&amp;quot;: &amp;quot;npm test&amp;quot;,
+      &amp;quot;...&amp;quot;: &amp;quot;...&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要在package.json添加上面内容&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pre-commit&lt;/code&gt;提交前执行脚本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pre-push&lt;/code&gt;push之前执行的脚本&lt;/p&gt;
+&lt;p&gt;更多钩子查看[githooks]:https://git-scm.com/docs/githooks，但是不支持服务端钩子和&lt;code&gt;pre-receive update post-receive&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;配合Eslint进行代码检查&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;gitignore&#34;&gt;.gitignore&lt;/h4&gt;
+&lt;p&gt;配置git忽略接管的目录&lt;/p&gt;
 ">git -版本控制工具</a>
       </div>
       
