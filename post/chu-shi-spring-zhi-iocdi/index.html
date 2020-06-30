@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>初识Spring之IOC,DI | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1593495172074">
+<link rel="shortcut icon" href="/favicon.ico?v=1593531711916">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -3576,7 +3576,6 @@ index e212970..98e6ed6 100644
 #file1.txt已修改,未暂存
 git add file1.txt
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;持续施工…..&lt;/p&gt;
 &lt;h2 id=&#34;个人理解总结&#34;&gt;个人理解总结&lt;/h2&gt;
 &lt;h3 id=&#34;git对象-3&#34;&gt;git对象&lt;/h3&gt;
 &lt;h4 id=&#34;git对象blob类型&#34;&gt;git对象(blob类型)&lt;/h4&gt;
@@ -3840,6 +3839,52 @@ git add file1.txt
 &lt;p&gt;&lt;strong&gt;配合Eslint进行代码检查&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;gitignore&#34;&gt;.gitignore&lt;/h4&gt;
 &lt;p&gt;配置git忽略接管的目录&lt;/p&gt;
+&lt;h3 id=&#34;团队协作&#34;&gt;团队协作&lt;/h3&gt;
+&lt;h4 id=&#34;邀请对方协作&#34;&gt;邀请对方协作&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;配置远程仓库别名
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git remote add [别名] 仓库地址&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;这就将远程仓库用别名代替&lt;/li&gt;
+&lt;li&gt;git push 上传数据&lt;/li&gt;
+&lt;li&gt;git pull 拉取数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;远程跟踪分支
+&lt;ul&gt;
+&lt;li&gt;当我们clone一个git仓库，会默认创建一个origin/master远程跟踪分支&lt;/li&gt;
+&lt;li&gt;可以使用&lt;code&gt;git branch -vv&lt;/code&gt;查看远程跟踪分支&lt;/li&gt;
+&lt;li&gt;当我们用&lt;code&gt;git push 远程库别名 本地分支&lt;/code&gt;将本地分支推到远程仓库时，会创建一个远程跟踪分支，但是本地分支没有和该远程跟踪分支绑定&lt;/li&gt;
+&lt;li&gt;如果此时我们想要把本地修改提交到远程仓库，可以直接&lt;code&gt;git push&lt;/code&gt;，前提(已经和远程跟踪分支绑定)&lt;/li&gt;
+&lt;li&gt;由上述可以看出，如果想要直接&lt;code&gt;git push&lt;/code&gt;就必须让本地的分支关联远程跟踪分支。使用&lt;code&gt;git branch -u [仓库别名]/远程仓库分支名&lt;/code&gt;将本地已存在的分支绑定远程跟踪分支
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git checkout -b 本地分支名 远程跟踪分支名&lt;/code&gt;新建分支并且绑定远程跟踪分支&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git checkout --track 远程跟踪分支&lt;/code&gt;会创建一个鱼远程跟踪分支名字一样的本地分支，并且绑定该分支，前提是先把远程库fetch下来&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除远程分支&lt;code&gt;git origin --delete [分支名]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;列出仍在远程跟踪，但远程分总已被删除的无用分支&lt;code&gt;git remote origin --dry-run&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;冲突
+&lt;ul&gt;
+&lt;li&gt;当同时修改同一个文件同一行的时候，后pull的会产生冲突，这样要先将前者的修改pull下载，然后询问对方是否可以修改，自己在本地进行修改后，在提交，然后push上去。这就会被标记为已解决冲突&lt;/li&gt;
+&lt;li&gt;当远程存在文件，我们又在本地创建了相同文件，需要拉取数据，我们可以先提交，push上去，然后按照上述操作，解决冲突&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;pull-request-fork流程&#34;&gt;pull request (fork流程)&lt;/h4&gt;
+&lt;p&gt;想要参与某个项目但是没有权限&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参与者先fork 该仓库生成自己的远程仓库，然后去clone自己fork的仓库&lt;/li&gt;
+&lt;li&gt;然后作出修改，提交到自己的远程仓库&lt;/li&gt;
+&lt;li&gt;此时可以请求合并自己作出的修改&lt;/li&gt;
+&lt;li&gt;我们要同步本地和原项目的代码，需要配置别名&lt;code&gt;git remote add [别名] 原项目的地址&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;此时可以重新设置master的远程跟踪分支，先拿到该仓库的更新&lt;code&gt;git fetch 远程仓库别名&lt;/code&gt;，需要那个就fetch哪个，然后切换当前分支的远程跟踪分支&lt;code&gt;git branch -u 远程仓库别名/分支名&lt;/code&gt;，然后&lt;code&gt;git pull&lt;/code&gt;拉去数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 ">git -版本控制工具</a>
       </div>
       
