@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>递归 -迷宫问题 | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1593531996510">
+<link rel="shortcut icon" href="/favicon.ico?v=1593913990297">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -218,19 +218,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">7</span>
+        <span class="site-item-stat-count">9</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">9</span>
+        <span class="site-item-stat-count">12</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">9</span>
+        <span class="site-item-stat-count">12</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -1389,6 +1389,687 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/hou-duan-kai-fa-ji-chu-zhi-servlet/"" data-c="
+          &lt;h2 id=&#34;servlet&#34;&gt;Servlet&lt;/h2&gt;
+&lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+&lt;p&gt;servlet是java web开发的基石，是与平台无关的服务器组件，他是运行在servlet容器(tomcat)，负责与客户端通信的组件。&lt;/p&gt;
+&lt;h3 id=&#34;servlet功能&#34;&gt;Servlet功能:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;创建并返回基于客户端请求的动态HTML页面。&lt;/li&gt;
+&lt;li&gt;与数据库进行通信&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!-- more --&gt;
+&lt;h3 id=&#34;如何使用&#34;&gt;如何使用：&lt;/h3&gt;
+&lt;p&gt;如同简介所说，servlet是一组接口，因此我们想要使用servlet的功能，只需要自定义一个类去继承或者实现改接口即可。那么这个自定义的类就具备了接受客户端请求并作出响应的功能。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyServlet implements Servlet {
+ @Override
+ public void init(ServletConfig servletConfig) throws ServletException {
+ }
+ @Override
+ public ServletConfig getServletConfig() {
+ return null;
+ }
+ @Override
+ public void service(ServletRequest servletRequest, ServletResponse
+servletResponse) throws ServletException, IOException {
+ String id = servletRequest.getParameter(&amp;quot;id&amp;quot;);
+ System.out.println(&amp;quot;我是Servlet，我已经接收到了客户端发来的请求，参数是&amp;quot;+id);
+ servletResponse.setContentType(&amp;quot;text/html;charset=UTF-8&amp;quot;);
+ servletResponse.getWriter().write(&amp;quot;客户端你好，我已接收到你的请求&amp;quot;);
+ }
+ @Override
+ public String getServletInfo() {
+ return null;
+ }
+ @Override
+ public void destroy() {
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;浏览器不能直接访问Servlet文件，只能通过映射的方式来间接访问Servlet&lt;/p&gt;
+&lt;h3 id=&#34;配置映射&#34;&gt;配置映射&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;基于xml文件的配置方式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在web.xml文件为每个Servlet文件进行配置&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;servlet&amp;gt;
+ &amp;lt;servlet-name&amp;gt;myservlet&amp;lt;/servlet-name&amp;gt;
+ &amp;lt;servlet-class&amp;gt;com.henu.MyServlet&amp;lt;/servlet-class&amp;gt;
+&amp;lt;/servlet&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+ &amp;lt;servlet-name&amp;gt;myservlet&amp;lt;/servlet-name&amp;gt;
+ &amp;lt;url-pattern&amp;gt;/test&amp;lt;/url-pattern&amp;gt;
+&amp;lt;/servlet-mapping&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时启动项目，在地址栏访问/test就可以访问到MyServlet。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;注解方式配置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;只需要在实现了Servlet或继承了其子实现类的自定义类上面添加&lt;code&gt;WebServlet&lt;/code&gt;注释即可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@WebServlet(&amp;quot;/test&amp;quot;)
+public class MyServlet implements Servlet {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注解的方式与配置想，xml所实现的效果一致&lt;/p&gt;
+&lt;h3 id=&#34;servlet生命周期&#34;&gt;Servlet生命周期&lt;/h3&gt;
+&lt;p&gt;1、当浏览器访问 Servlet 的时候，Tomcat 会查询当前 Servlet 的实例化对象是否存在，如果不存在， 则通过反射机制动态创建对象，如果存在，直接执⾏第 3 步。&lt;/p&gt;
+&lt;p&gt;2、调⽤ init ⽅法完成初始化操作。&lt;/p&gt;
+&lt;p&gt;3、调⽤ service ⽅法完成业务逻辑操作。&lt;/p&gt;
+&lt;p&gt;4、关闭 Tomcat 时，会调⽤ destory ⽅法，释放当前对象所占⽤的资源。&lt;/p&gt;
+&lt;p&gt;Servlet 的⽣命周期⽅法：⽆参构造函数、init、service、destory&lt;/p&gt;
+&lt;p&gt;1、⽆参构造函数只调⽤⼀次，创建对象。&lt;/p&gt;
+&lt;p&gt;2、init 只调⽤⼀次，初始化对象。&lt;/p&gt;
+&lt;p&gt;3、service 调⽤ N 次，执⾏业务⽅法。&lt;/p&gt;
+&lt;p&gt;4、destory 只调⽤⼀次，卸载对象。&lt;/p&gt;
+&lt;p&gt;####ServletConfig&lt;/p&gt;
+&lt;p&gt;该接⼝是⽤来描述 Servlet 的基本信息的。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;getServletName() 返回 Servlet 的名称，全类名(带着包名的类名)&lt;/li&gt;
+&lt;li&gt;getInitParameter(String key) 获取 init 参数的值（web.xml）&lt;/li&gt;
+&lt;li&gt;getInitParameterNames() 返回所有的 initParamter 的 name 值，⼀般⽤作遍历初始化参数&lt;/li&gt;
+&lt;li&gt;getServletContext() 返回 ServletContext 对象，它是 Servlet 的上下⽂，整个 Servlet 的管理者。&lt;/li&gt;
+&lt;li&gt;ServletConfig 和 ServletContext 的区别：
+&lt;ol&gt;
+&lt;li&gt;ServletConfig 作⽤于某个 Servlet 实例，每个 Servlet 都有对应的 ServletConfig&lt;/li&gt;
+&lt;li&gt;ServletContext 作⽤ 于整个 Web 应⽤&lt;/li&gt;
+&lt;li&gt;⼀个 Web 应⽤对应⼀个 ServletContext，多个 Servlet 实例对应⼀个 ServletContext。&lt;/li&gt;
+&lt;li&gt;⼀个是局部对象，⼀个是全局对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;servlet层次结构&#34;&gt;Servlet层次结构&lt;/h3&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2020/07/05/eEGhIOylULMq4WS.png&#34; alt=&#34;image-20200705093648581&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;GenericServlet 实现 Servlet 接⼝，同时为它的⼦类屏蔽了不常⽤的⽅法，⼦类只需要重写 service ⽅ 法即可。 HttpServlet 继承 GenericServlet，根据请求类型进⾏分发处理，GET 进⼊ doGET ⽅法，POST 进⼊ doPOST ⽅法。&lt;/p&gt;
+&lt;p&gt;我们只需要⾃定义的 Servlet 类只需要继承 HttpServlet 即可，重新实现 doGET 和 doPOST。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package com.henu.servlet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+@WebServlet(&amp;quot;/test&amp;quot;)
+public class MyServlet extends HttpServlet {
+ @Override
+ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+throws ServletException, IOException {
+ resp.getWriter().write(&amp;quot;GET&amp;quot;);
+ }
+ @Override
+ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+throws ServletException, IOException {
+ resp.getWriter().write(&amp;quot;POST&amp;quot;);
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;jsp&#34;&gt;JSP&lt;/h2&gt;
+&lt;h3 id=&#34;内置对象&#34;&gt;内置对象&lt;/h3&gt;
+&lt;p&gt;1、request：表示⼀次请求，HttpServletRequest。&lt;/p&gt;
+&lt;p&gt;2、response：表示⼀次响应，HttpServletResponse。&lt;/p&gt;
+&lt;p&gt;3、pageContext：⻚⾯上下⽂，获取⻚⾯信息，PageContext。&lt;/p&gt;
+&lt;p&gt;4、session：表示⼀次会话，保存⽤户信息，HttpSession。&lt;/p&gt;
+&lt;p&gt;5、application：表示当前 Web 应⽤，全局对象，保存所有⽤户共享信息，ServletContext。&lt;/p&gt;
+&lt;p&gt;6、config：当前 JSP 对应的 Servlet 的 ServletConfig 对象，获取当前 Servlet 的信息。&lt;/p&gt;
+&lt;p&gt;7、out：向浏览器输出数据，JspWriter。&lt;/p&gt;
+&lt;p&gt;8、page：当前 JSP 对应的 Servlet 对象，Servlet。&lt;/p&gt;
+&lt;p&gt;9、exception：表示 JSP ⻚⾯发⽣的异常，Exception。&lt;/p&gt;
+&lt;p&gt;常⽤的是 request、response、session、application、pageContext&lt;/p&gt;
+&lt;h3 id=&#34;request-常用方法&#34;&gt;request 常⽤⽅法&lt;/h3&gt;
+&lt;p&gt;1、String getParameter(String key) 获取客户端传来的参数。&lt;/p&gt;
+&lt;p&gt;2、void setAttribute(String key,Object value) 通过键值对的形式保存数据。&lt;/p&gt;
+&lt;p&gt;3、Object getAttribute(String key) 通过 key 取出 value。&lt;/p&gt;
+&lt;p&gt;4、RequestDispatcher getRequestDispatcher(String path) 返回⼀个 RequestDispatcher 对象，该对 象的 forward ⽅法⽤于请求转发。&lt;/p&gt;
+&lt;p&gt;5、String[] getParameterValues() 获取客户端传来的多个同名参数。&lt;/p&gt;
+&lt;p&gt;6、void setCharacterEncoding(String charset) 指定每个请求的编码。&lt;/p&gt;
+&lt;h3 id=&#34;http-请求状态码&#34;&gt;HTTP 请求状态码&lt;/h3&gt;
+&lt;p&gt;200：正常&lt;/p&gt;
+&lt;p&gt;404：资源找不到&lt;/p&gt;
+&lt;p&gt;400：请求类型不匹配&lt;/p&gt;
+&lt;p&gt;500：Java 程序抛出异常&lt;/p&gt;
+&lt;h3 id=&#34;response-常用方法&#34;&gt;response 常⽤⽅法：&lt;/h3&gt;
+&lt;p&gt;sendRedirect(String path) 重定向，⻚⾯之间的跳转。&lt;/p&gt;
+&lt;h3 id=&#34;转发-getrequestdispatcher-和重定向-sendredirect-的区别&#34;&gt;转发 getRequestDispatcher 和重定向 sendRedirect 的区别：&lt;/h3&gt;
+&lt;p&gt;转发是将同⼀个请求传给下⼀个⻚⾯，重定向是创建⼀个新的请求传给下⼀个⻚⾯，之前的请求结束⽣ 命周期。 转发：同⼀个请求在服务器之间传递，地址栏不变，也叫服务器跳转。 重定向：由客户端发送⼀次新的请求来访问跳转后的⽬标资源，地址栏改变，也叫客户端跳转。 如果两个⻚⾯之间需要通过 request 来传值，则必须使⽤转发，不能使⽤重定向。&lt;/p&gt;
+&lt;h3 id=&#34;jsp-内置对象作用域&#34;&gt;JSP 内置对象作⽤域&lt;/h3&gt;
+&lt;p&gt;4个&lt;/p&gt;
+&lt;p&gt;page、request、session、application&lt;/p&gt;
+&lt;p&gt;通过进行设置和取出共享变量：&lt;/p&gt;
+&lt;p&gt;setAttribute、getAttribute&lt;/p&gt;
+&lt;p&gt;作⽤域：&lt;/p&gt;
+&lt;p&gt;page 作用域：对应的内置对象是 pageContext。&lt;/p&gt;
+&lt;p&gt;request 作⽤域：对应的内置对象是 request。&lt;/p&gt;
+&lt;p&gt;session 作⽤域：对应的内置对象是 session。&lt;/p&gt;
+&lt;p&gt;application 作⽤域：对应的内置对象是 application。&lt;/p&gt;
+&lt;p&gt;作用域的共享范围：&lt;/p&gt;
+&lt;p&gt;page &amp;lt; request &amp;lt; session &amp;lt; application&lt;/p&gt;
+&lt;p&gt;page 只在当前⻚⾯有效。&lt;/p&gt;
+&lt;p&gt;request 在⼀次请求内有效。&lt;/p&gt;
+&lt;p&gt;session 在⼀次会话内有效。&lt;/p&gt;
+&lt;p&gt;application 对应整个 WEB 应⽤的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;网站访问量统计&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;%
+ Integer count = (Integer) application.getAttribute(&amp;quot;count&amp;quot;);
+ if(count == null){
+ count = 1;
+ application.setAttribute(&amp;quot;count&amp;quot;,count);
+ }else{
+ count++;
+ application.setAttribute(&amp;quot;count&amp;quot;,count);
+ }
+%&amp;gt;
+您是当前的第&amp;lt;%=count%&amp;gt;位访客
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">后端开发基础之Servlet&JSP</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/vue-xue-xi/"" data-c="
+          &lt;h2 id=&#34;css&#34;&gt;CSS&lt;/h2&gt;
+&lt;h3 id=&#34;复合属性&#34;&gt;复合属性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;font&lt;/code&gt; : font-style font-weight font-size/line-height font-family;
+&lt;ul&gt;
+&lt;li&gt;不需要的属性可以省略&lt;/li&gt;
+&lt;li&gt;必须保留font-size和font-family&lt;/li&gt;
+&lt;li&gt;顺序不能改变&lt;/li&gt;
+&lt;li&gt;line-height包括文&lt;code&gt;字高度&lt;/code&gt;，&lt;code&gt;上间距&lt;/code&gt;，&lt;code&gt;下间距&lt;/code&gt;,该属性只改变上下间距&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;background&lt;/code&gt;:bcakground-color url(img.jpg) repeat-y fixed pos-x pos-y;
+&lt;ul&gt;
+&lt;li&gt;background的复合写法，没有顺序约定&lt;/li&gt;
+&lt;li&gt;背景颜色默认为&lt;code&gt;transparent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;背景固定默认为&lt;code&gt;scroll&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;背景默认为&lt;code&gt;repeat&lt;/code&gt;，可设置为&lt;code&gt;no-repeat&lt;/code&gt;取消背景重复&lt;/li&gt;
+&lt;li&gt;背景色半透明&lt;code&gt;background: rgba(0,0,0,0.3)&lt;/code&gt;,设置alpha通道，可省略0，直接.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;border&lt;/code&gt;:border-width border-style border-color
+&lt;ul&gt;
+&lt;li&gt;定义元素的边框的粗细，样式，颜色&lt;/li&gt;
+&lt;li&gt;没有顺序规定&lt;/li&gt;
+&lt;li&gt;可以单独修改某个边框，例如：&lt;code&gt;border-top border-left&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;border-collapse: collapse&lt;/code&gt;合并相邻边框&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;padding&lt;/code&gt;设置内边距
+&lt;ul&gt;
+&lt;li&gt;1个值，代表上下左右都是这个值&lt;/li&gt;
+&lt;li&gt;2个值，代表上下，左右&lt;/li&gt;
+&lt;li&gt;三个值，代表，上，左右，下&lt;/li&gt;
+&lt;li&gt;四个值，代表上，右，下，左(顺时针)&lt;/li&gt;
+&lt;li&gt;设置padding后，内容和盒子就有了距离，并且会改变盒子大小&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在盒子里的块元素，不设置长宽，就默认不会撑破盒子&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;margin&lt;/code&gt;设置盒子外边距
+&lt;ul&gt;
+&lt;li&gt;使用方式与&lt;code&gt;padding&lt;/code&gt;相同&lt;/li&gt;
+&lt;li&gt;水平居中(盒子设置了宽度)，将盒子左右外边距设置为&lt;code&gt;auto&lt;/code&gt;即可&lt;/li&gt;
+&lt;li&gt;让行内元素或行内块元素居中，只需要给其父元素添加&lt;code&gt;text-align: center&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;box-shadow&lt;/code&gt;: h-shadow v-shadow blur spread color inset
+&lt;ul&gt;
+&lt;li&gt;一般省略inset，默认为outset，但是不能显式指定为outset&lt;/li&gt;
+&lt;li&gt;blur为模糊距离，spread为阴影尺寸，color为颜色，这些都是可选属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;text-shadow&lt;/code&gt;: h-shadow v-shadow blur color
+&lt;ul&gt;
+&lt;li&gt;基本与盒子阴影用法一致&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;常用单位&#34;&gt;常用单位&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;px （绝对单位）
+&lt;ul&gt;
+&lt;li&gt;1px就是一个点&lt;/li&gt;
+&lt;li&gt;在调整font-size时用px单位，通常要设置line-height（避免行距过大或过小）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;em （相对单位）
+&lt;ul&gt;
+&lt;li&gt;相当于大小，永远是其上一层次的倍数&lt;/li&gt;
+&lt;li&gt;有累乘特性。（例如 &lt;div height=10px&gt;&lt;div height=2em&gt;&lt;div height = 2em&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;,最内侧div height为10x2x2=40px）&lt;/li&gt;
+&lt;li&gt;通常一起设置为 font-size 和 line-height 实现 字体大小和行距按比例缩放&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rem （相对单位）
+&lt;ul&gt;
+&lt;li&gt;作用同上em，只不过是相对于html的倍数&lt;/li&gt;
+&lt;li&gt;由此即可去除累乘特性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;vw（viewport width），vh（viewport height）
+&lt;ul&gt;
+&lt;li&gt;是我们看到的一个页面的宽度，高度大小的百分比倍&lt;/li&gt;
+&lt;li&gt;值只能再1-100&lt;/li&gt;
+&lt;li&gt;50vw就是半个可是界面的宽度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;vmin,vmax
+&lt;ul&gt;
+&lt;li&gt;vmin为屏幕较短一边，vmax为较长一边&lt;/li&gt;
+&lt;li&gt;为了适配移动设备和旋转设备&lt;/li&gt;
+&lt;li&gt;常用于响应式布局&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;选择器&#34;&gt;选择器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基础选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标签选择器&lt;/li&gt;
+&lt;li&gt;id选择器&lt;/li&gt;
+&lt;li&gt;类名选择器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;复合选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;后代选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础选择器 + 空格 + 基础选择器&lt;/li&gt;
+&lt;li&gt;不会选择到空格前面的基础选择器选择的元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;子代选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础选择器 + &amp;gt; + 基础选择器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;并集选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础选择器 + , + 基础选择器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加号选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础选择器 + &lt;code&gt;+&lt;/code&gt; + 基础选择器&lt;/li&gt;
+&lt;li&gt;会选则+前的选择器同一级的，紧跟着他的 符合+好后选择器选择的内容的元素&lt;/li&gt;
+&lt;li&gt;若没有紧挨的匹配项则不会选择到任何东西（即有其他元素相隔就匹配不到任何元素）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;~选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类似+选择器，是不过是同一层后面所有的适配元素&lt;/li&gt;
+&lt;li&gt;即使有其他元素相隔，也会选择到&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;*&lt;/code&gt;选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择所有元素，通常用于清除默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以与上述选择器混合使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;属性选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tag[属性]会选择带有此属性tag元素&lt;/li&gt;
+&lt;li&gt;支持搜索功能
+&lt;ul&gt;
+&lt;li&gt;用a[href^=https://”]可以选择href&lt;strong&gt;开头&lt;/strong&gt;为https://的所有a标签&lt;/li&gt;
+&lt;li&gt;用a[href$=https://”]可以选择href&lt;strong&gt;结尾&lt;/strong&gt;为https://的所有a标签&lt;/li&gt;
+&lt;li&gt;用a[href*=https”]可以选择href中含有https这个关键词的所有a标签&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;伪类选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;适用于任何元素的伪类选择器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a:link 选择所有没被选择过的链接&lt;/li&gt;
+&lt;li&gt;a:visited 选择已经被选择过的链接&lt;/li&gt;
+&lt;li&gt;a:hover 选择鼠标指针位于其上的链接&lt;/li&gt;
+&lt;li&gt;a:active 选择活动链接&lt;/li&gt;
+&lt;li&gt;安装LVHA的顺序写以确保css生效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;:nth-child(index)选择器 不仅仅使用于a标签&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必须于其他选择器结合，选择一组元素中的特定元素&lt;/li&gt;
+&lt;li&gt;index=even时为选择偶数位置的元素&lt;/li&gt;
+&lt;li&gt;3n+0 选择在3倍数位置的元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;:foucs（适用于input元素）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择有焦点的表单元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/14333787-0ae823b149ed21f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/748/format/webp&#34; alt=&#34;伪类&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;css三大特性&#34;&gt;CSS三大特性&lt;/h3&gt;
+&lt;h4 id=&#34;层叠性&#34;&gt;层叠性&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;必须是相同的选择器设置相同的属性才会产生冲突&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;样式冲突的解决方式是就近原则，哪个样式离得近，使用哪个样式。只会覆盖冲突的属性，不会覆盖其他的属性。&lt;/p&gt;
+&lt;p&gt;选择器不同，则考虑其优先级&lt;/p&gt;
+&lt;h4 id=&#34;继承性&#34;&gt;继承性&lt;/h4&gt;
+&lt;p&gt;字标签会继承父标签的某些属性&lt;/p&gt;
+&lt;p&gt;参考&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/CSS/inheritance&#34;&gt;MDN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;行高的继承，行高可以跟单位，也可以不跟单位，不跟单位时，就是当前元素文字大小的em。&lt;/p&gt;
+&lt;h4 id=&#34;优先级&#34;&gt;优先级&lt;/h4&gt;
+&lt;p&gt;优先级参考&lt;a href=&#34;https://www.runoob.com/w3cnote/css-style-priority.html&#34;&gt;菜鸟教程&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;盒子模型&#34;&gt;盒子模型&lt;/h3&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://www.runoob.com/images/box-model.gif&#34; alt=&#34;CSS box-model&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;清除浮动&#34;&gt;清除浮动&lt;/h3&gt;
+&lt;p&gt;当有些父盒子，不方便指定高度，而其内部的子元素是浮动的，则该父盒子就会没有高度。因为浮动是不占用空间的。为了解决浮动给父元素带来的影响，就需要清除浮动。&lt;/p&gt;
+&lt;p&gt;清除浮动的方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;额外标签法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在最后一个浮动元素后面添加一个&lt;strong&gt;空的块级元素&lt;/strong&gt;(br)&lt;/li&gt;
+&lt;li&gt;给这个标签添加&lt;code&gt;clear: both&lt;/code&gt;属性即可&lt;/li&gt;
+&lt;li&gt;优点：通俗易懂，书写方便    缺点：添加了无意义的标签，结构比较差&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;父级元素添加&lt;code&gt;overflow&lt;/code&gt;属性&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;给其父元素(包裹浮动元素的元素)添加&lt;code&gt;overflow&lt;/code&gt;属性，值可以为&lt;code&gt;hidden&lt;/code&gt;或&lt;code&gt;scroll&lt;/code&gt;或&lt;code&gt;auto&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;优点：代码简介  缺点：无法显示溢出部分&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;父级元素添加&lt;code&gt;::after&lt;/code&gt;为元素&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;给父元素添加&lt;code&gt;::after&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;伪元素必须有&lt;code&gt;content&lt;/code&gt;属性，并且把他转换为块元素&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置&lt;code&gt;clear: both&lt;/code&gt;属性，清除浮动&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.box::after {
+    content: &amp;quot;&amp;quot;;
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;父级元素添加双伪元素&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在添加&lt;code&gt;::after&lt;/code&gt;伪元素的基础上&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加&lt;code&gt;::befor&lt;/code&gt;伪元素&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.box::befor , .box::after {
+    content: &amp;quot;&amp;quot;;
+    display : table;
+}
+.box::after {
+    clear: both;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;css属性书写顺序&#34;&gt;CSS属性书写顺序&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;布局定位属性:&lt;code&gt;display/position/float/clear/visibility/overflow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自身属性:&lt;code&gt;width/height/margin/padding/border/background&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文本属性:&lt;code&gt;color/font/text-decoration/text-align/white-space/break-word&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;其他属性:&lt;code&gt;content/cursor/border-radius/box-shadow/background:linear-gradient&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;定位position&#34;&gt;定位position&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;定位模式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;static&lt;/code&gt;静态定位
+&lt;ol&gt;
+&lt;li&gt;元素默认的定位方式，也就是无定位&lt;/li&gt;
+&lt;li&gt;按照标准流的特性摆放位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;relative&lt;/code&gt;相对定位
+&lt;ol&gt;
+&lt;li&gt;相对于其原位置偏移&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不会脱离标准流&lt;/strong&gt;，会继续占有其原来的位置&lt;/li&gt;
+&lt;li&gt;最典型的应用就是作为绝对定位的父盒子&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;absolute&lt;/code&gt;绝对定位
+&lt;ol&gt;
+&lt;li&gt;相对与其祖先元素定位&lt;/li&gt;
+&lt;li&gt;绝对定位不再占有原来的位置，&lt;strong&gt;脱离了标准流&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;如果没有显示的父元素并且其父元素要有定位属性(静态定位除外)，其父元素为html&lt;/li&gt;
+&lt;li&gt;如果其父元素无定位，父元素的父元素有定位，则相对于距离其最近的有定位的祖先元素进行边偏移&lt;/li&gt;
+&lt;li&gt;最典型的就是子绝父相&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fixed&lt;/code&gt;固定定位
+&lt;ol&gt;
+&lt;li&gt;以浏览器的可视窗口为参考定位&lt;/li&gt;
+&lt;li&gt;为了让其靠着版心固定
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;left&lt;/code&gt;或者&lt;code&gt;right&lt;/code&gt;设置为50%&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;margin&lt;/code&gt;减去或加上版心宽度的一半&lt;/li&gt;
+&lt;li&gt;用&lt;code&gt;margin&lt;/code&gt;调整与版心的间距&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;不占有原先位置&lt;strong&gt;脱离标准流&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stick&lt;/code&gt;粘性定位
+&lt;ol&gt;
+&lt;li&gt;以浏览器可视窗口为参照&lt;/li&gt;
+&lt;li&gt;占有原先的位置，&lt;strong&gt;没有脱离标准流&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;必须设置一个边偏移才会生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;边偏移&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;top&lt;/code&gt;，定义元素相对于其父元素的上边线距离&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bottom&lt;/code&gt;，定义元素相对于其父元素的下边线距离&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;left&lt;/code&gt;，定义元素相对于其父元素的左边线距离&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;right&lt;/code&gt;，定义元素相对于其父元素的右边线距离&lt;/li&gt;
+&lt;li&gt;只有存在定位模式，边偏移才会生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定位叠放顺序&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;z-index&lt;/code&gt;: 数值，默认auto&lt;/li&gt;
+&lt;li&gt;数值可以是正整数，负整数和0，数值越大，盒子越先显示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定位拓展&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;居中绝对定位的盒子
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;left&lt;/code&gt;: 50%&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;margin-left&lt;/code&gt;: -width/2px&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;绝对定位的盒子
+&lt;ol&gt;
+&lt;li&gt;设置&lt;code&gt;margin: auto&lt;/code&gt;是失效的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;定位特殊特性
+&lt;ol&gt;
+&lt;li&gt;给行内元素添加绝对定位或者固定定位，
+&lt;ol&gt;
+&lt;li&gt;就可以给该元素设置宽和高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;块元素添加了绝对定位或者固定定位，
+&lt;ol&gt;
+&lt;li&gt;默认宽度或高度是其内容的大小&lt;/li&gt;
+&lt;li&gt;可以给改元素设置长和宽&lt;/li&gt;
+&lt;li&gt;没有添加的时候，默认是占一行&lt;/li&gt;
+&lt;li&gt;脱离标准流的盒子不会触发外边距塌陷&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;脱标与浮动
+&lt;ol&gt;
+&lt;li&gt;脱标元素会完全失去原本的位置，会压住其下面的盒子及内容&lt;/li&gt;
+&lt;li&gt;浮动只会压住下面标准流的盒子，不会压住下面标准流盒子里面的文字(图片)&lt;/li&gt;
+&lt;li&gt;浮动最初产生的目的就是做文字环绕效果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;隐藏元素&#34;&gt;隐藏元素&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;display&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;none
+&lt;ol&gt;
+&lt;li&gt;隐藏对象&lt;/li&gt;
+&lt;li&gt;不再占有原来的位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;block
+&lt;ol&gt;
+&lt;li&gt;显示对象&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;visibility&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;inherit:继承父对象的可见性&lt;/li&gt;
+&lt;li&gt;visible，显示元素&lt;/li&gt;
+&lt;li&gt;hidden，隐藏元素&lt;/li&gt;
+&lt;li&gt;collapse，用来隐藏表格的行或列&lt;/li&gt;
+&lt;li&gt;会继续占有原来的位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;overflow&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;visible，显示溢出部分&lt;/li&gt;
+&lt;li&gt;hidden，只隐藏溢出部分&lt;/li&gt;
+&lt;li&gt;scroll，设置一个滚动条&lt;/li&gt;
+&lt;li&gt;auto，会在需要的时候设置一个滚动条&lt;/li&gt;
+&lt;li&gt;只显示或隐藏溢出的部分&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;css技巧&#34;&gt;CSS技巧&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;css小三角的做法&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.box {
+    width: 0;
+    height: 0;
+    border-top: 10px solid red;
+}
+/*默认没有大小的盒子，的每个边框就是一个三角*/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;行内块和文字垂直居中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.image {
+    vertical-align: middle;
+}
+
+/*让图片和文字垂直居中对齐*/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;图片下面的缝隙&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/*可以将图片转换为块元可以将图片转换为块元素*/
+.image {
+    display: block;
+}
+/*将图片改为默认非基线对齐*/
+.image {
+    vertical-align: bottom;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;​	4.	单行文本溢出隐藏&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.p {
+    /*禁止文字换行，normal为默认值*/
+    white-space: nowarp;
+    /*溢出隐藏*/
+    overflow: hidden;
+    /*文字溢出部分用...代替*/
+    textoverflow: ellipsos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;5.margin负值妙用&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/*盒子浮动后要加边框，取消1+1=2的边框*/
+ul li {
+    float: left;
+    border: 1px solid red;
+    margin-left: -1px;
+}
+/*盒子是先浮动，后margin，
+ *第一个盒子浮动后，左移一个px，
+ *第二个盒子浮动后，会紧挨着第一个盒子*/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/*实现鼠标经过显示边框*/
+/*只需要给相应的盒子添加相对定位或者改变z-index*/
+ul li:hover {
+    position:relative;
+    border: 1px solid blue;
+}
+/*在其他盒子都有定位的情况下可以这只z-index*/
+ul li:hover {
+    border: 1px solid blue;
+    z-index: 5;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;行内块元素的居中&lt;/p&gt;
+&lt;p&gt;只要给其父盒子添加&lt;code&gt;text-align: center&lt;/code&gt;属性即可&lt;/p&gt;
+&lt;p&gt;可以把一些元素转换为行内块元素，快捷居中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;css直角三角形&lt;/p&gt;
+&lt;p&gt;参照1,只保留两个边框就行了，用边框的宽度调整三角形形状&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+">Vue学习 (未完待续)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://seulg.github.io/post/win10-bu-shu-spark-kai-fa-huan-jing/"" data-c="
