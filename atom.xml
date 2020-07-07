@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seulg.github.io/</id>
     <title>Seul</title>
-    <updated>2020-07-07T10:11:11.608Z</updated>
+    <updated>2020-07-07T10:11:59.313Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://seulg.github.io/"/>
     <link rel="self" href="https://seulg.github.io/atom.xml"/>
@@ -10,6 +10,830 @@
     <logo>https://seulg.github.io/images/avatar.png</logo>
     <icon>https://seulg.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Seul</rights>
+    <entry>
+        <title type="html"><![CDATA[MyBatis入门]]></title>
+        <id>https://seulg.github.io/post/mybatis-ru-men/</id>
+        <link href="https://seulg.github.io/post/mybatis-ru-men/">
+        </link>
+        <updated>2020-07-06T13:52:08.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="mybatis">MyBatis</h2>
+<p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+<h3 id="简介">简介</h3>
+<p>实现了ORMapping: Object Relationship Mapping 对象关系映射，其中对象指面向对象，关系指关系型数据库</p>
+<p>Java到MYSQL的映射，开发者可以以面向对象的思想管理数据库。</p>
+<h3 id="优点">优点</h3>
+<ol>
+<li>与JDBC相比，减少了50%以上的代码量</li>
+<li>MyBatis是最简单的持久化框架，小巧并且简单易学</li>
+<li>MyBatis相当灵活，不会队应用程序或者数据库的现有设计强加任何影响。SQL写在XML里，从程序中彻底分离，降低耦合度，便于统一管理和优化，并可重用。</li>
+<li>提供XML标签，支持编写动态的SQL语句。</li>
+<li>提供XML映射标签，支持对象与数据库的ORM字段关系映射。</li>
+</ol>
+<p>Tips：DButils也实现了的ORM映射</p>
+<h4 id="缺点">缺点</h4>
+<ol>
+<li>SQL写在XML里面，对sql语句的基础要求高</li>
+<li>SQL语句针对特定的数据库，因此不能轻易更换数据库</li>
+</ol>
+<h3 id="project-lombok">ProJect LomBok</h3>
+<h4 id="简介-2"><a href="https://projectlombok.org/">简介</a></h4>
+<p><code>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java. Never write another getter or equals method again, with one annotation your class has a fully featured builder, Automate your logging variables, and much more.</code></p>
+<p>Project Lombok是一个Java^(TM)实用工具，可用来帮助开发者消除Java中的冗长代码，尤其是对简单Java对象(POJO)，它通过注解实现这一目的。总结一句话，就是简单的注释，替代get set等方法。</p>
+<h4 id="原理">原理</h4>
+<p>Lombok的原理设计到了JDK6的JSR269规范(插入化注解API)，具体简介可以看这篇<a href="https://blog.csdn.net/ni_hao_fan/article/details/99445073">博客</a>，这里仅提供简单的介绍：</p>
+<p>JSR269规范提供了一系列标准API去处理Java的Annotation(注解)，JSR 269用Annotation Processor实现了在<strong>编译期</strong>而非运行期对注解的处理，也就是说，当javac把java文件编译为class文件时，就能处理注解的内容，相当于是编译器的一个插件这就是插入式注解名字的由来，编译器会调用<code>Annotation Processor</code>方法，如果产生了新的Java代码，编译器会再调用一次，直到没有新的代码产生。</p>
+<p><strong>注意区分Spring的注解是运行时执行的注解，Lombok是编译期注解</strong></p>
+<p>总结：也就是说Lombok可以让javac去生成相应的get和set等方法，并编译</p>
+<h4 id="安装">安装：</h4>
+<p>此处可以参考官网install条目，一下仅仅展示Maven+IDEA的安装过程</p>
+<ol>
+<li>maven项目中要导入相应的坐标</li>
+</ol>
+<p>Maven坐标：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;version&gt;1.18.6&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ol start="2">
+<li>安装IDEA插件，再Pluing中搜索Lombok ,安装插件(必须安装，否则IDEA会报错)
+<ol>
+<li>此处若搜索不出来，可以去IDEA官网下载对应版本的插件，本地安装即可</li>
+<li>重启完IDEA，给实体类添加<code>@Data</code>注解，点击侧边栏<code>Structure</code>就可以看到注解所添加的方法</li>
+</ol>
+</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/07/06/QcqIi2VhDpOf1kx.png" alt="image-20200706235909064" loading="lazy"></figure>
+<h4 id="常用注解详解">常用注解详解</h4>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2020/07/06/tfJ2rOY8c5EAbaM.png" alt="image-20200706235941538" loading="lazy"></figure>
+<blockquote>
+<p>@Getter &amp; @Setter</p>
+</blockquote>
+<ul>
+<li><code>@Getter</code>
+<ul>
+<li>默认是public</li>
+<li>可以设置访问级别，例：<code>@Getter(AccessLevel.PROTEVTED)</code></li>
+</ul>
+</li>
+<li><code>@Setter</code>
+<ul>
+<li>默认public，参数默认增加了<code>final</code>修饰符</li>
+</ul>
+</li>
+<li>作用范围
+<ul>
+<li>给成员变量设置，就仅仅给该成员变量设置相应方法</li>
+<li>给类添加，则能给所有成员变量都生成getter和setter方法</li>
+</ul>
+</li>
+<li>有<code>static</code>修饰的成员变量
+<ul>
+<li>则注解不会对该变量生成</li>
+</ul>
+</li>
+<li>有<code>final</code>修饰的成员变量
+<ul>
+<li>仅仅会生成getter方法</li>
+</ul>
+</li>
+<li>若要排除某个成员变量
+<ul>
+<li>只需要将该成员变量的访问级别设置为NULL</li>
+<li><code>Getter(AccessLevel.NONE)</code></li>
+<li><code>Setter(AccessLevel.NONE)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>@ToString</p>
+</blockquote>
+<ul>
+<li>作用范围：
+<ul>
+<li>只能写在类上</li>
+<li>同样不会作用于有<code>static</code>修饰的变量</li>
+</ul>
+</li>
+<li>重写了<code>toString()</code>方法</li>
+<li>用exclude属性排除字段
+<ul>
+<li><code>@ToString(exclude={&quot;name&quot;,&quot;id&quot;})</code></li>
+</ul>
+</li>
+<li>用of属性指定输出字段
+<ul>
+<li><code>@ToString(of={&quot;id&quot;,&quot;name&quot;})</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>@EqualsAndHashCode</p>
+</blockquote>
+<ul>
+<li>会生成，equals()方法，canEquals()，hashCode()方法</li>
+<li>通过exclude属性，排除某些属性</li>
+<li>通过of属性，指定判断的属性</li>
+<li>equals()，按以下顺序判断
+<ul>
+<li>会比较两个对象是不是同一个对象，是true</li>
+<li>不是会比较是不是同类对象，不是就false</li>
+<li>是可以比较的就会判断成员变量是否相等
+<ul>
+<li>全一样才true</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>canEquals()
+<ul>
+<li>判断是否为同类对象</li>
+<li>是true，否false</li>
+</ul>
+</li>
+<li>hashCode()
+<ul>
+<li>根据类里的所有字段生成hashCode</li>
+<li>如果实现了此方法，就可以通过hashCode判断两个对象是否为一个对象</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>@NonNull</p>
+</blockquote>
+<ul>
+<li>作用于成员方法上时，写在参数列表里
+<ul>
+<li>例：<code>public void (@NonNull String str)</code></li>
+</ul>
+</li>
+<li>给字段设置@NonNull，写在字段的修饰符前</li>
+</ul>
+<blockquote>
+<p>@NoArgsConstructor &amp; RequiredArgsConstructor &amp; @AllArgsConstructor</p>
+</blockquote>
+<ul>
+<li>给类设置构造参数</li>
+<li>RequiredArgsConstructor 会去寻找有<code>@NonNul</code>l标记的和<code>final</code>修饰的<strong>无初始值</strong>的字段作为构造函数的参数列表</li>
+<li>AllArgsConstructor顾名思义</li>
+</ul>
+<blockquote>
+<p>@Data</p>
+</blockquote>
+<ul>
+<li>全能注解，囊括了之前的所有标签的作用</li>
+<li>构造函数实现的是RequiredArgsConstructor</li>
+</ul>
+<blockquote>
+<p>@Build</p>
+</blockquote>
+<ul>
+<li>
+<p>生成一个内部类( 类名Builder)，以字段名为方法名去构造了一系列方法</p>
+</li>
+<li>
+<p>返回的对象为  类名Builder</p>
+</li>
+<li>
+<p>实际上是给类提供了一个build的生成方式</p>
+<p><code>User user = UserBulider.name(&quot;&quot;).id.date(&quot;&quot;).bulid()</code></p>
+</li>
+</ul>
+<blockquote>
+<p>@Log</p>
+</blockquote>
+<p>设置了一个log成员变量，直接在想要输出日志的方法里写</p>
+<p><code>log.info(&quot;&quot;)</code>即可</p>
+<blockquote>
+<p>val</p>
+</blockquote>
+<p>关键子类型，不会限制变量类型</p>
+<p><code>var map = new HashMap&lt;String,String&gt;()</code></p>
+<blockquote>
+<p>@Cleanup</p>
+</blockquote>
+<ul>
+<li>关闭资源</li>
+<li>给需要关闭的资源加上@Cleanup，lombol就会在是用完，自动释放资源</li>
+</ul>
+<h3 id="mybatis核心类">MyBatis核心类</h3>
+<figure data-type="image" tabindex="3"><img src="https://s1.ax1x.com/2020/07/06/UiOwO1.png" alt="UiOwO1.png" loading="lazy"></figure>
+<h4 id="怎么使用">怎么使用</h4>
+<p>Maven导入依赖，MyBatis是队JDBC的封装，但是没有取代JDBC，因此链接数据库仍然要导入mysql的依赖,lombok是简化实体类的开发</p>
+<pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+        &lt;version&gt;3.4.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;8.0.11&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.18.6&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!--        c3p0连接池--&gt;
+    &lt;!-- https://mvnrepository.com/artifact/com.mchange/c3p0 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mchange&lt;/groupId&gt;
+        &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
+        &lt;version&gt;0.9.5.5&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;!--让程序能读取到非resource文件夹的配置文件--&gt;
+&lt;build&gt;
+    &lt;resources&gt;
+        &lt;resource&gt;
+            &lt;directory&gt;src/main/java&lt;/directory&gt;
+            &lt;includes&gt;
+                &lt;include&gt;**/*.xml&lt;/include&gt;
+            &lt;/includes&gt;
+        &lt;/resource&gt;
+    &lt;/resources&gt;
+&lt;/build&gt;
+</code></pre>
+<ul>
+<li>创建新的表</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+create table mybatis(
+    id int primary key auto_increment,
+    username varvhar(11)
+    password varvhar(11)
+    age int
+)
+</code></pre>
+<ul>
+<li>创建实体类</li>
+</ul>
+<pre><code class="language-java">package com.henu.entity;
+
+import lombok.Data;
+
+@Data
+public class User {
+    private long id;
+    private String username;
+    private String password;
+    private int age;
+}
+</code></pre>
+<ul>
+<li>创建Mybatis配置文件</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+    &lt;!--配置mybatis运行环境--&gt;
+    &lt;environments default=&quot;development&quot;&gt;
+        &lt;environment id=&quot;development&quot;&gt;
+            &lt;!--配置JDBC事务管理--&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;/&gt;
+            &lt;!--配置JDBC数据源连接池--&gt;
+            &lt;dataSource type=&quot;com.henu.utils.c3p0DataSourceFactory&quot;&gt;
+                &lt;property name=&quot;driverClass&quot; value=&quot;com.mysql.cj.jdbc.Driver&quot;/&gt;
+                &lt;property name=&quot;jdbcUrl&quot; value=&quot;jdbc:mysql://localhost:3306/springioc?serverTimezone=GMT%2B8&quot;/&gt;
+                &lt;property name=&quot;user&quot; value=&quot;root&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;gyg06103234&quot;/&gt;
+                &lt;!--配置初始连接数--&gt;
+                &lt;property name=&quot;initialPoolSize&quot; value=&quot;5&quot;/&gt;
+                &lt;!--配置最大保留连接数--&gt;
+                &lt;property name=&quot;maxPoolSize&quot; value=&quot;20&quot;/&gt;
+                &lt;!--配置最小保留连接数--&gt;
+                &lt;property name=&quot;minPoolSize&quot; value=&quot;5&quot;/&gt;
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+    &lt;!--    注册UserMapper.xml--&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource=&quot;com/henu/mapper/UserMapper.xml&quot;/&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
+<p>注意此处整合c3p0,需要，dataSource必须是实现了DataSourceFactory接口的子类</p>
+<p>其中自定义类<code>c3p0DataSourceFactory</code>继承自<code>UnpooledDataSourceFactory</code>，<code>UnpooledDataSourceFactory</code>实现了<code>DataSourceFactory</code>接口，并且有一个成员变量<code>dataSource</code></p>
+<pre><code class="language-java">package com.henu.utils;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.ibatis.datasource.unpooled.UnpooledDataSourceFactory;
+
+public class c3p0DataSourceFactory extends UnpooledDataSourceFactory {
+    //自定义的构造方法
+    public c3p0DataSourceFactory() {
+        //从父类继承过来的成员变量dataSource，右边是创建一个c3p0的数据库连接池对象。
+        //需要提供一个c3p0.xml配置文件
+        this.dataSource=new ComboPooledDataSource();
+    }
+}
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/07/07/6aHEPckqdiX5s37.png" alt="image-20200707100531559" loading="lazy"></figure>
+<h4 id="两种方式">两种方式</h4>
+<blockquote>
+<p>使用原生接口</p>
+</blockquote>
+<p>MyBatis框架需要开发者自定义SQL语句，写在Mapper.xml文件中，实际开发中，会为每个实体类创建对应的Mapper.xml，定义管理该对象数据SQl语句</p>
+<ol>
+<li>创建Mapper.xml文件</li>
+</ol>
+<pre><code class="language-xml">&lt;!DOCTYPE mapper
+        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.henu.mapper.UserMapper&quot;&gt;
+    &lt;insert id=&quot;save&quot; parameterType=&quot;com.henu.entity.User&quot;&gt;
+        insert into mybatis(username,password,age) value (#{username},#{password},#{age})
+    &lt;/insert&gt;
+&lt;/mapper&gt;
+</code></pre>
+<ul>
+<li>namespace 通常设置为⽂件所在包+⽂件名的形式。</li>
+<li>insert 标签表示执⾏添加操作。</li>
+<li>select 标签表示执⾏查询操作。</li>
+<li>update 标签表示执⾏更新操作。</li>
+<li>delete 标签表示执⾏删除操作。</li>
+<li>id 是实际调⽤ MyBatis ⽅法时需要⽤到的参数。</li>
+<li>parameterType 是调⽤对应⽅法时参数的数据类型。</li>
+</ul>
+<ol start="2">
+<li>在全局配置文件中注册UserMapper.xml</li>
+</ol>
+<pre><code class="language-xml">&lt;!--    注册UserMapper.xml--&gt;
+&lt;mappers&gt;
+    &lt;mapper resource=&quot;com/henu/mapper/UserMapper.xml&quot;/&gt;
+&lt;/mappers&gt;
+</code></pre>
+<ol start="3">
+<li>调用原生接口</li>
+</ol>
+<pre><code class="language-java">package com.henu.test;
+
+import com.henu.entity.User;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.InputStream;
+
+public class Main {
+    public static void main(String[] args) {
+        //        加载配置文件
+        InputStream res = Main.class.getClassLoader().getResourceAsStream(&quot;mybatis.xml&quot;);
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(res);
+        SqlSession sqlSession = factory.openSession();
+        //com.henu.mapper.UserMapper为mapper的命名空间
+        //save为方法id
+        String statement = &quot;com.henu.mapper.UserMapper.save&quot;;
+        User user = new User(1L, &quot;admin&quot;, &quot;gyg&quot;, 20);
+        sqlSession.insert(statement,user);
+        //提交事务
+        sqlSession.commit();
+    }
+}
+</code></pre>
+<blockquote>
+<p>通过Mapper代理实现自定义接口</p>
+</blockquote>
+<ul>
+<li>自定义接口，定义相关业务方法</li>
+<li>编写与方法相对应的Mapper.xml</li>
+</ul>
+<ol>
+<li>自定义接口</li>
+</ol>
+<pre><code class="language-java">package com.henu.repository;
+
+import com.henu.entity.User;
+
+import java.util.List;
+
+public interface AccountRepository {
+    int save(User user);
+    int update(User user);
+    int deleteById(long id);
+    List&lt;User&gt; findAll();
+    User findById(long id);
+}
+</code></pre>
+<ol start="2">
+<li>创建接口对应的Mapper.xml，定义接口方法对应的SQL语句</li>
+</ol>
+<ul>
+<li>
+<p>statement 标签可根据 SQL 执⾏的业务选择 insert、delete、update、select。</p>
+</li>
+<li>
+<p>MyBatis 框架会根据规则⾃动创建接⼝实现类的代理对象。</p>
+</li>
+</ul>
+<p>规则：</p>
+<ul>
+<li>Mapper.xml 中 namespace 为接⼝的全类名。</li>
+<li>Mapper.xml 中 statement 的 id 为接⼝中对应的⽅法名。</li>
+<li>Mapper.xml 中 statement 的 parameterType 和接⼝中对应⽅法的参数类型⼀致。</li>
+<li>Mapper.xml 中 statement 的 resultType 和接⼝中对应⽅法的返回值类型⼀致。
+<ul>
+<li>若返回值为int，可以不写</li>
+<li>若返回值为一个集合，则配置集合泛型即可，不用配置集合类型</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;!DOCTYPE mapper
+        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.henu.repository.AccountRepository&quot;&gt;
+    &lt;insert id=&quot;save&quot; parameterType=&quot;com.henu.entity.User&quot;&gt;
+        insert into mybatis(username, password, age) value (#{usernaem},#{password},#{age})
+    &lt;/insert&gt;
+    &lt;update id=&quot;update&quot; parameterType=&quot;com.henu.entity.User&quot;&gt;
+        update mybatis set username = #{username}, password = #{password}, age = #{age} where id = #{id}
+    &lt;/update&gt;
+    &lt;delete id=&quot;deleteById&quot; parameterType=&quot;long&quot; &gt;
+        delete from mybatis where id = #{id}
+    &lt;/delete&gt;
+    &lt;select id=&quot;findAll&quot; resultType=&quot;com.henu.entity.User&quot;&gt;
+        select * from mybatis
+    &lt;/select&gt;
+    &lt;select id=&quot;findById&quot; parameterType=&quot;long&quot; resultType=&quot;com.henu.entity.User&quot;&gt;
+        select * from mybatis where id = #{id}
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
+<ol start="3">
+<li>在全局配置中(mybits.xml)注册</li>
+</ol>
+<pre><code class="language-xml">&lt;mapper resource=&quot;com/henu/repository/AccountRepository.xml&quot; /&gt;
+</code></pre>
+<ol start="4">
+<li>获取MaBits框架动态生成的代理类，调用接口方法<code>getMapper</code></li>
+</ol>
+<pre><code class="language-java">package com.henu.test;
+
+import com.henu.entity.User;
+import com.henu.repository.AccountRepository;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.InputStream;
+import java.util.List;
+
+public class TestForMapper {
+    public static void main(String[] args) {
+        InputStream res = TestForMapper.class.getClassLoader().getResourceAsStream(&quot;mybatis.xml&quot;);
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(res);
+        SqlSession sqlSession = factory.openSession();
+        //获取实现接口的代理对象
+        AccountRepository mapper = sqlSession.getMapper(AccountRepository.class);
+        //直接调用接口的方法即可
+        //        List&lt;User&gt; all = mapper.findAll();
+        //        for (User user : all) {
+        //            System.out.println(user);
+        //        }
+        User user = new User(1L,&quot;MyBatis&quot;,&quot;gyg&quot;,18);
+        //        mapper.save(user);
+        //        mapper.deleteById(7);
+        //        User byId = mapper.findById(5);
+        //        System.out.println(byId);
+        //        数据发生改变的时候一定要提交事务
+        mapper.update(user);
+        sqlSession.commit();
+    }
+}
+</code></pre>
+<h3 id="mapperxml详解">Mapper.xml详解</h3>
+<ul>
+<li>statement标签：select、update、delete、insert这些标签分别对应查询，修改，删除，插入操作</li>
+<li>parameterType：参数类型
+<ol>
+<li>基本数据类型，直接写关键字即可<code>int char double float</code></li>
+<li>String类型要传入全路径类名<code>java.lang.String</code></li>
+<li>包装类类型，要传入全路径类名</li>
+<li>多个参数，就不用设定parameterType，此时取参数需要用<code>#{param1}</code>或者<code>#{arg0}</code>
+<ul>
+<li>param从1开始</li>
+<li>arg从0开始</li>
+</ul>
+</li>
+<li>Java Bean作为参数，写其全路径类名</li>
+</ol>
+</li>
+<li>resultType：结果类型
+<ol>
+<li>基本数据类型，写关键字</li>
+<li>包装类，写全路径类名</li>
+<li>列表类型，写泛型的全路径类名</li>
+<li>Java Bean，写全路径类名</li>
+</ol>
+</li>
+</ul>
+<h3 id="级联查询">级联查询</h3>
+<p>这里的ROM，不是实体类和表的直接映射，而是<strong>结果集和类的映射</strong></p>
+<h4 id="一对多">一对多</h4>
+<ul>
+<li>创建学生和班级表</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+CREATE TABLE student(
+    id int primary key auto_increment,
+    name varchar(11),
+    cid int
+)
+</code></pre>
+<pre><code class="language-sql">use springioc;
+CREATE TABLE classes(
+    id int primary key auto_increment,
+    name varchar(11)
+)
+</code></pre>
+<ul>
+<li>插入几条数据</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+INSERT INTO student (name,cid) VALUES(&quot;张三&quot;,1);
+INSERT INTO student (name,cid) VALUES(&quot;李四&quot;,2);
+INSERT INTO student (name,cid) VALUES(&quot;王五&quot;,2);
+INSERT INTO student (name,cid) VALUES(&quot;小明&quot;,1);
+
+INSERT INTO classes (id,name) VALUES(1,&quot;一班&quot;);
+INSERT INTO classes (id,name) VALUES(2,&quot;二班&quot;);
+INSERT INTO classes (id,name) VALUES(3,&quot;三班&quot;);
+</code></pre>
+<ul>
+<li>创建两个实体类</li>
+</ul>
+<pre><code class="language-java">package com.henu.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Student {
+    private long id;
+    private String name;
+    private Classes classes;
+}
+</code></pre>
+<pre><code class="language-java">package com.henu.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Classes {
+    private long id;
+    private String name;
+    private List&lt;Student&gt; students;
+}
+</code></pre>
+<p>事务需求，在查询学生的时候，查出其班级</p>
+<pre><code class="language-sql">use springioc;
+SELECT s.id,s.`name`,c.`name` as cname FROM student s, classes c WHERE s.id=1 and c.id=s.cid
+</code></pre>
+<ul>
+<li>通过上述案例请手动写出获取Mapper对象 以及xml，接口编写，不要忘记注册mapper.xml</li>
+</ul>
+<p>此时我们需要用<code>resultMap</code>标签</p>
+<pre><code class="language-xml">&lt;resultMap id=&quot;studenMap&quot; type=&quot;com.henu.entity.Student&quot;&gt;
+    &lt;!--        主键映射用id--&gt;
+    &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
+    &lt;!--        其他字段用result--&gt;
+    &lt;result column=&quot;name&quot; property=&quot;name&quot; /&gt;
+    &lt;!--        联合其他表的时候需要使用次标签 javaType为其他表对应实体类的类型--&gt;
+    &lt;association property=&quot;classes&quot; javaType=&quot;com.henu.entity.Classes&quot; &gt;
+        &lt;!--            其他表的主键--&gt;
+        &lt;id column=&quot;cid&quot; property=&quot;id&quot;/&gt;
+        &lt;!--            其他表的普通字段--&gt;
+        &lt;result column=&quot;cname&quot; property=&quot;name&quot;/&gt;
+    &lt;/association&gt;
+&lt;/resultMap&gt;
+&lt;select id=&quot;findClasses&quot; parameterType=&quot;long&quot; resultMap=&quot;studenMap&quot;&gt;
+    select s.id, s.name, c.name as cname from student s,classes c where s.id = #{id} and s.cid = c.id
+&lt;/select&gt;
+</code></pre>
+<h4 id="多对一">多对一</h4>
+<pre><code class="language-sql">use springioc;
+SELECT c.id, c.name, s.name as sname FROM student s, classes c WHERE c.id = 1 and c.id = s.cid
+</code></pre>
+<p>参照上述一对多案例不难写出，多对一的<code>resultMap</code></p>
+<pre><code class="language-xml">&lt;resultMap id=&quot;classesMap&quot; type=&quot;com.henu.entity.Classes&quot;&gt;
+    &lt;id column=&quot;cid&quot; property=&quot;id&quot;/&gt;
+    &lt;result column=&quot;cname&quot; property=&quot;name&quot;/&gt;
+    &lt;!--        映射集合 ofType是集合的泛型--&gt;
+    &lt;collection property=&quot;students&quot; ofType=&quot;com.henu.entity.Student&quot;&gt;
+        &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
+        &lt;result column=&quot;name&quot; property=&quot;name&quot;/&gt;
+    &lt;/collection&gt;
+&lt;/resultMap&gt;
+&lt;select id=&quot;findById&quot; parameterType=&quot;long&quot; resultMap=&quot;classesMap&quot;&gt;
+    SELECT c.id as cid, c.name as cname, s.name, s.id FROM student s, classes c WHERE c.id = #{id} and c.id = s.cid
+&lt;/select&gt;
+</code></pre>
+<h4 id="多对多">多对多</h4>
+<ul>
+<li>创建用户表</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+CREATE TABLE customer(
+	id int PRIMARY KEY auto_increment,
+	name varchar(11)
+)
+</code></pre>
+<ul>
+<li>创建商品表</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+CREATE TABLE goods(
+	id int PRIMARY KEY auto_increment,
+	name varchar(11)
+)
+</code></pre>
+<ul>
+<li>创建中间表</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+CREATE TABLE customer_goods(
+	id int PRIMARY KEY auto_increment,
+	cid int,
+	gid int,
+	FOREIGN KEY(cid) REFERENCES customer(id),
+	FOREIGN KEY(gid) REFERENCES goods(id)
+)
+</code></pre>
+<ul>
+<li>插入数据</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+INSERT INTO customer (name) VALUES(&quot;张三&quot;);
+INSERT INTO customer (name) VALUES(&quot;李四&quot;);
+INSERT INTO goods (name) VALUES(&quot;华为&quot;);
+INSERT INTO goods (name) VALUES(&quot;联想&quot;);
+INSERT INTO goods (name) VALUES(&quot;inter&quot;);
+INSERT INTO goods (name) VALUES(&quot;Nvidia&quot;);
+INSERT INTO customer_goods (cid,gid) VALUES(1,1);
+INSERT INTO customer_goods (cid,gid) VALUES(1,2);
+INSERT INTO customer_goods (cid,gid) VALUES(1,4);
+INSERT INTO customer_goods (cid,gid) VALUES(2,1);
+INSERT INTO customer_goods (cid,gid) VALUES(2,3);
+</code></pre>
+<ul>
+<li>SQL语句</li>
+</ul>
+<pre><code class="language-sql">use springioc;
+SELECT c.id, c.name, g.id, g.name FROM customer c, goods g, customer_goods cg WHERE cg.cid =c.id and cg.gid = g.id and c.id = 1
+</code></pre>
+<pre><code class="language-xml">&lt;resultMap id=&quot;customerMap&quot; type=&quot;com.henu.entity.Customer&quot;&gt;
+    &lt;id column=&quot;cid&quot; property=&quot;id&quot;/&gt;
+    &lt;result column=&quot;cname&quot; property=&quot;name&quot;/&gt;
+    &lt;collection property=&quot;goods&quot; ofType=&quot;com.henu.entity.Goods&quot;&gt;
+        &lt;id column=&quot;gid&quot; property=&quot;id&quot;/&gt;
+        &lt;id column=&quot;gname&quot; property=&quot;name&quot;/&gt;
+    &lt;/collection&gt;
+&lt;/resultMap&gt;
+&lt;select id=&quot;findById&quot; parameterType=&quot;long&quot; resultMap=&quot;customerMap&quot;&gt;
+    SELECT c.id as cid, c.name as cname, g.id as gid, g.name as gname FROM customer c, goods g, customer_goods cg WHERE cg.cid =c.id and cg.gid = g.id and c.id = #{id}
+&lt;/select&gt;
+</code></pre>
+<h3 id="mybatis逆向工程">MyBatis逆向工程</h3>
+<p>MyBatis框架需要：实体类，自定义的接口，自定义Mapper.xml。</p>
+<p>逆向工程可以帮助开发者自动创建上述三部份组件，提高开发效率。</p>
+<h4 id="如何使用">如何使用</h4>
+<p>MyBatis Generator，简称 MBG，是⼀个专⻔为 MyBatis 框架开发者定制的代码⽣成器，可⾃动⽣成 MyBatis 框架所需的实体类、Mapper 接⼝、Mapper.xml，⽀持基本的 CRUD 操作，但是⼀些相对复 杂的 SQL 需要开发者⾃⼰来完成。</p>
+<ul>
+<li>maven坐标</li>
+</ul>
+<pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+        &lt;version&gt;3.4.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;8.0.11&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;
+        &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<ul>
+<li>创建 MBG 配置⽂件 generatorConfig.xml</li>
+</ul>
+<ol>
+<li>
+<p>jdbcConnection 配置数据库连接信息。</p>
+</li>
+<li>
+<p>javaModelGenerator 配置 JavaBean 的⽣成策略。</p>
+</li>
+<li>
+<p>sqlMapGenerator 配置 SQL 映射⽂件⽣成策略。</p>
+</li>
+<li>
+<p>javaClientGenerator 配置 Mapper 接⼝的⽣成策略。</p>
+</li>
+<li>
+<p>table 配置⽬标数据表（tableName：表名，domainObjectName：JavaBean 类名）。</p>
+</li>
+</ol>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE generatorConfiguration
+ PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;
+ &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;
+&lt;generatorConfiguration&gt;
+    &lt;context id=&quot;testTables&quot; targetRuntime=&quot;MyBatis3&quot;&gt;
+        &lt;jdbcConnection
+                        driverClass=&quot;com.mysql.cj.jdbc.Driver&quot;
+                        connectionURL=&quot;jdbc:mysql://localhost:3306/springioc?
+                                       useUnicode=true&amp;amp;characterEncoding=UTF-8&quot;
+                        userId=&quot;root&quot;
+                        password=&quot;root&quot;
+                        &gt;&lt;/jdbcConnection&gt;
+        &lt;javaModelGenerator targetPackage=&quot;com.henu.entity&quot;
+                            targetProject=&quot;./src/main/java&quot;&gt;&lt;/javaModelGenerator&gt;
+        &lt;sqlMapGenerator targetPackage=&quot;com.henu.repository&quot;
+                         targetProject=&quot;./src/main/java&quot;&gt;&lt;/sqlMapGenerator&gt;
+        &lt;javaClientGenerator type=&quot;XMLMAPPER&quot;
+                             targetPackage=&quot;com.henu.repository&quot; targetProject=&quot;./src/main/java&quot;&gt;
+        &lt;/javaClientGenerator&gt;
+        &lt;table tableName=&quot;user&quot; domainObjectName=&quot;User&quot;&gt;&lt;/table&gt;
+    &lt;/context&gt;
+&lt;/generatorConfiguration&gt;
+</code></pre>
+<ul>
+<li>创建 Generator 执⾏类。</li>
+</ul>
+<pre><code class="language-java">package com.henu.test;
+import org.mybatis.generator.api.MyBatisGenerator;
+import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.xml.ConfigurationParser;
+import org.mybatis.generator.exception.InvalidConfigurationException;
+import org.mybatis.generator.exception.XMLParserException;
+import org.mybatis.generator.internal.DefaultShellCallback;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+public class Main {
+    public static void main(String[] args) {
+        List&lt;String&gt; warings = new ArrayList&lt;String&gt;();
+        boolean overwrite = true;
+        String genCig = &quot;/generatorConfig.xml&quot;;
+        File configFile = new File(Main.class.getResource(genCig).getFile());
+        ConfigurationParser configurationParser = new
+            ConfigurationParser(warings);
+        Configuration configuration = null;
+        try {
+            configuration = configurationParser.parseConfiguration(configFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XMLParserException e) {
+            e.printStackTrace();
+        }
+        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+        MyBatisGenerator myBatisGenerator = null;
+        try {
+            myBatisGenerator = new
+                MyBatisGenerator(configuration,callback,warings);
+        } catch (InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        try {
+            myBatisGenerator.generate(null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[后端开发基础之Servlet&JSP]]></title>
         <id>https://seulg.github.io/post/hou-duan-kai-fa-ji-chu-zhi-servlet/</id>
