@@ -9,7 +9,7 @@
 <meta name="description" content="为了活着而活着">
 <meta name="theme-color" content="#000">
 <title>Vue学习 (未完待续) | Seul</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1594116711015">
+<link rel="shortcut icon" href="/favicon.ico?v=1594142368688">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -224,13 +224,13 @@
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">12</span>
+        <span class="site-item-stat-count">13</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">12</span>
+        <span class="site-item-stat-count">13</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -1630,6 +1630,7 @@ ul li:hover {
 &lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
 &lt;p&gt;实现了ORMapping: Object Relationship Mapping 对象关系映射，其中对象指面向对象，关系指关系型数据库&lt;/p&gt;
 &lt;p&gt;Java到MYSQL的映射，开发者可以以面向对象的思想管理数据库。&lt;/p&gt;
+&lt;!-- more --&gt;
 &lt;h3 id=&#34;优点&#34;&gt;优点&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;与JDBC相比，减少了50%以上的代码量&lt;/li&gt;
@@ -2440,6 +2441,327 @@ public class Main {
         }
     }
 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;mybatis延迟加载&#34;&gt;MyBatis延迟加载&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是延迟加载？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;延迟加载也叫懒加载，惰性加载，使用延迟加载可以提高程序的运行效率，针对数据持久层的操作，在某些特定情况下去访问特定的数据库，在其他情况下可以不用访问某些表，从一定程度上减少了Java应用与数据库的交互次数。&lt;/p&gt;
+&lt;p&gt;查询学⽣和班级的时，学⽣和班级是两张不同的表，如果当前需求只需要获取学⽣的信息，那么查询学 ⽣单表即可，如果需要通过学⽣获取对应的班级信息，则必须查询两张表。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置文件开启延迟加载&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;settings&amp;gt;
+    &amp;lt;!-- 打印SQL--&amp;gt;
+    &amp;lt;setting name=&amp;quot;logImpl&amp;quot; value=&amp;quot;STDOUT_LOGGING&amp;quot; /&amp;gt;
+    &amp;lt;!-- 开启延迟加载 --&amp;gt;
+    &amp;lt;setting name=&amp;quot;lazyLoadingEnabled&amp;quot; value=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;/settings&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;将级联查询，拆分为单表查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用&lt;associations&gt;标签里面的&lt;code&gt;select&lt;/code&gt;属性指定要调用的方法的全路径名，&lt;code&gt;column&lt;/code&gt;属性设定参数该方法结果集的指定参数&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;ClassesRepository.xml
+
+&amp;lt;select id=&amp;quot;findByIdLazy&amp;quot; parameterType=&amp;quot;long&amp;quot; resultType=&amp;quot;com.henu.entity.Classes&amp;quot;&amp;gt;
+    select * from classes where id = #{id}
+&amp;lt;/select&amp;gt;
+
+StudentRepository.xml
+&amp;lt;resultMap id=&amp;quot;studentMapLazy&amp;quot; type=&amp;quot;com.henu.entity.Student&amp;quot;&amp;gt;
+    &amp;lt;id column=&amp;quot;id&amp;quot; property=&amp;quot;id&amp;quot;/&amp;gt;
+    &amp;lt;result column=&amp;quot;name&amp;quot; property=&amp;quot;name&amp;quot;/&amp;gt;
+    &amp;lt;association property=&amp;quot;classes&amp;quot; javaType=&amp;quot;com.henu.entity.Classes&amp;quot;
+                 select=&amp;quot;com.henu.repository.ClassesRepository.findByIdLazy&amp;quot; column=&amp;quot;cid&amp;quot;&amp;gt;
+    &amp;lt;/association&amp;gt;
+&amp;lt;/resultMap&amp;gt;
+&amp;lt;select id=&amp;quot;findByIdLazy&amp;quot; parameterType=&amp;quot;long&amp;quot; resultMap=&amp;quot;studentMapLazy&amp;quot;&amp;gt;
+    select * from student where id = #{id}
+&amp;lt;/select&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;开启延迟加载，Mybatis会自动判断需不需要第二次查询，如果仅仅输出student的name，则MyBatis不会查询第二次，若输出的是班级名，则会查询第二次获得班级名&lt;/p&gt;
+&lt;h3 id=&#34;mybatis缓存&#34;&gt;MyBatis缓存&lt;/h3&gt;
+&lt;p&gt;使用缓存，提升程序的运行效率，例如，第一次查询出某个对象，会将其加入缓存中，第二次查询时，只需要从缓存中取出即可，无需再次访问数据库。&lt;/p&gt;
+&lt;h4 id=&#34;缓存分类&#34;&gt;缓存分类&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;一级缓存: SqlSession级别，默认开启，并且不能关闭。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;操作数据库时需要创建SqlSession对象，在对象中有一个HashMap用于存储缓存数据，不同的SqlSession之间缓存数据区域是互不影响的。&lt;/p&gt;
+&lt;p&gt;一级缓存的作用域是SqlSession范围的，当同一个SqlSession中执行两次相同的SQL语句时，第一次执行完毕会将结果存入缓存中，第二次查询时，直接从缓存中获取。&lt;/p&gt;
+&lt;p&gt;需要注意的是，如果SqlSession执行了DML操作(insert ， update，delete)，MyBatis必须将缓存清空，以确保数据的准确性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二级缓存：是Mapper级别缓存，默认关闭，可以开启&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用二级缓存时，多个SqlSession使用同一个Mapper的SQL语句操作数据库，得到的数据会存在二级缓存区。使用HashMap存储，相比较于一级缓存，二级缓存的范围更大，多个SqlSession可以共用二级缓存，二级缓存是跨SqlSession的。&lt;/p&gt;
+&lt;p&gt;二级缓存十多个SqlSession共享的，其作用域是Mapper的同一个namespace，不同的SqlSession两次执行相同的namespace下的SQL语句，参数也相等，则第一次执行成功后会将数据保存在二级缓存中，第二次可以直接从二级缓存中取出数据。&lt;/p&gt;
+&lt;h4 id=&#34;代码验证&#34;&gt;代码验证&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一级缓存&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package com.henu.test;
+
+import com.henu.entity.User;
+import com.henu.repository.AccountRepository;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.InputStream;
+
+public class TestForCache {
+    public static void main(String[] args) {
+        InputStream res = TestForCache.class.getClassLoader().getResourceAsStream(&amp;quot;mybatis.xml&amp;quot;);
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(res);
+        SqlSession sqlSession = factory.openSession();
+        AccountRepository mapper = sqlSession.getMapper(AccountRepository.class);
+        User byId = mapper.findById(1);
+        System.out.println(byId);
+        //        sqlSession.close();
+        //        sqlSession = factory.openSession();
+        //        mapper = sqlSession.getMapper(AccountRepository.class);
+        User byId2 = mapper.findById(1);
+        System.out.println(byId2);
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;二级缓存&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;mybatis自带的二级缓存&#34;&gt;MyBatis自带的二级缓存&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在配置文件开启二级缓存&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;settings&amp;gt;
+    &amp;lt;!-- 打印SQL--&amp;gt;
+    &amp;lt;setting name=&amp;quot;logImpl&amp;quot; value=&amp;quot;STDOUT_LOGGING&amp;quot;/&amp;gt;
+    &amp;lt;!-- 开启延迟加载 --&amp;gt;
+    &amp;lt;setting name=&amp;quot;lazyLoadingEnabled&amp;quot; value=&amp;quot;true&amp;quot;/&amp;gt;
+    &amp;lt;!--开启二级缓存--&amp;gt;
+    &amp;lt;setting name=&amp;quot;cacheEnabled&amp;quot; value=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;/settings&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;在对应的Mapper.xml中添加二级缓存的配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;cache/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;实现实体类序列化接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Serializable&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package com.henu.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable {
+    private long id;
+    private String username;
+    private String password;
+    private int age;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Java代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package com.henu.test;
+
+import com.henu.entity.User;
+import com.henu.repository.AccountRepository;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.InputStream;
+
+public class TestForCache {
+    public static void main(String[] args) {
+        InputStream res = TestForCache.class.getClassLoader().getResourceAsStream(&amp;quot;mybatis.xml&amp;quot;);
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(res);
+        SqlSession sqlSession = factory.openSession();
+        AccountRepository mapper = sqlSession.getMapper(AccountRepository.class);
+        User byId = mapper.findById(1);
+        System.out.println(byId);
+        sqlSession.close();
+        sqlSession = factory.openSession();
+        mapper = sqlSession.getMapper(AccountRepository.class);
+        User byId2 = mapper.findById(1);
+        System.out.println(byId2);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;第三方缓存ehcache&#34;&gt;第三方缓存(ehcache)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;添加ehcache依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;net.sf.ehcache&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;ehcache-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.4.3&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.mybatis&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;mybatis-ehcache&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0.0&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;添加ehcache配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;ehcache xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:noNamespaceSchemaLocation=&amp;quot;http://ehcache.org/ehcache.xsd&amp;quot;&amp;gt;
+    &amp;lt;diskStore/&amp;gt;
+    &amp;lt;defaultCache
+                  maxElementsInMemory=&amp;quot;1000&amp;quot;
+                  maxElementsOnDisk=&amp;quot;10000000&amp;quot;
+                  eternal=&amp;quot;false&amp;quot;
+                  overflowToDisk=&amp;quot;false&amp;quot;
+                  timeToIdleSeconds=&amp;quot;120&amp;quot;
+                  timeToLiveSeconds=&amp;quot;120&amp;quot;
+                  diskExpiryThreadIntervalSeconds=&amp;quot;120&amp;quot;
+                  memoryStoreEvictionPolicy=&amp;quot;LRU&amp;quot;&amp;gt;
+    &amp;lt;/defaultCache&amp;gt;
+&amp;lt;/ehcache&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;在配置文件中开启二级缓存&lt;/li&gt;
+&lt;li&gt;在Mapper.xml添加cache标签&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;cache type=&amp;quot;org.mybatis.caches.ehcache.EhcacheCache&amp;quot;&amp;gt;
+    &amp;lt;!-- 缓存创建之后，最后⼀次访问缓存的时间⾄缓存失效的时间间隔 --&amp;gt;
+    &amp;lt;property name=&amp;quot;timeToIdleSeconds&amp;quot; value=&amp;quot;3600&amp;quot;/&amp;gt;
+    &amp;lt;!-- 缓存⾃创建时间起⾄失效的时间间隔 --&amp;gt;
+    &amp;lt;property name=&amp;quot;timeToLiveSeconds&amp;quot; value=&amp;quot;3600&amp;quot;/&amp;gt;
+    &amp;lt;!-- 缓存回收策略，LRU表示移除近期使⽤最少的对象 --&amp;gt;
+    &amp;lt;!-- 回收策略参考计组所学的缓存的移除策略 --&amp;gt;
+    &amp;lt;property name=&amp;quot;memoryStoreEvictionPolicy&amp;quot; value=&amp;quot;LRU&amp;quot;/&amp;gt;
+&amp;lt;/cache&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;不需要实体类实现序列化接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mybatis动态sql&#34;&gt;MyBatis动态SQL&lt;/h3&gt;
+&lt;p&gt;使⽤动态 SQL 可简化代码的开发，减少开发者的⼯作量，程序可以⾃动根据业务参数来决定 SQL 的组 成。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;if 、where  便是与关系and&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;select id=&amp;quot;findByAccount&amp;quot; parameterType=&amp;quot;com.henu.entity.User&amp;quot; resultType=&amp;quot;com.henu.entity.User&amp;quot;&amp;gt;
+        select * from mybatis
+        &amp;lt;where&amp;gt;
+            &amp;lt;if test=&amp;quot;id != 0&amp;quot;&amp;gt;
+                and id = #{id}
+            &amp;lt;/if&amp;gt;
+            &amp;lt;if test=&amp;quot;username != null&amp;quot;&amp;gt;
+                and username = #{username}
+            &amp;lt;/if&amp;gt;
+            &amp;lt;if test=&amp;quot;age != 0&amp;quot;&amp;gt;
+                and age = #{age}
+            &amp;lt;/if&amp;gt;
+            &amp;lt;if test=&amp;quot;password != null&amp;quot;&amp;gt;
+                and password = #{password}
+            &amp;lt;/if&amp;gt;
+        &amp;lt;/where&amp;gt;
+    &amp;lt;/select&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;if&lt;/code&gt;标签，当test为true时，会将其包裹的内容加入SQL语句&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;where&lt;/code&gt;标签，会自动删除多余的&lt;code&gt;and&lt;/code&gt;关键字，通常和&lt;code&gt;if&lt;/code&gt;标签一起使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;choose 、when 表示或关系or&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;select id=&amp;quot;findByAccount&amp;quot; parameterType=&amp;quot;com.henu.entity.User&amp;quot; resultType=&amp;quot;com.henu.entity.User&amp;quot;&amp;gt;
+    select * from mybatis
+    &amp;lt;where&amp;gt;
+        &amp;lt;choose&amp;gt;
+            &amp;lt;when test=&amp;quot;id!=0&amp;quot;&amp;gt;
+                id = #{id}
+            &amp;lt;/when&amp;gt;
+            &amp;lt;when test=&amp;quot;username!=null&amp;quot;&amp;gt;
+                username = #{username}
+            &amp;lt;/when&amp;gt;
+            &amp;lt;when test=&amp;quot;password!=null&amp;quot;&amp;gt;
+                password = #{password}
+            &amp;lt;/when&amp;gt;
+            &amp;lt;when test=&amp;quot;age!=0&amp;quot;&amp;gt;
+                age = #{age}
+            &amp;lt;/when&amp;gt;
+        &amp;lt;/choose&amp;gt;
+    &amp;lt;/where&amp;gt;
+&amp;lt;/select&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;trim&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;trim&lt;/code&gt;标签中的 &lt;code&gt;prefix&lt;/code&gt;和 &lt;code&gt;suffix&lt;/code&gt; 属性会被⽤于⽣成实际的 SQL 语句，会和标签内部的语句进⾏拼接，如 果语句前后出现了 &lt;code&gt;prefixOverrides&lt;/code&gt;或者 &lt;code&gt;suffixOverrides&lt;/code&gt;属性中指定的值，MyBatis 框架会⾃动将其删除&lt;/p&gt;
+&lt;p&gt;模拟where标签：自动删除和where紧邻的and&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;select id=&amp;quot;findByAccount&amp;quot; parameterType=&amp;quot;com.henu.entity.Account&amp;quot; resultType=&amp;quot;com.henu.entity.Account&amp;quot;&amp;gt;
+    select * from mybatis
+    &amp;lt;trim prefix=&amp;quot;where&amp;quot; prefixOverrides=&amp;quot;and&amp;quot;&amp;gt;
+        &amp;lt;if test=&amp;quot;id!=0&amp;quot;&amp;gt;
+            id = #{id}
+        &amp;lt;/if&amp;gt;
+        &amp;lt;if test=&amp;quot;username!=null&amp;quot;&amp;gt;
+            and username = #{username}
+        &amp;lt;/if&amp;gt;
+        &amp;lt;if test=&amp;quot;password!=null&amp;quot;&amp;gt;
+            and password = #{password}
+        &amp;lt;/if&amp;gt;
+        &amp;lt;if test=&amp;quot;age!=0&amp;quot;&amp;gt;
+            and age = #{age}
+        &amp;lt;/if&amp;gt;
+    &amp;lt;/trim&amp;gt;
+&amp;lt;/select&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;set 标签&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;set&lt;/code&gt;标签⽤于 &lt;code&gt;update&lt;/code&gt;操作，会⾃动根据参数选择⽣成 SQL 语句。只插入不为空的值&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;update id=&amp;quot;update&amp;quot; parameterType=&amp;quot;com.henu.entity.User&amp;quot;&amp;gt;
+    update mybatis
+    &amp;lt;set&amp;gt;
+        &amp;lt;if test=&amp;quot;username!=null&amp;quot;&amp;gt;
+            username = #{username},
+        &amp;lt;/if&amp;gt;
+        &amp;lt;if test=&amp;quot;password!=null&amp;quot;&amp;gt;
+            password = #{password},
+        &amp;lt;/if&amp;gt;
+        &amp;lt;if test=&amp;quot;age!=0&amp;quot;&amp;gt;
+            age = #{age}
+        &amp;lt;/if&amp;gt;
+    &amp;lt;/set&amp;gt;
+    where id = #{id}
+&amp;lt;/update&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;foreach 标签&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; 标签可以迭代⽣成⼀系列值，这个标签主要⽤于 SQL 的 in 语句。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;collection&lt;/code&gt;遍历的集合参数&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;open&lt;/code&gt; ：集合之前的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;close&lt;/code&gt;：集合之后的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;item&lt;/code&gt;：取出来的值的名字&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;separator&lt;/code&gt;：元素之间的分割符&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt;：一般不能使用但标签&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;select id=&amp;quot;findByIds&amp;quot; parameterType=&amp;quot;com.henu.entity.User&amp;quot; resultType=&amp;quot;com.henu.entity.User&amp;quot;&amp;gt;
+    select * from mybatis
+    &amp;lt;where&amp;gt;
+        &amp;lt;foreach collection=&amp;quot;ids&amp;quot; open=&amp;quot;id in(&amp;quot; close=&amp;quot;)&amp;quot; item=&amp;quot;id&amp;quot; separator=&amp;quot;,&amp;quot;&amp;gt;
+            #{id}
+        &amp;lt;/foreach&amp;gt;
+    &amp;lt;/where&amp;gt;
+&amp;lt;/select&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 ">MyBatis入门</a>
       </div>
